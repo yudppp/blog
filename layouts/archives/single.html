@@ -7,7 +7,8 @@
     {{ partial "header.html" . }}
     <main>
 	  <div class="container">
-        {{ .Content }}
+      {{ .Content }}
+      {{ partial "share.html" . }}
 	  </div>
     </main>
     {{ partial "footer.html" . }}
