@@ -40,6 +40,24 @@ main {
 }
 
 .header {
-    margin-top: 6rem;
-    margin-bottom: 2rem;
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+blockquote {
+	font-style: italic;
+  margin: 42px 10px;
+  padding-left: 20px;
+  border-left: 4px solid #ededee;
+}
+
+code {
+  background: #272822;
+  font-size: 12px;
+  line-height: 1.4;
+  border-radius: 0;
 }

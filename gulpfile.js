@@ -14,7 +14,7 @@ var APP_JS_FILES = [
 var LIB_CSS_FILES = [
   'bower_components/normalize.css/normalize.css',
   'static/css/skeleton.css',
-  'bower_components/highlightjs/styles/solarized_light.css'
+  'bower_components/highlightjs/styles/monokai.css'
 ];
 
 var APP_CSS_FILES = [
