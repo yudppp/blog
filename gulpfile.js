@@ -4,6 +4,8 @@ var sequence = require('run-sequence').use(gulp);
 
 var LIB_JS_FILES = [
   'bower_components/jquery/dist/jquery.min.js',
+  'bower_components/lodash/lodash.min.js',
+  'bower_components/Chart.js/Chart.min.js',
   'bower_components/highlightjs/highlight.pack.js'
 ];
 
