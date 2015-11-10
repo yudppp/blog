@@ -4,9 +4,9 @@
     {{ partial "meta.html" . }}
   </head>
   <body>
+    {{ partial "heroimage.html" . }}
     {{ partial "header.html" . }}
     <main>
-    {{ partial "heroimage.html" . }}
 	  <div class="container">
         <ul class="entry-list">
           {{ range first 5 .Data.Pages }}
