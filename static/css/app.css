@@ -1,11 +1,12 @@
 body {
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 14px;
   background: #fdfdfd;
 }
 
 a {
   text-decoration: none;
-  color: #50CCEF;
+  color: #54C1E0;
 }
 
 a:hover {
@@ -48,7 +49,7 @@ main {
 .navbar {
   width: 100%;
   height: 6.5rem;
-  background: #f9f9f9;
+  background: #54C1E0;
   border-bottom: 1px solid #00C8FF;
 }
 
@@ -69,7 +70,7 @@ main {
     margin-right: 35px;
     text-decoration: none;
     line-height: 6.5rem;
-    color: #222;
+    color: #fafafa;
 }
 
 .entry-list {
@@ -88,7 +89,7 @@ main {
 }
 
 .profile-cover {
-  background: #00C8FF;
+  background: #54C1E0;
   position: relative;
   z-index: 0;
   height: 120px;
