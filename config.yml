@@ -1,5 +1,5 @@
 baseurl:    "http://yudppp.github.io/blog"
-title:      "yudppp blog"
+title:      "<!-- yudppp -->"
 contentdir: "content"
 layoutdir:  "layouts"
 staticdir:  "static"

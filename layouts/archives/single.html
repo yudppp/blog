@@ -6,21 +6,16 @@
   <body>
     {{ partial "header.html" . }}
     <main>
-	  <div class="container">
-      <div class="row container-inner">
-        <div class="eight columns">
-      <div class="header">
-        <h1 class="title">{{ .Title }}</h1>
-      </div>
-      {{ .Content }}
-      {{ partial "share.html" . }}
-      {{ partial "comment.html" . }}
-    </div>
-    <div class="four columns">
-      {{ partial "profile.html" . }}
-    </div>
-  </div>
-	  </div>
+  	  <div class="container">
+        <div class="row container-inner">
+          <div class="header">
+            <h1 class="title">{{ .Title }}</h1>
+          </div>
+          {{ .Content }}
+          {{ partial "share.html" . }}
+          {{ partial "comment.html" . }}
+        </div>
+  	  </div>
     </main>
     {{ partial "footer.html" . }}
     {{ partial "script.html" . }}
