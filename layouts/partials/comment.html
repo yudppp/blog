@@ -1,11 +1,16 @@
+<div id="js-open-comment" class="button button-large">open comment</div>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
   /* * * DON'T EDIT BELOW THIS LINE * * */
-  (function() {
+  var openDiqus = function() {
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
     dsq.src = '//yudppp.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+
+    document.all("js-open-comment").style.display = "none";
+  };
+  // openDiqus()
+  document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);;
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>

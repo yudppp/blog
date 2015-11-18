@@ -1,5 +1,5 @@
 ---
-title: io.jsをnvmで管理する 
+title: io.jsをnvmで管理する
 date: 2015-10-23
 ---
 
@@ -7,7 +7,7 @@ date: 2015-10-23
 
 nvm側でio.jsに対応されるかも知れないですが、早めに触ってみた買ったのとnvmで管理させないとめんどくさいことになりそうだったのでやってみました。
 
-https://github.com/creationix/nvm/issues/590
+[creationix/nvm/issues/590](https://github.com/creationix/nvm/issues/590)
 
 
 ```
@@ -59,6 +59,5 @@ io.jsのインストールはまだsourceから直接取得していないがす
 
 ## 参考にしたもの
 
-https://github.com/iojs/io.js
-http://qiita.com/laiso/items/b3e543f85679928caec4
-
+- [iojs/io.js](https://github.com/iojs/io.js)
+- [qiita.com/laiso](http://qiita.com/laiso/items/b3e543f85679928caec4)
