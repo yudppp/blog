@@ -7,18 +7,21 @@
     {{ partial "heroimage.html" . }}
     {{ partial "header.html" . }}
     <main>
-	  <div class="container">
-      <div class="row container-inner">
-        <ul class="entry-list">
-          {{ range first 5 .Data.Pages }}
-            <li class="entry-item">
-				      <date class="label">{{ .Date.Format "2006/01/02" }}</date>
-              <h3 class="entry-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-            </li>
-          {{ end }}
-        </ul>
-      </div>
-	  </div>
+  	  <div class="container">
+          <ul class="entry-list">
+            {{ range first 5 .Data.Pages }}
+              <li class="entry-item">
+  				      <date class="label">{{ .Date.Format "2006/01/02" }}</date>
+                <h3 class="entry-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                {{if .Params.excerpt}}
+                <div class="entry-excerpt" >
+                  {{ .Params.excerpt }}
+                </div>
+                {{end}}
+              </li>
+            {{ end }}
+          </ul>
+  	  </div>
     </main>
     {{ partial "footer.html" . }}
     {{ partial "script.html" . }}

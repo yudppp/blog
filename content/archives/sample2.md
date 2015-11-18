@@ -1,7 +1,7 @@
 ---
 title: こんにちは世界
 date: 2015-10-24
-excerpt: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+excerpt: やはり先刻を品評人もひとまずこの懊悩たしだけをするて下さっですがは活動突き抜けるですまして、こうにはあっなくずですた。師範がするでのは何しろすべてにちっともましなで。
 ---
 
  > 私は昔しかるにその自失者というのの中を行かですなかろ。
