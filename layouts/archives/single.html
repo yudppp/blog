@@ -12,8 +12,20 @@
           <h1 class="title">{{ .Title }}</h1>
         </div>
         {{ .Content }}
-        {{ partial "share.html" . }}
+
         {{ partial "comment.html" . }}
+
+        {{ partial "share.html" . }}
+
+        <div class="row nextprev">
+          {{ if .PrevInSection }}
+            <a class="prev button" href="{{ .PrevInSection.Permalink }}">← {{ .PrevInSection.Title }}</a>
+          {{ end }}
+          {{ if .NextInSection }}
+            <a class="next button" href="{{ .NextInSection.Permalink }}"> {{ .NextInSection.Title }} →</a>
+          {{ end }}
+        </div>
+
   	  </div>
     </main>
     {{ partial "footer.html" . }}

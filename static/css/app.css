@@ -39,12 +39,8 @@ main {
   min-height: 550px;
 }
 
-
-@media (min-width: 550px) {
-  .container {
-    width: 80%;
-    max-width: 680px;
-  }
+.container {
+  max-width: 680px;
 }
 
 .navbar {
@@ -131,7 +127,7 @@ main {
 
 .entry-title {
   padding: 10px 0 10px;
-  font-size: 2rem;
+  font-size: 2.4rem;
 }
 
 .entry-excerpt {
@@ -140,7 +136,7 @@ main {
 
 @media (min-width: 550px) {
   .entry-excerpt {
-    margin: -25px auto 20px 0;
+    margin: -20px auto 20px 0;
     display: block;
   }
 }
@@ -166,4 +162,25 @@ footer {
 
 .button-large {
   width: 210px;
+}
+
+.comment-group {
+  text-align: center;
+  width:100%;
+}
+
+.comment {
+  margin: 40px auto;
+}
+
+.nextprev {
+  margin: 16px 0;
+}
+
+.prev {
+  float: left;
+}
+
+.next {
+  float: right;
 }
