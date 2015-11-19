@@ -18,12 +18,30 @@
         {{ partial "share.html" . }}
 
         <div class="row nextprev">
-          {{ if .NextInSection }}
-            <a class="next button" href="{{ .NextInSection.Permalink }}">← {{ .NextInSection.Title }}</a>
-          {{ end }}
-          {{ if .PrevInSection }}
-            <a class="prev button" href="{{ .PrevInSection.Permalink }}">{{ .PrevInSection.Title }} →</a>
-          {{ end }}
+          <div class="sp">
+            {{ if .NextInSection }}
+              <a class="next button" href="{{ .NextInSection.Permalink }}">
+                ← next
+              </a>
+            {{ end }}
+            {{ if .PrevInSection }}
+              <a class="prev button" href="{{ .PrevInSection.Permalink }}">
+                prev →
+              </a>
+            {{ end }}
+          </div>
+          <div class="pc">
+            {{ if .NextInSection }}
+              <a class="next button" href="{{ .NextInSection.Permalink }}">
+                ←{{ .NextInSection.Title }}
+              </a>
+            {{ end }}
+            {{ if .PrevInSection }}
+              <a class="prev button" href="{{ .PrevInSection.Permalink }}">
+                {{ .PrevInSection.Title }}→
+              </a>
+            {{ end }}
+          </div>
         </div>
 
   	  </div>
