@@ -166,6 +166,10 @@ footer {
   line-height: 120px;
 }
 
+.comment-group {
+  min-height: 160px;
+}
+
 .comment {
   margin: 20px auto;
 }
