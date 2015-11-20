@@ -33,16 +33,12 @@ blockquote p {
   line-height: 1.4;
 }
 
-pre code {
-  background: #272822;
-  font-size: 14px;
-  line-height: 1.4;
+code {
+  background: #fff;
+  font-size: 12px;
+  line-height: 1.2;
   border-radius: 0;
   margin: 0;
-}
-
-code {
-  border-radius: 0;
 }
 
 .hljs {
