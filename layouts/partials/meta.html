@@ -3,7 +3,7 @@
 <meta name="google-site-verification" content="6Rx5dWhZFrmvOYA3Lt9cEhrsI_NFp1Olpct5skYkoOs" />
 <meta name="robots" content="noindex">
 <meta name="robots" content="nofollow">
-<title>{{ .Title }} - {{ .Site.Title }}</title>
+<title>{{ .Title }}{{if ne .Title .Site.Title}} - {{ .Site.Title }}{{end}}</title>
 <link rel="icon" href="{{ .Site.BaseUrl }}/img/favicon.ico">
 <!-- <link rel="shortcut icon" href="{{ .Site.BaseUrl }}/favicon.png"> -->
 <!-- <link rel="shortcut icon" href="{{ .Site.BaseUrl }}/favicon.svg" type="image/svg+xml" sizes="any"> -->
