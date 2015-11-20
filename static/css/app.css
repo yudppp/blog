@@ -45,6 +45,10 @@ code {
   border-radius: 0;
 }
 
+.hljs {
+  padding: 1rem 1.5rem;
+}
+
 main {
   padding: 20px 0 0;
 }
