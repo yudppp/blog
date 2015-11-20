@@ -1,8 +1,14 @@
 body {
   font-family: 'Noto Sans', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.8;
   background: #fefefe;
+}
+
+@media (min-width: 550px) {
+  body {
+    font-size: 16px;
+  }
 }
 
 a {
@@ -40,12 +46,12 @@ code {
 }
 
 main {
-  padding: 20px 0;
-  min-height: 550px;
+  padding: 20px 0 0;
 }
 
 .container {
   max-width: 680px;
+  min-width: 300px;
 }
 
 .navbar {
@@ -84,42 +90,43 @@ main {
 }
 
 .profile {
-  min-width: 220px;
-  max-width: 300px;
   font-size: 12px;
-  background: #f9f9f9;
-  border: 1px solid #eee;
-  margin-top: 30px;
-  position: static;
-}
-
-.profile-cover {
-  background: #54C1E0;
-  position: relative;
-  z-index: 0;
-  height: 120px;
+  padding: 15px 0;
+  margin: 10px 0 20px;
+  min-height: 95px;
 }
 
 .profile-image {
-  position: relative;
-  top: -45px;
-  z-index: 1;
+  float: left;
   width: 90px;
   height: 90px;
-  margin: 0 auto;
   border-radius: 45px;
   background-image: url(/blog/img/profile.png);
   -moz-background-size: cover;
   background-size: cover;
+  position: relative;
+  overflow: hidden;
 }
 
-.profile-desc {
-  padding: 15px 20px;
-  margin-top: -45px;
+.profile-text {
+  margin-top: 3px;
+  margin-left: 110px;
+}
+
+.profile-name {
+  height: 36px;
+  font-size: 1.8rem;
+  vertical-align: 12px;
+  display:inline-block
 }
 
 .sns {
-  margin: 20px 0 0;
+  height: 36px;
+  display:inline-block
+}
+
+.profile-desc {
+  margin-top: -8px;
 }
 
 .label {
@@ -158,7 +165,8 @@ main {
 footer {
   background-color: #8EA3A9;
   width: 100%;
-  height: 65px;
+  height: 130px;
+  border-top: 1px solid #FFFDA6;
 }
 
 .button {
