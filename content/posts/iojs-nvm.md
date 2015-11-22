@@ -1,6 +1,6 @@
 ---
 title: io.jsをnvmで管理する
-date: 2015-10-23
+date: 2015-01-15
 excerpt: nvmでio.jsを管理する環境をつくりたい。諸々の作業のめも
 ---
 

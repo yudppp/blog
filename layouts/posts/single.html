@@ -11,8 +11,9 @@
         <div class="header">
           <h1 class="title">{{ .Title }}</h1>
         </div>
-        {{ .Content }}
-
+        <div class="content">
+          {{ .Content }}
+        </div>
         {{ partial "comment.html" . }}
 
         {{ partial "share.html" . }}

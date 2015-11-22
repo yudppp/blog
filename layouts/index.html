@@ -9,7 +9,7 @@
     <main>
   	  <div class="container">
           <ul class="entry-list">
-            {{ range first 5 .Data.Pages }}
+            {{ range first 100 .Data.Pages }}
               <li class="entry-item">
   				      <date class="label">{{ .Date.Format "2006/01/02" }}</date>
                 <h3 class="entry-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
