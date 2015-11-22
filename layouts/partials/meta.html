@@ -15,6 +15,9 @@
 <meta property="og:url", content="{{ .Permalink }}">
 <meta property="og:site_name", content="{{ .Site.Title }}">
 <meta property="og:title", content="{{ .Title }}">
+{{ if isset .Params "eyecatch" }}
+  <meta property="og:image" content="{{ .Params.eyecatch }}">
+{{ end }}
 <!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ .Site.BaseUrl }}/img/apple-touch-icon.png"> -->
 <!-- <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ .Site.BaseUrl }}/img/apple-touch-icon.png"> -->
 <!-- <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ .Site.BaseUrl }}/img/apple-touch-icon.png"> -->
