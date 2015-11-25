@@ -42,7 +42,9 @@ code {
   font-size: 12px;
   line-height: 1.4;
   border-radius: 0;
-  margin: 0;
+  margin: 0 2px;
+  padding: 3px;
+  vertical-align: 2px;
   border: 1px solid #bbb;
 }
 
