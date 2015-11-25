@@ -5,7 +5,7 @@ var sequence = require('run-sequence').use(gulp);
 var LIB_JS_FILES = [
   'bower_components/jquery/dist/jquery.min.js',
   'bower_components/lodash/lodash.min.js',
-  'bower_components/highlightjs/highlight.pack.js'
+  'static/highlight/highlight.pack.js'
 ];
 
 var APP_JS_FILES = [
