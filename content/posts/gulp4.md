@@ -253,7 +253,7 @@ registryを使って登録することによって自然?に追加できるよ�
 結局いつリリースになるのかわからなかったのですが4.0への更新は今まで外部のプラグイン等で補っていた機能がgulpそのもので使える感じになったくらいなのでしょうか。
 
 
-##参考にした記事
-https://github.com/gulpjs/gulp
-https://blog.wearewizards.io/migrating-to-gulp-4-by-example
-http://macr.ae/article/splitting-gulpfile-multiple-files.html
+## 参考にした記事
+- https://github.com/gulpjs/gulp
+- https://blog.wearewizards.io/migrating-to-gulp-4-by-example
+- http://macr.ae/article/splitting-gulpfile-multiple-files.html
