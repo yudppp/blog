@@ -2,6 +2,10 @@ var gulp     = require('gulp');
 var concat   = require('gulp-concat');
 var sequence = require('run-sequence').use(gulp);
 
+var APP_HTML_FILES = [
+  'layouts/**'
+];
+
 var LIB_JS_FILES = [
   'bower_components/jquery/dist/jquery.min.js',
   'bower_components/lodash/lodash.min.js',
@@ -24,6 +28,10 @@ var APP_CSS_FILES = [
 
 gulp.task('watch', function () {
 
+  gulp.watch(APP_HTML_FILES, function () {
+    gulp.start('html:app');
+  });
+
   gulp.watch(APP_JS_FILES, function () {
     gulp.start('js:app');
   });
@@ -34,7 +42,11 @@ gulp.task('watch', function () {
 });
 
 gulp.task('build', function () {
-  sequence('js', 'css');
+  sequence('html', 'js', 'css');
+});
+
+gulp.task('html', function () {
+  gulp.start('html:app');
 });
 
 gulp.task('js', function () {
@@ -44,6 +56,13 @@ gulp.task('js', function () {
 gulp.task('css', function () {
   gulp.start('css:lib', 'css:app');
 });
+
+gulp.task('html:app', function () {
+
+  gulp.src(APP_HTML_FILES)
+    .pipe(gulp.dest('_layouts'));
+});
+
 
 gulp.task('js:lib', function () {
 

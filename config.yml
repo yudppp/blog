@@ -1,7 +1,7 @@
 baseurl:    "http://yudppp.github.io/blog"
 title:      "<!-- yudppp -->"
 contentdir: "content"
-layoutdir:  "layouts"
+layoutdir:  "_layouts"
 staticdir:  "static"
 publishdir: "_public"
 uglyUrls:   false
