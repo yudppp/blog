@@ -1,5 +1,5 @@
 _public
-_layouts
+/layouts
 node_modules
 bower_components
 .idea
