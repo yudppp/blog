@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    | {{ partial "meta.html" . }}
+  body
+    | {{ partial "header.html" . }}
+    main
+      h1 Archives
+      ul
+        | {{ range .Data.Pages }}
+        li
+          date {{ .Date.Format "2006/01/02" }}
+          h3
+            a(href='{{ .RelPermalink }}') {{ .Title }}
+        |         {{ end }}
+    |     {{ partial "footer.html" . }}
+    |     {{ partial "script.html" . }}

@@ -1,5 +1,5 @@
 ---
-title: golangでnet/httpでRedirectさせない
+title: net/httpでRedirectさせない
 date: 2015-10-26
 excerpt: golangで302がちゃんとかえっているか確認したい。
 ---

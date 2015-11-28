@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    | {{ partial "meta.html" . }}
+  body
+    | {{ partial "header.html" . }}
+    main
+      .container
+        date.label {{ .Date.Format "2006/01/02" }}
+        .header
+          h1.title {{ .Title }}
+        .content
+          | {{ .Content }}
+        |         {{ partial "comment.html" . }}
+        |         {{ partial "share.html" . }}
+        .row.nextprev
+          .sp
+            | {{ if .NextInSection }}
+            a.next.button(href='{{ .NextInSection.Permalink }}')
+              | ← next
+            |             {{ end }}
+            |             {{ if .PrevInSection }}
+            a.prev.button(href='{{ .PrevInSection.Permalink }}')
+              | prev →
+            |             {{ end }}
+          .pc
+            | {{ if .NextInSection }}
+            a.next.button(href='{{ .NextInSection.Permalink }}')
+              | ←{{ .NextInSection.Title }}
+            |             {{ end }}
+            |             {{ if .PrevInSection }}
+            a.prev.button(href='{{ .PrevInSection.Permalink }}')
+              | {{ .PrevInSection.Title }}→
+            |             {{ end }}
+    |     {{ partial "profile.html" . }}
+    |     {{ partial "footer.html" . }}
+    |     {{ partial "script.html" . }}
