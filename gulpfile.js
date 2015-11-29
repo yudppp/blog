@@ -3,8 +3,8 @@ var concat   = require('gulp-concat');
 var sequence = require('run-sequence').use(gulp);
 
 var APP_HTML_FILES = [
-  'src/layouts/**.jade',
-  'src/layouts/**/**.jade'
+  'layouts/**.jade',
+  'layouts/**/**.jade'
 ];
 
 var LIB_JS_FILES = [
@@ -64,7 +64,7 @@ gulp.task('html:app', function () {
 
   gulp.src(APP_HTML_FILES)
     .pipe(jade({}))
-    .pipe(gulp.dest('layouts'));
+    .pipe(gulp.dest('_layouts'));
 });
 
 
