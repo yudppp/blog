@@ -17,20 +17,24 @@ html
           .sp
             | {{ if .NextInSection }}
             a.next.button(href='{{ .NextInSection.Permalink }}')
-              | ← next
+              i.fa.fa-arrow-left
+              span next
             |             {{ end }}
             |             {{ if .PrevInSection }}
             a.prev.button(href='{{ .PrevInSection.Permalink }}')
-              | prev →
+              span prev
+              i.fa.fa-arrow-right
             |             {{ end }}
           .pc
             | {{ if .NextInSection }}
             a.next.button(href='{{ .NextInSection.Permalink }}')
-              | ←{{ .NextInSection.Title }}
+              i.fa.fa-arrow-left
+              span {{ .NextInSection.Title }}
             |             {{ end }}
             |             {{ if .PrevInSection }}
             a.prev.button(href='{{ .PrevInSection.Permalink }}')
-              | {{ .PrevInSection.Title }}→
+              span {{ .PrevInSection.Title }}
+              i.fa.fa-arrow-right
             |             {{ end }}
     |     {{ partial "profile.html" . }}
     |     {{ partial "footer.html" . }}
