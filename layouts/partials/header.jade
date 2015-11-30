@@ -5,3 +5,7 @@ header
       ul.navbar-list.container-inner
         li.navbar-item
           a.navbar-link(href='{{ .Site.BaseUrl }}') &lt;!-- yudppp
+        li.navbar-item.navbar-rss
+          a.navbar-link(href='{{ .Site.BaseUrl }}/index.xml')
+            i.fa.fa-rss
+            span rss
