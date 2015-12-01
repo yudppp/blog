@@ -1,6 +1,8 @@
 ---
 title: 【golang】JSTの時間をうまくParseする
 date: 2015-06-08
+tags: ["golang"]
+aliases: ["golang-jst-parse"]
 excerpt: golangでJSTの時間の文字列を変換するときに困ったのでTipsとして残しておきます。
 ---
 

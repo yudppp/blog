@@ -1,6 +1,7 @@
 ---
 title: npmで公開する
 date: 2015-04-12
+tags: ["js", "npm"]
 excerpt: 今までnpmで公開したことがなかったのですが、はじめて公開してみることにしました。
 eyecatch: /blog/img/posts/npm.png
 ---

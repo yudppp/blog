@@ -1,6 +1,7 @@
 ---
 title: net/httpでRedirectさせない
 date: 2015-10-26
+tags: ["golang"]
 excerpt: golangで302がちゃんとかえっているか確認したい。
 ---
 

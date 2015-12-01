@@ -1,6 +1,8 @@
 ---
 title: はじめてのReact.js
 date: 2015-01-04
+tags: ["js"]
+aliases: ["react-js"]
 excerpt: 最近仮想DOMが世間で流行ってる感あるのではじめることにしました。
 ---
 

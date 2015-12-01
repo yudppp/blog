@@ -1,6 +1,7 @@
 ---
 title: highlight.jsを使ってみる
 date: 2015-01-11
+tags: ["js"]
 excerpt: codeにsyntax highlightが当たらないのが辛かったのでテーマを新たにつくっていい感じにsyntax highlightを効かせることにしました。
 ---
 

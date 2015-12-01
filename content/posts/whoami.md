@@ -1,10 +1,9 @@
 ---
-title: First Post
+title: Who am I?
 date: 2015-01-01
+tags: ["blog"]
 excerpt: 2013年から新卒でエンジニアを始めました。普段はjava書いたりjs書いたりしてます。最近golangを本格的に始めようと思っています。
 ---
-
-## introduction
 
 2013年から新卒でエンジニアを始めました。普段はjava書いたりjs書いたりしてます。最近golangを本格的に始めようと思っています。
 

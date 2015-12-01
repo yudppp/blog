@@ -1,6 +1,8 @@
 ---
 title: gulp 4.0について
 date: 2015-07-16
+tags: ["js", "gulp"]
+aliases: ["gulp-v4"]
 excerpt: gulp v4.0がそろそろリリースされそうなので、どんなことができるようになるのか調べてみようと思いました。
 ---
 

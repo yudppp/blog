@@ -1,6 +1,8 @@
 ---
 title: CircleCIでcacheを利用する
 date: 2015-08-22
+tags: ["ci"]
+aliases: ["circleci_use_cache"]
 excerpt: 仕事でcircleciを使ってテストが時間が掛かるようになってしまったので修正したい。cacheを使って手軽に高速化させる。
 ---
 

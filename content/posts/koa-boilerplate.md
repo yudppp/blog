@@ -1,6 +1,7 @@
 ---
 title: koaのboilerplate的なのを作る
 date: 2015-02-11
+tags: ["js", "koa"]
 excerpt: koajsはkoa自体は薄くmiddlewareを好きに組み込めるような設計になっているので最初の書き始める時、いろいろめんどくさくなるので自分用にboilerplate的ななにかを作成しました。
 ---
 

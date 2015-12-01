@@ -1,6 +1,7 @@
 ---
 title: Facebookのflowtypeについて
 date: 2015-05-24
+tags: ["js", "flow"]
 excerpt: 最近babelやらES6やらがかなり盛り上がってる中facebookのflow(flowtype)をちゃんと触ってみようと思います。TypeScriptと比べると型推論が賢かったり、コンパイルが速いらしいです。
 
 eyecatch: /blog/img/posts/flow.png

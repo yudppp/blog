@@ -1,6 +1,7 @@
 ---
 title: DockerをGUIで使えるKitematic
 date: 2015-03-15
+tags: ["docker"]
 excerpt: つい先日Dockerの管理をGUIで簡単に管理できるKitematicをDockerが買収しました。今後どうなっていくかは、よくわかりませんが、どんなものなのか触ってみたいと思います。
 eyecatch: /blog/img/posts/kitematic.png
 

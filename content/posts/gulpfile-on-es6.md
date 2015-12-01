@@ -1,6 +1,8 @@
 ---
 title: gulpfileそのものをES6で書く
 date: 2015-02-21
+tags: ["js", "gulp"]
+aliases: ["gulpfile-on-es6"]
 excerpt: 最近になってfrontのコードやサーバーのコードは生のjs(ES5)で書かかずbabeljs(旧6to5)とかで書くことが体感ですが増えてきました。しかしgulpfileは生のjsで書いたり、coffeescriptで書くことが多いように感じます。
 ---
 

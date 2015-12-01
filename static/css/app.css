@@ -90,7 +90,7 @@ li {
 }
 
 .navbar-item {
-  margin-bottom: 0;
+  margin: 0 5px 0;
   display: inline-block;
 }
 
@@ -102,10 +102,6 @@ li {
   text-decoration: none;
   line-height: 6.5rem;
   color: #fcfcfc;
-}
-
-.navbar-rss {
-  float: right;
 }
 
 .navbar-link:hover {
@@ -149,12 +145,18 @@ li {
   height: 36px;
   font-size: 1.8rem;
   vertical-align: 12px;
-  display:inline-block
+  display:inline-block;
+  margin-right: 3px;
 }
 
 .sns {
   height: 36px;
-  display:inline-block
+  display:inline-block;
+  vertical-align: 8px;
+}
+
+.sns a {
+  color: #333;
 }
 
 .profile-desc {
@@ -170,7 +172,7 @@ li {
 }
 
 .entry-title {
-  padding: 10px 0 10px;
+  padding: 10px 0 5px;
   font-size: 2.4rem;
 }
 
@@ -268,4 +270,23 @@ footer {
 
 .content img {
   max-width: 100%;
+}
+
+.tags {
+  margin: -16px 0 16px;
+}
+
+.tag {
+  border: 1px solid #54C1E0;
+  padding: 1px 3px;
+  font-size: 12px;
+}
+
+.tag:hover {
+  border: 1px solid #00C8FF;
+  background-color: #fafafa;
+}
+
+.tag i {
+  margin-right: 3px;
 }

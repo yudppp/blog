@@ -1,6 +1,7 @@
 ---
 title: FluxなフレームワークDeLoreanjsを触る
 date: 2015-01-15
+tags: ["js"]
 excerpt: Fluxなフレームワークを触ってみたかったのでDeLoreanjsをさわってみることにしました。
 ---
 
