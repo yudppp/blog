@@ -9,6 +9,14 @@ html
         date.label {{ .Date.Format "2006/01/02" }}
         .header
           h1.title {{ .Title }}
+          |     {{ with .Params.tags }}
+          .tags
+            | {{ range . }} 
+            a.tag(href='/tags/{{ . }}/')
+              i.fa.fa-tag
+              span {{ . }}
+            | {{ end }}
+          | {{ end }}
         .content
           | {{ .Content }}
         |         {{ partial "comment.html" . }}
