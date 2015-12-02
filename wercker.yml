@@ -3,7 +3,7 @@ build:
   steps:
     - npm-install
     - arjen/hugo-build:
-        version: 0.15
+        version: 0.18
 deploy:
   steps:
     - lukevivier/gh-pages@0.2.1:
