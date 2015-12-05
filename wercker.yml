@@ -2,14 +2,10 @@ box: node
 build:
   steps:
     - npm-install
-    - hgen/gulp:
-        tasks: build
     - arjen/hugo-build:
         version: 0.14
 deploy:
   steps:
-    - install-packages:
-        packages: git ssh-client
     - lukevivier/gh-pages@0.2.1:
         token: $GITHUB_TOKEN
         domain: yudppp.github.io/blog
