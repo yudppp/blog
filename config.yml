@@ -1,4 +1,4 @@
-baseUrl:    "http://yudppp.github.io/blog"
+baseurl:    "http://yudppp.github.io/blog"
 title:      "<!-- yudppp -->"
 contentdir: "content"
 layoutdir:  "layouts"
