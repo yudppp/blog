@@ -1,7 +1,8 @@
-.comment-group
-  #js-open-comment.button.button-large.comment Write a comment (disqus)
-  #disqus_thread
-script(type='text/javascript').
+<div class="comment-group">
+  <div id="js-open-comment" class="button button-large comment">Write a comment (disqus)</div>
+  <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
   /* * * DON'T EDIT BELOW THIS LINE * * */
   var openDiqus = function() {
@@ -12,6 +13,5 @@ script(type='text/javascript').
   };
   // openDiqus()
   document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);;
-noscript
-  | Please enable JavaScript to view the
-  a(href='https://disqus.com/?ref_noscript') comments powered by Disqus.
+</script>
+<noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>

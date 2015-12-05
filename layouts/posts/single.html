@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>{{ partial "meta.html" . }}</head>
+  <body>{{ partial "header.html" . }}
+    <main>
+      <div class="container">
+        <date class="label">{{ .Date.Format "2006/01/02" }}</date>
+        <div class="header">
+          <h1 class="title">{{ .Title }}</h1>
+          {{ with .Params.tags }}
+          <div class="tags">
+            {{ range . }}
+            <a href="/tags/{{ . }}/" class="tag"><i class="fa fa-tag"></i><span>{{ . }}</span></a>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+        <div class="content">{{ .Content }}</div>
+        {{ partial "comment.html" . }}
+        {{ partial "share.html" . }}
+        <div class="row nextprev">
+          <div class="sp">
+            {{ if .NextInSection }}
+            <a href="{{ .NextInSection.Permalink }}" class="next button"><i class="fa fa-arrow-left"></i><span>next</span></a>
+            {{ end }}
+            {{ if .PrevInSection }}
+            <a href="{{ .PrevInSection.Permalink }}" class="prev button"><span>prev</span><i class="fa fa-arrow-right"></i></a>
+            {{ end }}
+          </div>
+          <div class="pc">
+            {{ if .NextInSection }}
+            <a href="{{ .NextInSection.Permalink }}" class="next button"><i class="fa fa-arrow-left"></i><span>{{ .NextInSection.Title }}</span></a>
+            {{ end }}
+            {{ if .PrevInSection }}
+            <a href="{{ .PrevInSection.Permalink }}" class="prev button"><span>{{ .PrevInSection.Title }}</span><i class="fa fa-arrow-right"></i></a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </main>
+      {{ partial "profile.html" . }}
+      {{ partial "footer.html" . }}
+      {{ partial "script.html" . }}
+  </body>
+</html>

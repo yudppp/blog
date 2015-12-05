@@ -60,10 +60,7 @@ gulp.task('css', function () {
 
 gulp.task('html:app', function () {
 
-  var jade = require('gulp-jade');
-
   gulp.src(APP_HTML_FILES)
-    .pipe(jade({}))
     .pipe(gulp.dest('_layouts'));
 });
 
