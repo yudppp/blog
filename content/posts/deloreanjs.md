@@ -15,7 +15,7 @@ MVCに変わる新しいデータフローです。
 大規模なアプリケーションになるとMVCではMとVの関係が特に複雑化してしまう。
 Fluxは下記のような一方向のデータフローとなるため複雑になりにくいそうです。
 大まかな構成としては既存のMVCをイベント稼働型にしたイメージです。
-![](/blog/img/posts/flux.png)
+![](/img/posts/flux.png)
 
 ## DeLoreanとは
 >DeLorean is a tiny Flux pattern implementation.

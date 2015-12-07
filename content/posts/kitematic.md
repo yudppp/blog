@@ -3,7 +3,7 @@ title: DockerをGUIで使えるKitematic
 date: 2015-03-15
 tags: ["docker"]
 excerpt: つい先日Dockerの管理をGUIで簡単に管理できるKitematicをDockerが買収しました。今後どうなっていくかは、よくわかりませんが、どんなものなのか触ってみたいと思います。
-eyecatch: /blog/img/posts/kitematic.png
+eyecatch: /img/posts/kitematic.png
 
 ---
 
@@ -28,16 +28,16 @@ zipがダウンロードされたので展開するとアプリケーション�
 ## 動かす
 　アプリケーションを開くとこんな感じでした。
 
-![](/blog/img/posts/kitematic-ss1.png)
+![](/img/posts/kitematic-ss1.png)
 
 最初にhello-world-nginxを作りたいと思います。
 Createを押して少し待つとなんかできた。
 
-![](/blog/img/posts/kitematic-ss2.png)
+![](/img/posts/kitematic-ss2.png)
 
 Web Previewを押してブラウザーで開くと
 
-![](/blog/img/posts/kitematic-ss3.png)
+![](/img/posts/kitematic-ss3.png)
 
 すぐにnginxを建てることができました。
 ダウンロードしてきて一つボタンを押しただけです。

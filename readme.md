@@ -5,4 +5,4 @@
 
 [![wercker status](https://app.wercker.com/status/38dfea4cd426d504c577fd1e8d14edcb/m "wercker status")](https://app.wercker.com/project/bykey/38dfea4cd426d504c577fd1e8d14edcb)
 
-forked [1000ch/hugo-boilerplate](https://github.com/1000ch/hugo-boilerplate) 
+forked [1000ch/hugo-boilerplate](https://github.com/1000ch/hugo-boilerplate)

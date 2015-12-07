@@ -124,16 +124,12 @@ li {
   float: left;
   width: 90px;
   height: 90px;
-  background-image: url(/blog/img/profile.png);
+  background-image: url(/img/profile.png);
   -moz-background-size: cover;
   background-size: cover;
   position: relative;
   overflow: hidden;
   border: 1px solid #54C1E0;
-}
-
-.profile-image:hover {
-  border: 1px solid #FFF700;
 }
 
 .profile-text {
@@ -211,10 +207,6 @@ footer {
   letter-spacing: .2rem;
   line-height: 6rem;
   color: #fcfcfc;
-}
-
-.close:hover {
-  color: #FFF700;
 }
 
 .button {

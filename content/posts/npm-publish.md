@@ -3,7 +3,7 @@ title: npmで公開する
 date: 2015-04-12
 tags: ["js", "npm"]
 excerpt: 今までnpmで公開したことがなかったのですが、はじめて公開してみることにしました。
-eyecatch: /blog/img/posts/npm.png
+eyecatch: /img/posts/npm.png
 ---
 
 ## はじめに
@@ -19,7 +19,7 @@ xto6についてはまた別の記事で紹介させていただきます。
 
 npmのサイトでアカウントを作成します。
 
-![](/blog/img/posts/npm-ss.png)
+![](/img/posts/npm-ss.png)
 
 こちらを入力して登録しました。
 

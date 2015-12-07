@@ -11,7 +11,7 @@ RIOT 2.0がリリースされました。
 
 PolymerのようなカスタムタグとReactぽい仮想DOMで軽量なフレームワークのようです。
 
-https://muut.com/blog/technology/riot-2.0/index.html
+https://muut.com/technology/riot-2.0/index.html
 
 最近2.0に上がってから、すごい勢いでstarがついていて、すごく軽くて色々とできるそうなので見ていきます。
 
@@ -63,7 +63,7 @@ Riotは他の10分の1から100分の1ほどAPIが少ない
 
 
 ###### 小さいファイルサイズ
-![](/blog/img/posts/riot-size.png)
+![](/img/posts/riot-size.png)
 
 ファイルサイズが小さいことはバグが起きにくくダウンロードもすぐされるしメンテナンスも楽。
 
