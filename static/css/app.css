@@ -2,6 +2,7 @@ body {
   font-family: 'Noto Sans', sans-serif;
   font-size: 14px;
   line-height: 1.8;
+  color: #555;
   background: #fefefe;
 }
 
@@ -184,7 +185,7 @@ li {
 }
 
 .title {
-  margin-top: 10px;
+  margin: 10px 0 30px;
 }
 
 .share {
@@ -265,7 +266,7 @@ footer {
 }
 
 .tags {
-  margin: -16px 0 16px;
+  margin: -16px 0 32px;
 }
 
 .tag {
