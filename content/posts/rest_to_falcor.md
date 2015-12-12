@@ -2,6 +2,7 @@
 title: RESTfulなAPIがつらくなってきた話
 date: 2015-12-13
 excerpt: RESTが徐々に辛くなってきてFalcorを使ってみたい話
+eyecatch: /img/posts/falcor.png
 ---
 
 この記事は[CyberAgent エンジニア Advent Calendar 2015](http://www.adventar.org/calendars/863)の13日目の記事です。
