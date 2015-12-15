@@ -3,12 +3,13 @@ title: RESTfulなAPIがつらくなってきた話
 date: 2015-12-13
 excerpt: RESTが徐々に辛くなってきてFalcorを使ってみたい話
 eyecatch: /img/posts/falcor.png
+aliases: ["falcor_1"]
 ---
 
 この記事は[CyberAgent エンジニア Advent Calendar 2015](http://www.adventar.org/calendars/863)の13日目の記事です。
 <iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwww.adventar.org%2Fcalendars%2F863" title="CyberAgent エンジニア Advent Calendar 2015 - Adventar" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>
 
-昨日は同期のmatsuokahさんの[ブログ](http://blog.matsuokah.jp/entry/2015/12/12/134717)でした。明日はhuydxさんです。
+昨日は同期のmatsuokahさんの[ブログ](http://blog.matsuokah.jp/entry/2015/12/12/134717)でした。明日はhuydxさんの[ブログ](http://adtech.cyberagent.io/scalablog/2015/12/13/scala-gc-offheap/)です。
 
 
 
