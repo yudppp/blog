@@ -43,6 +43,10 @@ gulp.task('css', function () {
   gulp.start('css:lib', 'css:app');
 });
 
+gulp.task('lint', function () {
+  gulp.start('lint:js');
+});
+
 gulp.task('js:lib', function () {
 
   gulp.src(LIB_JS_FILES)
@@ -82,4 +86,11 @@ gulp.task('css:app', function () {
     .pipe(csscomb())
     .pipe(csso())
     .pipe(gulp.dest('_public/css'));
+});
+
+gulp.task('lint:js', function () {
+  var jshint = require('gulp-jshint');
+  gulp.src(APP_JS_FILES)
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
 });
