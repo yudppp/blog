@@ -13,7 +13,7 @@ var APP_JS_FILES = [
 var LIB_CSS_FILES = [
   'node_modules/normalize.css/normalize.css',
   'static/css/skeleton.css',
-  'static/highlight/idea.css'
+  'static/highlight/highlight.css'
 ];
 
 var APP_CSS_FILES = [

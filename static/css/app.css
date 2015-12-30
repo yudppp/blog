@@ -38,6 +38,13 @@ blockquote p {
   line-height: 1.4;
 }
 
+pre {
+  margin: 0 calc((100vw - 100%)/2*-1) 28px calc((100vw - 100%)/2*-1);
+  padding: 0 calc((100vw - 100%)/2);
+  background: #272822;
+  border-bottom: 1px solid #FFFDA6;
+}
+
 code {
   background: #fff;
   font-size: 12px;
@@ -49,8 +56,11 @@ code {
   border: 1px solid #bbb;
 }
 
-.hljs {
-  padding: 1rem 1.5rem;
+pre code, .hljs {
+  color: #eee;
+  background: #272822;
+  padding: 1rem 0;
+  border: 0;
 }
 
 .main {
