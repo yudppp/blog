@@ -39,8 +39,10 @@ blockquote p {
 }
 
 pre {
-  margin: 0 calc((100vw - 100%)/2*-1) 28px calc((100vw - 100%)/2*-1);
-  padding: 0 calc((100vw - 100%)/2);
+  /* margin: 0 calc((100vw - 100%)/2*-1) 28px calc((100vw - 100%)/2*-1);
+  padding: 0 calc((100vw - 100%)/2);*/
+  margin: 0 -80px 28px;
+  padding: 5px 80px;
   background: #272822;
   border-bottom: 1px solid #FFFDA6;
 }
