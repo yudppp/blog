@@ -1,24 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>{{ partial "meta.html" . }}</head>
+  <head>
+    {{ partial "meta.html" . }}
+  </head>
   <body>
     {{ partial "header.html" . }}
-    <div class="main">
+    <main>
       <div class="container">
-        <ul class="entry-list">
-          {{ range first 100 .Data.Pages }}
-          <li class="entry-item">
-            <date class="label">{{ .Date.Format "2006/01/02" }}</date>
-            <h3 class="entry-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-            {{if .Params.excerpt}}
-            <div class="entry-excerpt">{{ .Params.excerpt }}</div>
-            {{end}}
-          </li>
+        <ul class="entries">
+          {{ range first 20 .Data.Pages }}
+            <a href="{{ .RelPermalink }}">
+            <li class="entry">
+              <!-- <date>{{ .Date.Format "2006.01.02" }}</date> -->
+              <h3 class="entry-title">{{ .Title }}</h3>
+            </li>
+            </a>
           {{ end }}
         </ul>
       </div>
-    </div>
-    {{ partial "profile.html" . }}
+    </main>
     {{ partial "footer.html" . }}
     {{ partial "script.html" . }}
   </body>

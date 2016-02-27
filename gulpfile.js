@@ -3,7 +3,8 @@ var concat   = require('gulp-concat');
 var sequence = require('run-sequence').use(gulp);
 
 var LIB_JS_FILES = [
-  'static/highlight/highlight.pack.js'
+  'bower_components/jquery/dist/jquery.min.js',
+  'bower_components/highlightjs/highlight.pack.js'
 ];
 
 var APP_JS_FILES = [
@@ -11,9 +12,9 @@ var APP_JS_FILES = [
 ];
 
 var LIB_CSS_FILES = [
-  'node_modules/normalize.css/normalize.css',
-  'static/css/skeleton.css',
-  'static/highlight/highlight.css'
+  'bower_components/normalize.css/normalize.css',
+  'bower_components/milligram/dist/milligram.min.css',
+  'bower_components/highlightjs/styles/solarized_light.css'
 ];
 
 var APP_CSS_FILES = [
@@ -43,15 +44,11 @@ gulp.task('css', function () {
   gulp.start('css:lib', 'css:app');
 });
 
-gulp.task('lint', function () {
-  gulp.start('lint:js');
-});
-
 gulp.task('js:lib', function () {
 
   gulp.src(LIB_JS_FILES)
     .pipe(concat('lib.min.js'))
-    .pipe(gulp.dest('_public/js'));
+    .pipe(gulp.dest('static/js'));
 });
 
 gulp.task('js:app', function () {
@@ -61,7 +58,7 @@ gulp.task('js:app', function () {
   gulp.src(APP_JS_FILES)
     .pipe(concat('app.min.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('_public/js'));
+    .pipe(gulp.dest('static/js'));
 });
 
 gulp.task('css:lib', function () {
@@ -73,7 +70,7 @@ gulp.task('css:lib', function () {
     .pipe(concat('lib.min.css'))
     .pipe(csscomb())
     .pipe(csso())
-    .pipe(gulp.dest('_public/css'));
+    .pipe(gulp.dest('static/css'));
 });
 
 gulp.task('css:app', function () {
@@ -85,12 +82,5 @@ gulp.task('css:app', function () {
     .pipe(concat('app.min.css'))
     .pipe(csscomb())
     .pipe(csso())
-    .pipe(gulp.dest('_public/css'));
-});
-
-gulp.task('lint:js', function () {
-  var jshint = require('gulp-jshint');
-  gulp.src(APP_JS_FILES)
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(gulp.dest('static/css'));
 });

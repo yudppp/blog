@@ -1,18 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>{{ partial "meta.html" . }}</head>
-  <body>{{ partial "header.html" . }}
-    <div class="main">
-      <h1>Archives</h1>
-      <ul>
-        {{ range .Data.Pages }}
-        <li>
-          <date>{{ .Date.Format "2006/01/02" }}</date>
-          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-        </li>
-        {{ end }}
-      </ul>
-    </div>
+  <head>
+    {{ partial "meta.html" . }}
+  </head>
+  <body>
+    {{ partial "header.html" . }}
+    <main>
+      <div class="container">
+        <ul class="entries">
+          {{ range .Data.Pages }}
+            <a href="{{ .RelPermalink }}">
+            <li class="entry">
+              <!-- <date>{{ .Date.Format "2006.01.02" }}</date> -->
+              <h3 class="entry-title">{{ .Title }}</h3>
+            </li>
+            </a>
+          {{ end }}
+        </ul>
+      </div>
+    </main>
     {{ partial "footer.html" . }}
     {{ partial "script.html" . }}
   </body>

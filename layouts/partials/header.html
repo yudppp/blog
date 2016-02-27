@@ -1,17 +1,11 @@
-<hr class="topbar"/>
 <header>
-  <div class="navbar">
-    <div class="container">
-      <ul class="navbar-list container-inner">
-        <li class="navbar-item">
-          <a href="{{ .Site.BaseURL }}" class="navbar-title"></a>
-        </li>
-        <li class="navbar-item u-pull-right">
-          <a href="{{ .Site.BaseURL }}/index.xml" class="navbar-link">
-            <i class="fa fa-rss fa-fw"></i><span>rss</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
+	<a href="{{ .Site.BaseURL }}"><div class="menu"></div></a>
+	<div class="container">
+		<div class="logo">
+			<a href="{{ .Site.BaseURL }}">
+				<img class="logo-image" src="{{ .Site.BaseURL }}/logo.png"/>
+			</a>
+			<h1>{{.Title}}</h1>	
+		</div>
+	</div>
 </header>
