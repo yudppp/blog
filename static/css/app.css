@@ -115,3 +115,14 @@ h6 {
     font-size: 1.6rem;
   }
 }
+
+pre {
+  border-left: 0;
+}
+
+pre>code {
+  color: #c5c8c6;
+  background: #1d1f21;
+  padding: .5em;
+  font-size: 1.2rem;
+}

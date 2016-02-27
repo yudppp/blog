@@ -14,7 +14,7 @@ var APP_JS_FILES = [
 var LIB_CSS_FILES = [
   'bower_components/normalize.css/normalize.css',
   'bower_components/milligram/dist/milligram.min.css',
-  'bower_components/highlightjs/styles/solarized_light.css'
+  'bower_components/highlightjs/styles/tomorrow-night.css'
 ];
 
 var APP_CSS_FILES = [
