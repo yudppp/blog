@@ -14,6 +14,24 @@ body {
   z-index: 10;
 }
 
+.btn {
+  border: 2px solid #606c76;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  margin: 0 4px;
+}
+.btn:hover {
+  background-color: #f3f3f3;
+}
+.btn i {
+  padding: 5px;
+}
+
+.btn-group {
+  padding: 30px 0 80px;
+}
+
 .container {
   max-width: 640px;
 }

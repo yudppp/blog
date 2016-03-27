@@ -9,10 +9,29 @@
       <div class="container">
         <div class="content">
           {{ .Content }}
+          <div class="btn-group">
+            <div class="row btn-group">
+              <div id="js-open-comment" class="btn"><i class="fa fa-comment-o"></i></div>
+              <!-- <div class="btn"><i class="fa fa-share-alt"></i></div> -->
+            </div>
+            <div id="disqus_thread"></div>
+          </div>
         </div>
       </div>
     </main>
     {{ partial "footer.html" . }}
     {{ partial "script.html" . }}
+    <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      var openDiqus = function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//yudppp.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      //document.all("js-open-comment").style.display = "none";
+      };
+      // openDiqus()
+      document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);;
+    </script>
   </body>
 </html>

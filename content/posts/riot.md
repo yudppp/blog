@@ -1,7 +1,7 @@
 ---
 title: RIOT 2.0
 date: 2015-01-25
-tags: ["js"]
+tags: ["js", "riot"]
 excerpt: RIOT 2.0がリリースされました。PolymerのようなカスタムタグとReactぽい仮想DOMで軽量なフレームワークのようです。
 ---
 
