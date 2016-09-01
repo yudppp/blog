@@ -12,7 +12,7 @@ var APP_JS_FILES = [
 
 var LIB_CSS_FILES = [
   'node_modules/hack/dist/hack.css',
-  'node_modules/hack/dist/dark.css',
+  // 'node_modules/hack/dist/dark.css',
   'bower_components/highlightjs/styles/tomorrow.css'
 ];
 
