@@ -3,8 +3,11 @@ build:
   steps:
     - npm-install
     - script:
-      name: install bower
-      code: node_modules/bower/bin/bower install
+        name: install bower
+        code: sudo npm install -g bower
+    - script:
+        name: run bower install
+        code: bower install
     - hgen/gulp:
         tasks: build
     - arjen/hugo-build:
