@@ -2,6 +2,7 @@ box: node
 build:
   steps:
     - npm-install
+    - bower-install
     - hgen/gulp:
         tasks: build
     - arjen/hugo-build:
