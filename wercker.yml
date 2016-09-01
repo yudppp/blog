@@ -4,7 +4,7 @@ build:
     - npm-install
     - script:
       name: install bower
-      code: bower install
+      code: node_modules/bower/bin/bower install
     - hgen/gulp:
         tasks: build
     - arjen/hugo-build:
