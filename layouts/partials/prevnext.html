@@ -1,0 +1,16 @@
+{{ if or .PrevInSection .NextInSection }}
+<div class="container">
+	<div class="prevnext">
+		{{ if .NextInSection }}
+		<a class="pull-left" href="{{ .NextInSection.Permalink }}">
+			<div>&lt;&lt; {{ .NextInSection.Title }}</div>
+		</a>
+		{{ end }}
+		{{ if .PrevInSection }}
+		<a class="pull-right" href="{{ .PrevInSection.Permalink }}">
+			<div>{{ .PrevInSection.Title }} &gt;&gt;</div>
+		</a>
+		{{ end }}
+	</div>
+</div>
+{{ end }}

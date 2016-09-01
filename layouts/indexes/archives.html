@@ -3,20 +3,19 @@
   <head>
     {{ partial "meta.html" . }}
   </head>
-  <body>
+  <body class="hack">
     {{ partial "header.html" . }}
     <main>
       <div class="container">
-        <ul class="entries">
+        <div>
           {{ range .Data.Pages }}
-            <a href="{{ .RelPermalink }}">
-            <li class="entry">
-              <!-- <date>{{ .Date.Format "2006.01.02" }}</date> -->
-              <h3 class="entry-title">{{ .Title }}</h3>
-            </li>
-            </a>
+            <div>
+              <a href="{{ .RelPermalink }}">
+                <h2>{{ .Title }} - <date>{{ .Date.Format "2006.01.02" }}</date></h2>
+              </a>
+            </div>
           {{ end }}
-        </ul>
+        </div>
       </div>
     </main>
     {{ partial "footer.html" . }}

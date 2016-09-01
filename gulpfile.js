@@ -12,9 +12,10 @@ var APP_JS_FILES = [
 ];
 
 var LIB_CSS_FILES = [
-  'bower_components/normalize.css/normalize.css',
-  'bower_components/milligram/dist/milligram.min.css',
-  'bower_components/highlightjs/styles/tomorrow-night.css'
+  // 'node_modules/normalize.css/normalize.css',
+  'node_modules/hack/dist/hack.css',
+  'node_modules/hack/dist/dark.css',
+  'bower_components/highlightjs/styles/tomorrow.css'
 ];
 
 var APP_CSS_FILES = [

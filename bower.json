@@ -8,9 +8,7 @@
     "tests"
   ],
   "devDependencies": {
-    "normalize.css": "~3.0.3",
     "jquery": "~2.1.4",
-    "highlightjs": "~8.5.0",
-    "milligram": "~1.1.0"
+    "highlightjs": "~8.5.0"
   }
 }

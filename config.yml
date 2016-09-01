@@ -1,11 +1,11 @@
 baseurl:    "http://blog.yudppp.com"
-title:      "tech chick log"
+title:      "yudppp techblog"
 contentdir: "content"
 layoutdir:  "layouts"
 staticdir:  "static"
 uglyUrls:   false
 metaDataFormat: "yaml"
 params:
-  description:  "tech chick log - yudppp"
+  description:  "techblog - yudppp"
 permalinks:
   post: /:year/:title/ 

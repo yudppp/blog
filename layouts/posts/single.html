@@ -3,22 +3,23 @@
   <head>
     {{ partial "meta.html" . }}
   </head>
-  <body>
+  <body class="hack">
     {{ partial "header.html" . }}
     <main>
       <div class="container">
+        <date>{{ .Date.Format "2006.01.02" }}</date>
         <div class="content">
           {{ .Content }}
-          <div class="btn-group">
-            <div class="row btn-group">
-              <div id="js-open-comment" class="btn"><i class="fa fa-comment-o"></i></div>
-              <!-- <div class="btn"><i class="fa fa-share-alt"></i></div> -->
+          <div class="comment">
+            <div>
+              <a id="js-open-comment">show comment</a>
             </div>
             <div id="disqus_thread"></div>
           </div>
         </div>
       </div>
-    </main>
+      </main>
+    {{ partial "prevnext.html" . }}
     {{ partial "footer.html" . }}
     {{ partial "script.html" . }}
     <script type="text/javascript">
@@ -28,7 +29,7 @@
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
       dsq.src = '//yudppp.disqus.com/embed.js';
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      //document.all("js-open-comment").style.display = "none";
+      document.all("js-open-comment").style.display = "none";
       };
       // openDiqus()
       document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);;
