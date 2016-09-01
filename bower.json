@@ -8,7 +8,6 @@
     "tests"
   ],
   "devDependencies": {
-    "jquery": "~2.1.4",
     "highlightjs": "~8.5.0"
   }
 }
