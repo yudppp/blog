@@ -1,13 +1,7 @@
 box: node
 build:
   steps:
-    - npm-install
-    - script:
-        name: install bower
-        code: npm install -g bower
-    - script:
-        name: run bower install
-        code: bower install
+    - npm-install@1.1.4
     - hgen/gulp:
         tasks: build
     - arjen/hugo-build:
