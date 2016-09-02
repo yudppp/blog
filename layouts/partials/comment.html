@@ -1,0 +1,18 @@
+<div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">show comment</a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    // openDiqus()
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>

@@ -115,6 +115,22 @@ a:hover {
     background: #ffd936;
 }
 
+a[target="_blank"] {
+  border-bottom: 1px solid #ff2e88;
+}
+
+a[target="_blank"]:hover {
+  background: #ff2e88;
+}
+
+.event {
+  border-bottom: 1px solid #2e6eff;
+}
+
+.event:hover {
+    background: #2e6eff;
+}
+
 .comment {
   padding: 20px 0;
 }

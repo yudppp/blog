@@ -20,3 +20,14 @@ cheet('↑ ↑ ↓ ↓ ← → ← → b a', function () {
         body.className = 'hack'
     }
 });
+
+var hostname = window.location.hostname;
+
+var atags = document.getElementsByTagName('a');
+
+for (var i in atags) {
+    var tag = atags[i]
+    if (tag.href && tag.href.indexOf(hostname) == -1) {
+        tag.target = '_blank';
+    }
+}
