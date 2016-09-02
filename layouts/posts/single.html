@@ -10,6 +10,7 @@
         <date>{{ .Date.Format "2006.01.02" }}</date>
         <div class="content">
           {{ .Content }}
+          {{ partial "share.html" . }}
           <div class="comment">
             <div>
               <a id="js-open-comment">show comment</a>
