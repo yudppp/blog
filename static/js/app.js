@@ -19,7 +19,8 @@ ga('create', 'UA-70167858-1', 'auto');
 ga('send', 'pageview');
 
 cheet('↑ ↑ ↓ ↓ ← → ← → b a', function () {
-    var className = document.getElementsByTagName('body')[0].className
+    var body = document.getElementsByTagName('body')[0]
+    var className = body.className
     if (className === 'hack') {
         body.className = 'hack dark'
     } else {
