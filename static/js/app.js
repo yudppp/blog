@@ -1,3 +1,12 @@
+var hostname = window.location.hostname;
+var atags = document.getElementsByTagName('a');
+for (var i in atags) {
+    var tag = atags[i]
+    if (tag.href && tag.href.indexOf(hostname) == -1) {
+        tag.target = '_blank';
+    }
+}
+
 // hljs
 hljs.initHighlightingOnLoad();
 
@@ -9,25 +18,11 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-70167858-1', 'auto');
 ga('send', 'pageview');
 
-
-var body = document.getElementsByTagName('body')[0]
-
 cheet('↑ ↑ ↓ ↓ ← → ← → b a', function () {
-    var className = body.className
+    var className = document.getElementsByTagName('body')[0].className
     if (className === 'hack') {
         body.className = 'hack dark'
     } else {
         body.className = 'hack'
     }
 });
-
-var hostname = window.location.hostname;
-
-var atags = document.getElementsByTagName('a');
-
-for (var i in atags) {
-    var tag = atags[i]
-    if (tag.href && tag.href.indexOf(hostname) == -1) {
-        tag.target = '_blank';
-    }
-}
