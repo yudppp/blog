@@ -8,6 +8,7 @@
     "tests"
   ],
   "devDependencies": {
-    "highlightjs": "~8.5.0"
+    "highlightjs": "~8.5.0",
+    "cheet.js": "^0.3.3"
   }
 }

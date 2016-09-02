@@ -1,10 +1,13 @@
 body.hack {
   padding: 20px;
   color: #333;
+  transition: all .8s linear;
 }
 
-body.hack.dark {
-  color: #fcfcfc;
+body.hack.solarized-dark {
+  /*color: #fcfcfc;*/
+  color: #78909c;
+  transition: all .8s linear;
 }
 
 .container {
@@ -19,11 +22,11 @@ a:hover {
   color: #222;
 }
 
-.dark a {
+.solarized-dark a {
   color: #ccc;
 }
 
-.dark a:hover {
+.solarized-dark a:hover {
   color: #fcfcfc;
 }
 
