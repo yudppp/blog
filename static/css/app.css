@@ -109,10 +109,12 @@ a:hover {
 
 a {
     border-bottom: 1px solid #ffd936;
+    transition: all .5s linear;
 }
 
 a:hover {
     background: #ffd936;
+    transition: all .3s linear;
 }
 
 a[target="_blank"] {
