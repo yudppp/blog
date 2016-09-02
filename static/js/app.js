@@ -12,18 +12,11 @@ ga('send', 'pageview');
 
 var body = document.getElementsByTagName('body')[0]
 
-var theme = window.localStorage.getItem('theme')
-if (theme) {
-    body.className = theme
-}
-
 cheet('↑ ↑ ↓ ↓ ← → ← → b a', function () {
     var className = body.className
     if (className === 'hack') {
-        body.className = 'hack solarized-dark'
-        window.localStorage.setItem('theme', 'hack solarized-dark')
+        body.className = 'hack dark'
     } else {
         body.className = 'hack'
-        window.localStorage.setItem('theme', 'hack')
     }
 });
