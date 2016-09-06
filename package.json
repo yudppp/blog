@@ -25,7 +25,8 @@
     "gulp-uglify": "^1.4.2",
     "hack": "^0.7.5",
     "highlight.js": "^9.6.0",
-    "run-sequence": "^1.1.4"
+    "run-sequence": "^1.1.4",
+    "talkiejs": "^0.9.1"
   },
   "author": {
     "name": "yudppp"

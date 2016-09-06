@@ -1,0 +1,16 @@
+<meta charset="utf-8">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<title>{{ .Title }} - {{ .Site.Title }}</title>
+<link rel="icon" href="{{ .Site.BaseURL }}/img/favicon.png">
+<link rel="shortcut icon" href="{{ .Site.BaseURL }}/img/favicon.png">
+<link rel="stylesheet" href="{{ .Site.BaseURL }}/css/slide.min.css">
+<!--<link rel="stylesheet" href="{{ .Site.BaseURL }}/css/app.min.css">-->
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="{{ .Permalink }}">
+<meta property="og:site_name", content="{{ .Site.Title }}">
+<meta property="og:title", content="{{ .Title }}">
+
+{{if .IsPage}}
+  <meta name="description" content="{{ .Summary }}">
+{{ end }}

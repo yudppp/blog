@@ -63,7 +63,8 @@
 
 .hljs-keyword,
 .javascript .hljs-function {
-  color: #ca85f7;
+  /*color: #ca85f7;*/
+  color: #ff2e88;
 }
 
 .hljs {

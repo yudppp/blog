@@ -18,7 +18,7 @@ Hugoを使ってマークダウンで書いているので
 その際に外部リンクの場合aタグに`target="_blank"`をつけたりしたいのですができないようでした。
 そのためJavaScriptでクライアントでつけるようにしました。
 
-```
+```js
 var hostname = window.location.hostname;
 var tags = document.getElementsByTagName('a');
 for (var i in tags) {
