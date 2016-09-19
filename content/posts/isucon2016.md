@@ -1,6 +1,6 @@
 ---
 date: 2016-09-10
-title: isucon2016
+title: isucon6で人権を失いました。
 ---
 
 ## はじめに
