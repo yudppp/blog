@@ -58,7 +58,7 @@ Golangの本家の実装を見るとわかるのですが[time/format.go](https:
 | .9, .99, .999, ...| FracSecond(trailing zeros omitted)|
 
 
-またさっとYYYYMMDDで書いた時ものを置換したりしたいので、その場合のための簡単なツールを作成しました。
+またさっとYYYYMMDDで書いた時ものを置換したりしたいので、その場合のための簡単な[ツール](https://github.com/yudppp/gotimefmt)を作成しました。
 
 ```sh
 $ go get github.com/yudppp/gotimefmt/cmd/gotimefmt
