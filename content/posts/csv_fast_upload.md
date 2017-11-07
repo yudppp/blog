@@ -159,6 +159,7 @@ func main() {
 			}
 		}
 	}
+	wg.Wait()
 }
 ```
 
