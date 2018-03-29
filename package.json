@@ -26,6 +26,7 @@
     "hack": "^0.7.5",
     "highlight.js": "^9.6.0",
     "run-sequence": "^1.1.4",
+    "roughjs": "^2.0.1",
     "talkiejs": "^0.9.1"
   },
   "author": {

@@ -1,7 +1,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+{{ if eq .Site.Title .Title}}
+<title>{{ .Site.Title }}</title>
+{{ else }}
 <title>{{ .Title }} - {{ .Site.Title }}</title>
+{{end}}
 <link rel="icon" href="{{ .Site.BaseURL }}/img/favicon.png">
 <link rel="shortcut icon" href="{{ .Site.BaseURL }}/img/favicon.png">
 <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/lib.min.css">

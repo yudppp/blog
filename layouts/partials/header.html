@@ -15,8 +15,12 @@
 				</span>
 			</div>
 		</div>
+		{{ if eq .Site.Title .Title }}
+		<div><canvas class="logo" width="320" height="100"></div>
+		{{ else }}
 		<div class="title">
 			<h1>{{.Title}}</h1>	
 		</div>
+		{{ end }}
 	</div>
 </header>
