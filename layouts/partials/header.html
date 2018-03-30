@@ -1,11 +1,15 @@
 <header>
 	<div class="container">
 		<div class="nav">
+			{{ if ne .Site.Title .Title }}
 			<div class="nav__left">
 				<span class="nav__item">
-					<a href="{{ .Site.BaseURL }}">top</a>
+					<a class="nocolor" href="{{ .Site.BaseURL }}">
+						<canvas class="mini-logo" width="150" height="50">
+					</a>
 				</span>
 			</div>
+			{{ end }}
 			<div class="nav__right">
 				<span class="nav__item nav__item--right">
 					<a href="{{ .Site.BaseURL }}/slides/">slides</a>

@@ -114,6 +114,11 @@ a[target="_blank"]:hover {
   background: #ff2e88;
 }
 
+.nocolor {
+  border-bottom: none !important;
+  background: inherit !important;
+}
+
 .event {
   border-bottom: 1px solid #2e6eff;
 }

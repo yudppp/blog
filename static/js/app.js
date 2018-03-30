@@ -7,6 +7,56 @@ for (var i in atags) {
   }
 }
 
+var roughness = Math.random() * 1.2;
+if (roughness > 1.1) {
+  roughness += Math.random() * 1.8;
+}
+
+var logos = document.getElementsByClassName("logo");
+if (logos.length !== 0) {
+  for (var i = 0; i < logos.length; i++) {
+    var rc = rough.canvas(logos[i]);
+    rc.circle(60, 55, 79, {
+      roughness: roughness,
+      stroke: "#333",
+      fill: "#ff2e88"
+    });
+    rc.polygon([[155, 18], [115, 90], [195, 90]], {
+      roughness: roughness,
+      stroke: "#333",
+      fill: "#ffd936"
+    });
+    rc.rectangle(220, 20, 70, 70, {
+      roughness: roughness,
+      stroke: "#333",
+      fill: "#2e6eff"
+    });
+  }
+}
+
+logos = document.getElementsByClassName("mini-logo");
+if (logos.length !== 0) {
+  roughness = roughness / 2;
+  for (var i = 0; i < logos.length; i++) {
+    var rc = rough.canvas(logos[i]);
+    rc.circle(25, 27, 39, {
+      roughness: roughness,
+      stroke: "#333",
+      fill: "#ff2e88"
+    });
+    rc.polygon([[72, 9], [52, 45], [92, 45]], {
+      roughness: roughness,
+      stroke: "#333",
+      fill: "#ffd936"
+    });
+    rc.rectangle(105, 10, 35, 35, {
+      roughness: roughness,
+      stroke: "#333",
+      fill: "#2e6eff"
+    });
+  }
+}
+
 // hljs
 hljs.initHighlightingOnLoad();
 
@@ -27,30 +77,6 @@ hljs.initHighlightingOnLoad();
 ga("create", "UA-70167858-1", "auto");
 ga("send", "pageview");
 
-var logos = document.getElementsByClassName("logo");
-if (logos.length !== 0) {
-  var roughness = Math.random() * 1.2;
-  if (roughness > 1.1) {
-    roughness += Math.random() * 1.8;
-  }
-  var rc = rough.canvas(document.getElementsByClassName("logo")[0]);
-  rc.circle(60, 55, 79, {
-    roughness: roughness,
-    stroke: "#333",
-    fill: "#ff2e88"
-  });
-  rc.polygon([[155, 18], [115, 90], [195, 90]], {
-    roughness: roughness,
-    stroke: "#333",
-    fill: "#ffd936"
-  });
-  rc.rectangle(220, 20, 70, 70, {
-    roughness: roughness,
-    stroke: "#333",
-    fill: "#2e6eff"
-  });
-}
-
 cheet("↑ ↑ ↓ ↓ ← → ← → b a", function() {
   var body = document.getElementsByTagName("body")[0];
   var className = body.className;
@@ -61,4 +87,4 @@ cheet("↑ ↑ ↓ ↓ ← → ← → b a", function() {
   }
 });
 
-mediumZoom(".content img");
+mediumZoom(".content img", { margin: 24 });
