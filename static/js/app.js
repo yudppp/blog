@@ -21,7 +21,7 @@ if (logos.length !== 0) {
       stroke: "#333",
       fill: "#ff2e88"
     });
-    rc.polygon([[155, 18], [115, 90], [195, 90]], {
+    rc.polygon([[155, 20.71], [115, 90], [195, 90]], {
       roughness: roughness,
       stroke: "#333",
       fill: "#ffd936"
@@ -44,7 +44,7 @@ if (logos.length !== 0) {
       stroke: "#333",
       fill: "#ff2e88"
     });
-    rc.polygon([[72, 9], [52, 45], [92, 45]], {
+    rc.polygon([[72, 10.36], [52, 45], [92, 45]], {
       roughness: roughness,
       stroke: "#333",
       fill: "#ffd936"
