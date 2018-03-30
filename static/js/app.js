@@ -36,17 +36,17 @@ if (logos.length !== 0) {
   var rc = rough.canvas(document.getElementsByClassName("logo")[0]);
   rc.circle(55, 55, 80, {
     roughness: roughness,
-    stroke: "#555",
+    stroke: "#333",
     fill: "#ff2e88"
   });
   rc.polygon([[150, 18], [110, 90], [190, 90]], {
     roughness: roughness,
-    stroke: "#555",
+    stroke: "#333",
     fill: "#ffd936"
   });
   rc.rectangle(216, 20, 70, 70, {
     roughness: roughness,
-    stroke: "#555",
+    stroke: "#333",
     fill: "#2e6eff"
   });
 }
