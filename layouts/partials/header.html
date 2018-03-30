@@ -1,7 +1,9 @@
 <header>
 	<div class="container">
+		{{ if eq .Site.Title .Title }}
+		<div><canvas class="logo" width="320" height="100"></div>	
+		{{ else }}	
 		<div class="nav">
-			{{ if ne .Site.Title .Title }}
 			<div class="nav__left">
 				<span class="nav__item">
 					<a class="nocolor" href="{{ .Site.BaseURL }}">
@@ -9,19 +11,7 @@
 					</a>
 				</span>
 			</div>
-			{{ end }}
-			<div class="nav__right">
-				<span class="nav__item nav__item--right">
-					<a href="{{ .Site.BaseURL }}/slides/">slides</a>
-				</span>
-				<span class="nav__item nav__item--right">
-					<a href="{{ .Site.BaseURL }}/posts/whoami/">profile</a>
-				</span>
-			</div>
 		</div>
-		{{ if eq .Site.Title .Title }}
-		<div><canvas class="logo" width="320" height="100"></div>
-		{{ else }}
 		<div class="title">
 			<h1>{{.Title}}</h1>	
 		</div>

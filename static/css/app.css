@@ -42,6 +42,7 @@ a:hover {
   display: flex;
   position: relative;
   text-align: center;
+  margin-left: -5px;
 }
 
 .nav__right {
