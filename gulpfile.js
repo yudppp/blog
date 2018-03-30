@@ -5,6 +5,7 @@ var sequence = require("run-sequence").use(gulp);
 var LIB_JS_FILES = [
   "bower_components/highlightjs/highlight.pack.js",
   "node_modules/roughjs/dist/rough.min.js",
+  "node_modules/medium-zoom/dist/medium-zoom.min.js",
   "bower_components/cheet.js/cheet.min.js"
 ];
 

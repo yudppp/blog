@@ -34,17 +34,17 @@ if (logos.length !== 0) {
     roughness += Math.random() * 1.8;
   }
   var rc = rough.canvas(document.getElementsByClassName("logo")[0]);
-  rc.circle(55, 55, 80, {
+  rc.circle(60, 55, 79, {
     roughness: roughness,
     stroke: "#333",
     fill: "#ff2e88"
   });
-  rc.polygon([[150, 18], [110, 90], [190, 90]], {
+  rc.polygon([[155, 18], [115, 90], [195, 90]], {
     roughness: roughness,
     stroke: "#333",
     fill: "#ffd936"
   });
-  rc.rectangle(216, 20, 70, 70, {
+  rc.rectangle(220, 20, 70, 70, {
     roughness: roughness,
     stroke: "#333",
     fill: "#2e6eff"
@@ -60,3 +60,5 @@ cheet("↑ ↑ ↓ ↓ ← → ← → b a", function() {
     body.className = "hack";
   }
 });
+
+mediumZoom(".content img");
