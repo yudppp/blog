@@ -29,14 +29,26 @@ ga("send", "pageview");
 
 var logos = document.getElementsByClassName("logo");
 if (logos.length !== 0) {
-  var roughness = 0.8;
+  var roughness = Math.random() * 1.2;
+  if (roughness > 1.1) {
+    roughness += Math.random() * 1.8;
+  }
   var rc = rough.canvas(document.getElementsByClassName("logo")[0]);
-  rc.circle(55, 55, 80, { roughness: roughness, fill: "#ff2e88" });
+  rc.circle(55, 55, 80, {
+    roughness: roughness,
+    stroke: "#555",
+    fill: "#ff2e88"
+  });
   rc.polygon([[150, 18], [110, 90], [190, 90]], {
     roughness: roughness,
+    stroke: "#555",
     fill: "#ffd936"
   });
-  rc.rectangle(216, 20, 70, 70, { roughness: roughness, fill: "#2e6eff" });
+  rc.rectangle(216, 20, 70, 70, {
+    roughness: roughness,
+    stroke: "#555",
+    fill: "#2e6eff"
+  });
 }
 
 cheet("↑ ↑ ↓ ↓ ← → ← → b a", function() {
