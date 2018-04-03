@@ -4,7 +4,7 @@ date: 2018-03-30T19:26:28+09:00
 tags: ["design"]
 ---
 
-サイトのデザインとサイト名を行いました。サイト名は「◯ △ □」という名前にしました。
+サイトのデザインとサイト名を変更しました。サイト名は「◯ △ □」という名前にしました。
 
 深い意味は全くなく[rough](https://github.com/pshihn/rough)というライブラリーが可愛すぎたので使いたく変更することにしました。
 
@@ -24,7 +24,9 @@ lightboxとかそういう系のものでmedium風なしゅるりんとなる奴
 
 ---
 
-.
+綺麗にかけた時の画像
+
+<img src="/img/posts/logo-r0.png" style="width: 320px">
 
 .
 
@@ -32,12 +34,18 @@ lightboxとかそういう系のものでmedium風なしゅるりんとなる奴
 
 .
 
+ちょっと下手な時の画像
+
+<img src="/img/posts/logo-r1.png" style="width: 320px">
 .
 
 .
 
+.
 
-<img src="/img/posts/logo.png" style="width: 320px">
+すごく下手な時の画像
+
+<img src="/img/posts/logo-r2.png" style="width: 320px">
 
 .
 

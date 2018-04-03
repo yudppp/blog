@@ -87,4 +87,4 @@ cheet("↑ ↑ ↓ ↓ ← → ← → b a", function() {
   }
 });
 
-mediumZoom(".content img", { margin: 24 });
+mediumZoom(".content img");
