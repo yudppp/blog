@@ -37,6 +37,7 @@ lightboxとかそういう系のものでmedium風なしゅるりんとなる奴
 ちょっと下手な時の画像
 
 <img src="/img/posts/logo-r1.png" style="width: 320px">
+
 .
 
 .
