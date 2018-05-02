@@ -1,4 +1,4 @@
-box: node
+box: node:8.11
 build:
   steps:
     - npm-install@1.1.4
