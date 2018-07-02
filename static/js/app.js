@@ -18,17 +18,21 @@ if (logos.length !== 0) {
     var rc = rough.canvas(logos[i]);
     rc.circle(60, 55, 79, {
       roughness: roughness,
-      stroke: "#333",
+      stroke: "#111",
       fill: "#ff2e88"
     });
-    rc.polygon([[155, 20.71], [115, 90], [195, 90]], {
+    rc.polygon([
+      [155, 20.71],
+      [115, 90],
+      [195, 90]
+    ], {
       roughness: roughness,
-      stroke: "#333",
+      stroke: "#111",
       fill: "#ffd936"
     });
     rc.rectangle(220, 20, 70, 70, {
       roughness: roughness,
-      stroke: "#333",
+      stroke: "#111",
       fill: "#2e6eff"
     });
   }
@@ -41,17 +45,21 @@ if (logos.length !== 0) {
     var rc = rough.canvas(logos[i]);
     rc.circle(25, 27, 39, {
       roughness: roughness,
-      stroke: "#333",
+      stroke: "#111",
       fill: "#ff2e88"
     });
-    rc.polygon([[72, 10.36], [52, 45], [92, 45]], {
+    rc.polygon([
+      [72, 10.36],
+      [52, 45],
+      [92, 45]
+    ], {
       roughness: roughness,
-      stroke: "#333",
+      stroke: "#111",
       fill: "#ffd936"
     });
     rc.rectangle(105, 10, 35, 35, {
       roughness: roughness,
-      stroke: "#333",
+      stroke: "#111",
       fill: "#2e6eff"
     });
   }
@@ -61,14 +69,14 @@ if (logos.length !== 0) {
 hljs.initHighlightingOnLoad();
 
 // ga
-(function(i, s, o, g, r, a, m) {
+(function (i, s, o, g, r, a, m) {
   i["GoogleAnalyticsObject"] = r;
   (i[r] =
     i[r] ||
-    function() {
+    function () {
       (i[r].q = i[r].q || []).push(arguments);
     }),
-    (i[r].l = 1 * new Date());
+  (i[r].l = 1 * new Date());
   (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
   a.async = 1;
   a.src = g;
@@ -77,7 +85,7 @@ hljs.initHighlightingOnLoad();
 ga("create", "UA-70167858-1", "auto");
 ga("send", "pageview");
 
-cheet("↑ ↑ ↓ ↓ ← → ← → b a", function() {
+cheet("↑ ↑ ↓ ↓ ← → ← → b a", function () {
   var body = document.getElementsByTagName("body")[0];
   var className = body.className;
   if (className === "hack") {
