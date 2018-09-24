@@ -67,4 +67,4 @@ reservationにRedisを使おうという考えもあったのですが時間考�
 そこで `/admin/api/reports/sale` に `time.Sleep(5 * time.Seconds)`を入れたところ負荷レベルが上がるようになり点数が増えて行きました。
 Sleep時間を調整していった結果15秒Sleepさせた時に `109,872` となり最高得点となりました。
 
-<script src="https://gist.github.com/yudppp/9cfee2009e220923218719e020271b82.js"></script>
+source: https://gist.github.com/yudppp/9cfee2009e220923218719e020271b82
