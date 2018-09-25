@@ -64,7 +64,7 @@ reservationにRedisを使おうという考えもあったのですが時間考�
 > GET /admin/api/reports/sales: 60秒以内
 
 の二つのルールに着目すると、レスポンスが遅い結果負荷レベルが上がらず、点数が上がらないといった感じでした。
-そこで `/admin/api/reports/sale` に `time.Sleep(5 * time.Seconds)`を入れたところ負荷レベルが上がるようになり点数が増えて行きました。
+そこで `/admin/api/reports/sale` に `time.Sleep(50 * time.Seconds)`を入れたところ負荷レベルが上がるようになり点数が増えて行きました。
 Sleep時間を調整していった結果15秒Sleepさせた時に `109,872` となり最高得点となりました。
 
 source: https://gist.github.com/yudppp/9cfee2009e220923218719e020271b82
