@@ -1,20 +1,28 @@
 <header>
-	<div class="container">
-		{{ if eq .Site.Title .Title }}
-		<div><canvas class="logo" width="320" height="100"></div>	
-		{{ else }}	
-		<div class="nav">
-			<div class="nav__left">
-				<span class="nav__item">
-					<a class="nocolor" href="{{ .Site.BaseURL }}">
-						<canvas class="mini-logo" width="150" height="50">
-					</a>
-				</span>
-			</div>
-		</div>
-		<div class="title">
-			<h1>{{.Title}}</h1>	
-		</div>
-		{{ end }}
-	</div>
+  <div class="container">
+    {{ if eq .Site.Title .Title }}
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="{{ .Site.BaseURL }}">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    {{ else }}
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="{{ .Site.BaseURL }}">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>{{.Title}}</h1>
+    </div>
+    {{ end }}
+  </div>
 </header>
