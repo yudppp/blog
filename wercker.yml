@@ -3,7 +3,6 @@ build:
   steps:
     - npm-install@1.1.4
     - plasticine/bower-install@0.0.4
-    - gulp@3.9.1
     - hgen/gulp:
         tasks: build
     - arjen/hugo-build:
