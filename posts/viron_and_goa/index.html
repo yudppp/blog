@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+
+<title>Vironとgoaでフロントのコード0でリソースの管理画面を作る - ◯ △ □</title>
+
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/lib.min.css">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/app.min.css">
+<link rel="alternate" href="https://blog.yudppp.com/index.xml" title="" type="application/rss+xml">
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/posts/viron_and_goa/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="Vironとgoaでフロントのコード0でリソースの管理画面を作る">
+
+
+  <meta name="description" content="社内向けの管理画面を新しく作る機会があり、先日話題になっていたVironを使ってみることにしました。 Vironはフロントのコードを書かずにOpenAPIに則ったAPIがあれば管理画面を作ることが出来ます。 またgoaを使ってswagger.jsonを自動で生成させ、それを喰わせることによって管理画面を簡単に作って行きます。 本家はバックエンドはNodeJSでやっているようですが、どうしても色々考えるとGoで書きたい人なので頑張っていきました。
+サンプルとして書いたコードをGithubにあげました。
+https://github.com/yudppp/viron-goa
+色々考えたのですがViron本体のコードは雑なセルフホスティングしています。
+READMEにしたがって起動しログインします。(アイパスは空文字以外であればログインできます)
+フロントのコードは書かずにリソースのリストが出てきました。 またRowについての更新処理や削除の処理がAPIを実装していれば行えます。
+そもそもgoaも以前趣味で簡単なアプリケーション作ったくらいで詳しくなかったのでjwtのミドルウェア周りとsigininのAPIの実装あたりにやたらハマりフロントもフルスクラッチで自分で実装した方が速いんではないかと言う時期もありました。(1日くらい)
+一度認証周りの実装を済ませてしまうと基本的なCRUD処理を行うリソースの追加が簡単に行えるようになりました。
+大体検討開始から1週間で主なbaseの実装といくつかのリソースの管理のAPIの実装とDockerizeするとこまで出来ました。 今後実装すべきことしては権限管理とオートコンプリートのフォームの実装をしたいのですが、フロント側は既に実装されているそうなので追ってサーバーを実装して行くことによって簡単に使えるようになりそうです。">
+
+
+  </head>
+  <body class="hack">
+    <header>
+  <div class="container">
+    
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="https://blog.yudppp.com">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>Vironとgoaでフロントのコード0でリソースの管理画面を作る</h1>
+    </div>
+    
+  </div>
+</header>
+
+    <main>
+      <div class="container">
+        <date>2018.02.09</date>
+        <div class="content">
+          <p>社内向けの管理画面を新しく作る機会があり、先日話題になっていた<a href="https://cam-inc.github.io/viron-doc/">Viron</a>を使ってみることにしました。
+Vironはフロントのコードを書かずにOpenAPIに則ったAPIがあれば管理画面を作ることが出来ます。
+また<a href="https://goa.design/">goa</a>を使って<code>swagger.json</code>を自動で生成させ、それを喰わせることによって管理画面を簡単に作って行きます。
+本家はバックエンドはNodeJSでやっているようですが、どうしても色々考えるとGoで書きたい人なので頑張っていきました。</p>
+
+<p>サンプルとして書いたコードをGithubにあげました。</p>
+
+<p><a href="https://github.com/yudppp/viron-goa">https://github.com/yudppp/viron-goa</a></p>
+
+<p>色々考えたのですがViron本体のコードは雑なセルフホスティングしています。</p>
+
+<p>READMEにしたがって起動しログインします。(アイパスは空文字以外であればログインできます)</p>
+
+<p>フロントのコードは書かずにリソースのリストが出てきました。
+またRowについての更新処理や削除の処理がAPIを実装していれば行えます。</p>
+
+<p><img src="/img/posts/viron.png" alt="" /></p>
+
+<p><img src="/img/posts/viron-update.png" alt="" /></p>
+
+<p>そもそもgoaも以前趣味で簡単なアプリケーション作ったくらいで詳しくなかったのでjwtのミドルウェア周りとsigininのAPIの実装あたりにやたらハマりフロントもフルスクラッチで自分で実装した方が速いんではないかと言う時期もありました。(1日くらい)</p>
+
+<p>一度認証周りの実装を済ませてしまうと基本的なCRUD処理を行うリソースの追加が簡単に行えるようになりました。</p>
+
+<p>大体検討開始から1週間で主なbaseの実装といくつかのリソースの管理のAPIの実装とDockerizeするとこまで出来ました。
+今後実装すべきことしては権限管理とオートコンプリートのフォームの実装をしたいのですが、フロント側は既に実装されているそうなので追ってサーバーを実装して行くことによって簡単に使えるようになりそうです。</p>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="yudppp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+          <div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">
+            show comment <span class="disqus-comment-count" data-disqus-url="https://blog.yudppp.com/posts/viron_and_goa/"></span>
+        </a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+     
+     
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>
+        </div>
+      </div>
+    </main>
+    
+<div class="container">
+	<div class="prevnext">
+		
+		<a class="pull-left" href="https://blog.yudppp.com/posts/update_design_2018_03/">
+			<div>&lt;&lt; サイトデザインとサイト名を更新しました。</div>
+		</a>
+		
+		
+		<a class="pull-right" href="https://blog.yudppp.com/posts/time_before_after/">
+			<div>Golangの時間のbefore/afterの話 &gt;&gt;</div>
+		</a>
+		
+	</div>
+</div>
+
+    <div class="container">
+  <a href="https://blog.yudppp.com/posts/whoami/">
+    <div class="media profile">
+      <div class="media-left">
+        <img class="avatarholder" src="https://blog.yudppp.com/img/profile.svg" />
+      </div>
+      <div class="media-body">
+        <div class="media-heading">@yudppp</div>
+        <div class="media-content">Web engineer.</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <script src="https://blog.yudppp.com/js/lib.min.js"></script>
+<script src="https://blog.yudppp.com/js/app.min.js"></script>
+<script id="dsq-count-scr" src="//yudppp.disqus.com/count.js" async></script>
+  </body>
+</html>

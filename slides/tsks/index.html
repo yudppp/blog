@@ -1,0 +1,156 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+<title>マイクロサービスの辛さ その① 起動時編 - ◯ △ □</title>
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/slide.min.css">
+
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/slides/tsks/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="マイクロサービスの辛さ その① 起動時編">
+
+
+  <meta name="description" content="## マイクロサービスの辛さ ### その① 起動時編 yudppp  Microservices Meetup vol.4 
+マイクロサービスで作るようになって
+圧倒的に1日に扱うプロジェクトの数が増えた。 
+1日に起動するプロジェクトが増えた。 
+1日に3~5プロジェクトくらい。
+自分が元々作ってないプロジェクトも触る 
+使っているタスクランナーもバラバラ 
+- npm script - Grunt - gulp - Make - Rake 
+毎回lsして,
+どのタスクランナー使ってるか確認して
+catして起動タスクを確認する 
+やだ 
+したくない 
+それをしないための
+タスクランナーマネージャー作りました。 
+yudppp/tsks $ npm i tsks -g  
+$ cd hoge-project hoge-project $ tsks 🐚 tsks npm run start npm run build gulp watch gulp build">
+
+
+    </head>
+    <body>
+        
+
+<script layout="title" type="text/x-markdown">
+## マイクロサービスの辛さ
+### その① 起動時編
+yudppp
+</script>
+
+<p><template layout type="text/x-markdown">
+<a href="http://microservices-meetup.connpass.com/event/44428/">Microservices Meetup vol.4</a>
+</template></p>
+
+<p><template layout type="text/x-markdown">
+マイクロサービスで作るようになって</p>
+
+<p>圧倒的に1日に扱うプロジェクトの数が増えた。
+</template></p>
+
+<p><template layout type="text/x-markdown">
+1日に起動するプロジェクトが増えた。
+</template></p>
+
+<p><template layout type="text/x-markdown">
+1日に3~5プロジェクトくらい。</p>
+
+<p>自分が元々作ってないプロジェクトも触る
+</template></p>
+
+<p><template layout type="text/x-markdown">
+使っているタスクランナーもバラバラ
+</template></p>
+
+<p><template layout="bullets" type="text/x-markdown">
+- npm script
+- Grunt
+- gulp
+- Make
+- Rake
+</template></p>
+
+<p><template layout type="text/x-markdown">
+毎回lsして,</p>
+
+<p>どのタスクランナー使ってるか確認して</p>
+
+<p>catして起動タスクを確認する
+</template></p>
+
+<p><template layout type="text/x-markdown">
+やだ
+</template></p>
+
+<p><template layout type="text/x-markdown">
+したくない
+</template></p>
+
+<p><template layout type="text/x-markdown">
+それをしないための</p>
+
+<p>タスクランナーマネージャー作りました。
+</template></p>
+
+<p><template layout type="text/x-markdown"></p>
+
+<h2 id="yudppp-tsks-https-github-com-yudppp-tsks"><a href="https://github.com/yudppp/tsks">yudppp/tsks</a></h2>
+
+<pre><code>$ npm i tsks -g
+</code></pre>
+
+<p></template></p>
+
+<p><template layout type="text/x-markdown"></p>
+
+<pre><code>$ cd hoge-project
+hoge-project $ tsks
+🐚 tsks
+npm run start
+npm run build
+gulp watch
+gulp build
+</code></pre>
+
+<p></template></p>
+
+<p><template layout type="text/x-markdown">
+npm script, Grunt, gulp, Make, Rake</p>
+
+<p>これらのタスクランナーのタスクを一覧表示してくれる。
+</template></p>
+
+<p><template layout type="text/x-markdown"></p>
+
+<h2 id="demo">DEMO</h2>
+
+<p></template></p>
+
+<p><template layout type="text/x-markdown">
+なんとこのプロジェクト</p>
+
+<p>☆が<a href="https://github.com/yudppp/tsks/stargazers">ひとつ</a>(自分でつけただけ)
+</template></p>
+
+<p><template layout type="text/x-markdown">
+☆くれたら喜びます</p>
+
+<p><a href="https://github.com/yudppp/tsks/stargazers">yudppp/tsks</a>
+</template></p>
+
+<p><template layout type="text/x-markdown">
+以上</p>
+
+<p>ありがとうございました。
+</template></p>
+
+        <script src="https://blog.yudppp.com/js/slide.min.js"></script>
+        <script>Talkie();</script>
+    </body>
+</html>

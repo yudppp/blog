@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Npm on ◯ △ □</title>
+    <link>https://blog.yudppp.com/tags/npm/</link>
+    <description>Recent content in Npm on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 12 Apr 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/tags/npm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>npmで公開する</title>
+      <link>https://blog.yudppp.com/posts/npm-publish/</link>
+      <pubDate>Sun, 12 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/npm-publish/</guid>
+      <description> はじめに 今までnpmで公開したことがなかったのですが、はじめて公開してみることにしました。
+作ったものはgulp-xto6というものでES5のコードをES6にコンパイルできるbabelの逆のようなxto6を扱いgulpで扱いやすいようにしたものになります。
+xto6についてはまた別の記事で紹介させていただきます。
+npmアカウントを作成する npmのサイトでアカウントを作成します。
+こちらを入力して登録しました。
+localでユーザー設定 $ npm adduser  username,password,email addressを登録すると~/下に.npmrcというfileができていました。
+//registry.npmjs.org/:_password=hogeABCEFGHIhuga //registry.npmjs.org/:username=username //registry.npmjs.org/:email=mail@address.co.jp //registry.npmjs.org/:always-auth=false  こんな感じになっていました。
+これで公開する準備は終わりました。
+公開する 公開したいディレクトリまで移動して
+$ npm publish  で完了です。
+非公開にする 基本的に確認してあげているので大丈夫だとは思いますが、間違えたものをあげてしまったりしたときのために確認しておきました。
+$ npm unpublish  で非公開にできるそうです。(試していない)
+基本的にどこかで使われているかも知れないのでunpublishは使わないでdeprecateとかにしましょうとのこと。
+またそもそもあがって困るようなものはpackage.jsonにprivate: trueと書いておきましょう。
+まとめ npmの公開をいままでしたことがなかったが、簡単に公開することができた。
+また大したものは作っていないのですが、ダウンロードされていて、何人かの方に使われているのかと思うとうれしいです。
+まだテスト書き中だったりちゃんとメンテしていきます。
+https://www.npmjs.com/package/gulp-xto6
+参考にしたもの  https://docs.npmjs.com/getting-started/publishing-npm-packages https://docs.npmjs.com/cli/unpublish  </description>
+    </item>
+    
+  </channel>
+</rss>

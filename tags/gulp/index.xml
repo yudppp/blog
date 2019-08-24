@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gulp on ◯ △ □</title>
+    <link>https://blog.yudppp.com/tags/gulp/</link>
+    <description>Recent content in Gulp on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 16 Jul 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/tags/gulp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>gulp 4.0について</title>
+      <link>https://blog.yudppp.com/posts/gulp4/</link>
+      <pubDate>Thu, 16 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/gulp4/</guid>
+      <description>はじめに gulpv4.0がそろそろリリースされそうなので、どんなことができるようになるのか調べてみようと思いました。
+https://github.com/gulpjs/gulp/milestones/gulp%204 マイルストーンを見てみると78%くらい終わっていてあと少しという感じでしょうか
+gulp 4.0を先にinstallしてみる 直接gitから落としてくれば4.0を使うことができます。
+$ npm install git://github.com/gulpjs/gulp.git#4.0 --save-dev $ npm install git://github.com/gulpjs/gulp-cli.git#4.0 –g  4.0の変更内容 機能の変更内容についてはCHANGELOGに記載されています。
+大きいところでいうとmethodがいくつか追加されていてgulp.series,gulp.parallel,gulp.tree,gulp.registryなどがあります。
+series/parallelについて 今までだとrunSequenceを使って行っていた並列/直列の処理が簡単に書けるようになります。
+use runSequence var gulp = require(&#39;gulp&#39;); var runSequence = require(&#39;run-sequence&#39;); gulp.task(&#39;build&#39;, function(callback) { runSequence(&#39;build-clean&#39;, [&#39;build-scripts&#39;, &#39;build-styles&#39;], &#39;build-html&#39;, callback); });  runSequenceを使っていた場合だいたいこのように使われていたと思います。
+use gulp#v4.0 var gulp = require(&#39;gulp&#39;); // gulp 4 gulp.task( &#39;build&#39;, gulp.series( &#39;build-clean&#39;, gulp.parallel(&#39;build-scripts&#39;, &#39;build-styles&#39;), &#39;build-html&#39; ) );  こんな感じに書き換えることができました。 パフォーマンスはどちらがよいのでしょうか。暇なときに調べて見ようと思います。
+gulp.treeについて API#gulptreeoptionsこちらに詳細が書いてありますがgulp.treeを使うと登録してあるtaskの一覧を取得することができます。
+また下記のようにオプションでdeepをtrueにしておくと
+gulp.tree({ deep: true }) /*output: [ { &amp;quot;label&amp;quot;:&amp;quot;one&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;two&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;three&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;four&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;series&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;one&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;two&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] } ] } ] }, { &amp;quot;label&amp;quot;:&amp;quot;five&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;series&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;four&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;series&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;one&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;two&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] } ] } ] }, { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;parallel&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;three&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;anonymous&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[] } ] } ] } ] } ] */  タスクとそのタスクに依存するタスクがわかるようになります。</description>
+    </item>
+    
+    <item>
+      <title>gulpfileそのものをES6で書く</title>
+      <link>https://blog.yudppp.com/posts/gulpfile-on-es6/</link>
+      <pubDate>Sat, 21 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/gulpfile-on-es6/</guid>
+      <description>最近になってfrontのコードやサーバーのコードは生のjs(ES5)で書かかずbabeljs(旧6to5)とかで書くことが体感ですが増えてきました。
+しかしgulpfileは生のjsで書いたり、coffeescriptで書くことが多いように感じます。
+そこで試しにES6で書いたらどんな感じになるか見てみたかったので適当なgulpfileをES6に書き換えてみようと思いました。
+まず適当なgulpfileが欲しかったのでYeomanでとってきました。
+$ npm install -g yo $ npm install -g generator-react-gulp-browserify $ yo react-gulp-browserify  https://github.com/randylien/generator-react-gulp-browserify/
+適当なそれなりに書かれているgulpfileが手に入りました。
+&#39;use strict&#39;; var gulp = require(&#39;gulp&#39;); // Load plugins var $ = require(&#39;gulp-load-plugins&#39;)(); var browserify = require(&#39;browserify&#39;); var watchify = require(&#39;watchify&#39;); var source = require(&#39;vinyl-source-stream&#39;), sourceFile = &#39;./app/scripts/app.coffee&#39;; // Scripts gulp.task(&#39;scripts&#39;, function () { var bundler = watchify(browserify({ entries: [sourceFile], insertGlobals: true, cache: {}, packageCache: {}, fullPaths: true })); bundler.</description>
+    </item>
+    
+  </channel>
+</rss>

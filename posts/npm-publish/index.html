@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+
+<title>npmで公開する - ◯ △ □</title>
+
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/lib.min.css">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/app.min.css">
+<link rel="alternate" href="https://blog.yudppp.com/index.xml" title="" type="application/rss+xml">
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/posts/npm-publish/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="npmで公開する">
+
+
+  <meta name="description" content=" はじめに 今までnpmで公開したことがなかったのですが、はじめて公開してみることにしました。
+作ったものはgulp-xto6というものでES5のコードをES6にコンパイルできるbabelの逆のようなxto6を扱いgulpで扱いやすいようにしたものになります。
+xto6についてはまた別の記事で紹介させていただきます。
+npmアカウントを作成する npmのサイトでアカウントを作成します。
+こちらを入力して登録しました。
+localでユーザー設定 $ npm adduser  username,password,email addressを登録すると~/下に.npmrcというfileができていました。
+//registry.npmjs.org/:_password=hogeABCEFGHIhuga //registry.npmjs.org/:username=username //registry.npmjs.org/:email=mail@address.co.jp //registry.npmjs.org/:always-auth=false  こんな感じになっていました。
+これで公開する準備は終わりました。
+公開する 公開したいディレクトリまで移動して
+$ npm publish  で完了です。
+非公開にする 基本的に確認してあげているので大丈夫だとは思いますが、間違えたものをあげてしまったりしたときのために確認しておきました。
+$ npm unpublish  で非公開にできるそうです。(試していない)
+基本的にどこかで使われているかも知れないのでunpublishは使わないでdeprecateとかにしましょうとのこと。
+またそもそもあがって困るようなものはpackage.jsonにprivate: trueと書いておきましょう。
+まとめ npmの公開をいままでしたことがなかったが、簡単に公開することができた。
+また大したものは作っていないのですが、ダウンロードされていて、何人かの方に使われているのかと思うとうれしいです。
+まだテスト書き中だったりちゃんとメンテしていきます。
+https://www.npmjs.com/package/gulp-xto6
+参考にしたもの  https://docs.npmjs.com/getting-started/publishing-npm-packages https://docs.npmjs.com/cli/unpublish  ">
+
+
+  </head>
+  <body class="hack">
+    <header>
+  <div class="container">
+    
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="https://blog.yudppp.com">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>npmで公開する</h1>
+    </div>
+    
+  </div>
+</header>
+
+    <main>
+      <div class="container">
+        <date>2015.04.12</date>
+        <div class="content">
+          
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>今までnpmで公開したことがなかったのですが、はじめて公開してみることにしました。</p>
+
+<p>作ったものは<a href="https://github.com/yudppp/gulp-xto6">gulp-xto6</a>というものでES5のコードをES6にコンパイルできるbabelの逆のような<a href="https://github.com/mohebifar/xto6">xto6</a>を扱いgulpで扱いやすいようにしたものになります。</p>
+
+<p>xto6についてはまた別の記事で紹介させていただきます。</p>
+
+<h2 id="npmアカウントを作成する">npmアカウントを作成する</h2>
+
+<p>npmのサイトでアカウントを作成します。</p>
+
+<p><img src="/img/posts/npm-ss.png" alt="" /></p>
+
+<p>こちらを入力して登録しました。</p>
+
+<h2 id="localでユーザー設定">localでユーザー設定</h2>
+
+<pre><code>$ npm adduser
+</code></pre>
+
+<p>username,password,email addressを登録すると<code>~/</code>下に<code>.npmrc</code>というfileができていました。</p>
+
+<pre><code>//registry.npmjs.org/:_password=hogeABCEFGHIhuga
+//registry.npmjs.org/:username=username
+//registry.npmjs.org/:email=mail@address.co.jp
+//registry.npmjs.org/:always-auth=false
+</code></pre>
+
+<p>こんな感じになっていました。</p>
+
+<p>これで公開する準備は終わりました。</p>
+
+<h2 id="公開する">公開する</h2>
+
+<p>公開したいディレクトリまで移動して</p>
+
+<pre><code>$ npm publish
+</code></pre>
+
+<p>で完了です。</p>
+
+<h2 id="非公開にする">非公開にする</h2>
+
+<p>基本的に確認してあげているので大丈夫だとは思いますが、間違えたものをあげてしまったりしたときのために確認しておきました。</p>
+
+<pre><code>$ npm unpublish
+</code></pre>
+
+<p>で非公開にできるそうです。(試していない)</p>
+
+<p>基本的にどこかで使われているかも知れないのでunpublishは使わないでdeprecateとかにしましょうとのこと。</p>
+
+<p>またそもそもあがって困るようなものは<code>package.json</code>に<code>private: true</code>と書いておきましょう。</p>
+
+<h2 id="まとめ">まとめ</h2>
+
+<p>npmの公開をいままでしたことがなかったが、簡単に公開することができた。</p>
+
+<p>また大したものは作っていないのですが、ダウンロードされていて、何人かの方に使われているのかと思うとうれしいです。</p>
+
+<p>まだテスト書き中だったりちゃんとメンテしていきます。</p>
+
+<p><a href="https://www.npmjs.com/package/gulp-xto6">https://www.npmjs.com/package/gulp-xto6</a></p>
+
+<h2 id="参考にしたもの">参考にしたもの</h2>
+
+<ul>
+<li><a href="https://docs.npmjs.com/getting-started/publishing-npm-packages">https://docs.npmjs.com/getting-started/publishing-npm-packages</a></li>
+<li><a href="https://docs.npmjs.com/cli/unpublish">https://docs.npmjs.com/cli/unpublish</a></li>
+</ul>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="yudppp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+          <div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">
+            show comment <span class="disqus-comment-count" data-disqus-url="https://blog.yudppp.com/posts/npm-publish/"></span>
+        </a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+     
+     
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>
+        </div>
+      </div>
+    </main>
+    
+<div class="container">
+	<div class="prevnext">
+		
+		<a class="pull-left" href="https://blog.yudppp.com/posts/about_flowtype/">
+			<div>&lt;&lt; Facebookのflowtypeについて</div>
+		</a>
+		
+		
+		<a class="pull-right" href="https://blog.yudppp.com/posts/kitematic/">
+			<div>DockerをGUIで使えるKitematic &gt;&gt;</div>
+		</a>
+		
+	</div>
+</div>
+
+    <div class="container">
+  <a href="https://blog.yudppp.com/posts/whoami/">
+    <div class="media profile">
+      <div class="media-left">
+        <img class="avatarholder" src="https://blog.yudppp.com/img/profile.svg" />
+      </div>
+      <div class="media-body">
+        <div class="media-heading">@yudppp</div>
+        <div class="media-content">Web engineer.</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <script src="https://blog.yudppp.com/js/lib.min.js"></script>
+<script src="https://blog.yudppp.com/js/app.min.js"></script>
+<script id="dsq-count-scr" src="//yudppp.disqus.com/count.js" async></script>
+  </body>
+</html>

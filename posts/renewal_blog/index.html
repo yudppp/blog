@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+
+<title>ブログのリニューアルしました。 - ◯ △ □</title>
+
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/lib.min.css">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/app.min.css">
+<link rel="alternate" href="https://blog.yudppp.com/index.xml" title="" type="application/rss+xml">
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/posts/renewal_blog/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="ブログのリニューアルしました。">
+
+
+  <meta name="description" content="ブログのリニューアルしました。
+Hugoに移行してから、1記事しか書かずにスタイル書き直して、またの修正になります。
+今回は極力シンプルに、エンジニアが見て見やすいようにhackcssをベースに作成しました。
+HTMLをスタイルの少し効いたマークダウンぽくしてくれます。
+Hugoを使ってマークダウンで書いているので マークダウンを一度HTMLに変換して、それにマークダウンぽいスタイルを当てていることになります。
+またHugoではblackfridayを使ってマークダウンをHTMLに変換しています。 その際に外部リンクの場合aタグにtarget=&quot;_blank&quot;をつけたりしたいのですができないようでした。 そのためJavaScriptでクライアントでつけるようにしました。
+var hostname = window.location.hostname; var tags = document.getElementsByTagName(&#39;a&#39;); for (var i in tags) { var tag = tags[i] if (tag.href &amp;&amp; tag.href.indexOf(hostname) == -1) { tag.target = &#39;_blank&#39;; } }  相対パス等で書くことないので一旦無視してしまってたり、ベストではないとは思うのですが、こんな感じでできました。 また外部リンクと内部リンクでaタグの色を変えるようにしました。内部リンクは黄色。外部リンクは赤となっています。
+派手なブログもいいですが、シンプルで読みやすいブログになったかと思います。
+ただGithubの調子が悪いのか画像がちゃんと上がらないことがあるのでちゃんと調べてみようと思います。
+久しぶりのブログなので軽めで終わりにします。">
+
+
+  </head>
+  <body class="hack">
+    <header>
+  <div class="container">
+    
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="https://blog.yudppp.com">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>ブログのリニューアルしました。</h1>
+    </div>
+    
+  </div>
+</header>
+
+    <main>
+      <div class="container">
+        <date>2016.09.03</date>
+        <div class="content">
+          <p>ブログのリニューアルしました。</p>
+
+<p>Hugoに移行してから、1記事しか書かずにスタイル書き直して、またの修正になります。</p>
+
+<p>今回は極力シンプルに、エンジニアが見て見やすいように<a href="http://hackcss.com/">hackcss</a>をベースに作成しました。</p>
+
+<p>HTMLをスタイルの少し効いたマークダウンぽくしてくれます。</p>
+
+<p>Hugoを使ってマークダウンで書いているので
+マークダウンを一度HTMLに変換して、それにマークダウンぽいスタイルを当てていることになります。</p>
+
+<p>またHugoでは<a href="https://github.com/russross/blackfriday">blackfriday</a>を使ってマークダウンをHTMLに変換しています。
+その際に外部リンクの場合aタグに<code>target=&quot;_blank&quot;</code>をつけたりしたいのですができないようでした。
+そのためJavaScriptでクライアントでつけるようにしました。</p>
+
+<pre><code class="language-js">var hostname = window.location.hostname;
+var tags = document.getElementsByTagName('a');
+for (var i in tags) {
+    var tag = tags[i]
+    if (tag.href &amp;&amp; tag.href.indexOf(hostname) == -1) {
+        tag.target = '_blank';
+    }
+}
+</code></pre>
+
+<p>相対パス等で書くことないので一旦無視してしまってたり、ベストではないとは思うのですが、こんな感じでできました。
+また外部リンクと内部リンクでaタグの色を変えるようにしました。内部リンクは黄色。外部リンクは赤となっています。</p>
+
+<p>派手なブログもいいですが、シンプルで読みやすいブログになったかと思います。</p>
+
+<p>ただGithubの調子が悪いのか画像がちゃんと上がらないことがあるのでちゃんと調べてみようと思います。</p>
+
+<p>久しぶりのブログなので軽めで終わりにします。</p>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="yudppp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+          <div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">
+            show comment <span class="disqus-comment-count" data-disqus-url="https://blog.yudppp.com/posts/renewal_blog/"></span>
+        </a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+     
+     
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>
+        </div>
+      </div>
+    </main>
+    
+<div class="container">
+	<div class="prevnext">
+		
+		<a class="pull-left" href="https://blog.yudppp.com/posts/add_slide/">
+			<div>&lt;&lt; こんにちはslide</div>
+		</a>
+		
+		
+		<a class="pull-right" href="https://blog.yudppp.com/posts/rest_to_falcor/">
+			<div>RESTfulなAPIがつらくなってきた話 &gt;&gt;</div>
+		</a>
+		
+	</div>
+</div>
+
+    <div class="container">
+  <a href="https://blog.yudppp.com/posts/whoami/">
+    <div class="media profile">
+      <div class="media-left">
+        <img class="avatarholder" src="https://blog.yudppp.com/img/profile.svg" />
+      </div>
+      <div class="media-body">
+        <div class="media-heading">@yudppp</div>
+        <div class="media-content">Web engineer.</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <script src="https://blog.yudppp.com/js/lib.min.js"></script>
+<script src="https://blog.yudppp.com/js/app.min.js"></script>
+<script id="dsq-count-scr" src="//yudppp.disqus.com/count.js" async></script>
+  </body>
+</html>

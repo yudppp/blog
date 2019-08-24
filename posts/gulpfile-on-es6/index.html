@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+
+<title>gulpfileそのものをES6で書く - ◯ △ □</title>
+
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/lib.min.css">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/app.min.css">
+<link rel="alternate" href="https://blog.yudppp.com/index.xml" title="" type="application/rss+xml">
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/posts/gulpfile-on-es6/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="gulpfileそのものをES6で書く">
+
+
+  <meta name="description" content="最近になってfrontのコードやサーバーのコードは生のjs(ES5)で書かかずbabeljs(旧6to5)とかで書くことが体感ですが増えてきました。
+しかしgulpfileは生のjsで書いたり、coffeescriptで書くことが多いように感じます。
+そこで試しにES6で書いたらどんな感じになるか見てみたかったので適当なgulpfileをES6に書き換えてみようと思いました。
+まず適当なgulpfileが欲しかったのでYeomanでとってきました。
+$ npm install -g yo $ npm install -g generator-react-gulp-browserify $ yo react-gulp-browserify  https://github.com/randylien/generator-react-gulp-browserify/
+適当なそれなりに書かれているgulpfileが手に入りました。
+&#39;use strict&#39;; var gulp = require(&#39;gulp&#39;); // Load plugins var $ = require(&#39;gulp-load-plugins&#39;)(); var browserify = require(&#39;browserify&#39;); var watchify = require(&#39;watchify&#39;); var source = require(&#39;vinyl-source-stream&#39;), sourceFile = &#39;./app/scripts/app.coffee&#39;; // Scripts gulp.task(&#39;scripts&#39;, function () { var bundler = watchify(browserify({ entries: [sourceFile], insertGlobals: true, cache: {}, packageCache: {}, fullPaths: true })); bundler.">
+
+
+  </head>
+  <body class="hack">
+    <header>
+  <div class="container">
+    
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="https://blog.yudppp.com">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>gulpfileそのものをES6で書く</h1>
+    </div>
+    
+  </div>
+</header>
+
+    <main>
+      <div class="container">
+        <date>2015.02.21</date>
+        <div class="content">
+          
+
+<p>最近になってfrontのコードやサーバーのコードは生のjs(ES5)で書かかず<a href="https://babeljs.io">babeljs</a>(旧6to5)とかで書くことが体感ですが増えてきました。</p>
+
+<p>しかしgulpfileは生のjsで書いたり、coffeescriptで書くことが多いように感じます。</p>
+
+<p>そこで試しにES6で書いたらどんな感じになるか見てみたかったので適当なgulpfileをES6に書き換えてみようと思いました。</p>
+
+<p>まず適当なgulpfileが欲しかったのでYeomanでとってきました。</p>
+
+<pre><code>$ npm install -g yo
+$ npm install -g generator-react-gulp-browserify
+$ yo react-gulp-browserify
+</code></pre>
+
+<p><a href="https://github.com/randylien/generator-react-gulp-browserify/">https://github.com/randylien/generator-react-gulp-browserify/</a></p>
+
+<p>適当なそれなりに書かれているgulpfileが手に入りました。</p>
+
+<pre><code>'use strict';
+
+var gulp = require('gulp');
+
+// Load plugins
+var $ = require('gulp-load-plugins')();
+var browserify = require('browserify');
+var watchify = require('watchify');
+var source = require('vinyl-source-stream'),
+    sourceFile = './app/scripts/app.coffee';
+
+// Scripts
+gulp.task('scripts', function () {
+    var bundler = watchify(browserify({
+        entries: [sourceFile],
+        insertGlobals: true,
+        cache: {},
+        packageCache: {},
+        fullPaths: true
+    }));
+    bundler.on('update', rebundle);
+    ...
+});
+...
+
+</code></pre>
+
+<p>長いので一部省略しましたがこんな感じです。</p>
+
+<p>新たに作るgulpfileについて考えていきます。
+babeljsのページをみてみると、requireでも扱いかたは、こちらにかいてありました。</p>
+
+<p><a href="https://babeljs.io/docs/usage/require/">https://babeljs.io/docs/usage/require/</a></p>
+
+<blockquote>
+<p>One of the ways you can use babel is through the require hook. The require hook will bind itself to node&rsquo;s require and automatically transpile files on the fly. This is equivalent to CoffeeScript&rsquo;s coffee-script/register.</p>
+</blockquote>
+
+<p>babelはrequireフックで使うことができ、自動的にnodeで変換され、coffee scriptの<code>coffee-script/register</code>と同じように扱えるそう。</p>
+
+<pre><code>$ npm install --save-dev babel
+</code></pre>
+
+<p>gulpfile.jsにこれだけ書く</p>
+
+<pre><code>require(&quot;babel/register&quot;);
+require('./gulpfile.es6');
+</code></pre>
+
+<p>そして<code>gulpfile.es6</code>を作って</p>
+
+<pre><code>'use strict';
+
+var gulp = require('gulp');
+
+// Load plugins
+var $ = require('gulp-load-plugins')();
+var browserify = require('browserify');
+var watchify = require('watchify');
+var source = require('vinyl-source-stream'),
+    sourceFile = './app/scripts/app.coffee';
+
+// Scripts
+gulp.task('scripts', () =&gt; {
+    let bundler = watchify(browserify({
+        entries: [sourceFile],
+        insertGlobals: true,
+        cache: {},
+        packageCache: {},
+        fullPaths: true
+    }));
+    bundler.on('update', rebundle);
+    ...
+});
+...
+
+</code></pre>
+
+<p>無事arrow function等を使うことができ、ES6で動かせました。</p>
+
+<h2 id="まとめ">まとめ</h2>
+
+<p>gulpfile書き換えるだけなのでプロダクトに全く影響与えないので簡単に始められそう。
+ただあまりロジックを書かないのでES6をそこまで書いている感じはしなかったです。(ES6を使いこなせていないだけかもしれないですが)
+そこまで恩恵を受けられていない気がしました。gulpfileを<code>.coffee</code>で書いたときほどの感動はなかったです。ほかのところもES6で書いてるから、そのまま書きたいとかにならない限りcoffeeで自分は書いてしまう気がします。</p>
+
+<p>gulpのissueみてみると<a href="https://github.com/gulpjs/gulp/issues/830">gulpjs/gulp/issues/830</a>に書いてあるよいにgulp4で対応してくれるみたいですね。今回楽にES6のfileをわかりやすくするために<code>.es6</code>という拡張子にしましたが、世間的にはそこまで推奨されていない感じなんでかね。
+ここissueではES6か判断するために正規表現で<code>.6to5.js</code>にしようぜっていってる間にbabelになっていたことが面白かったです。結局<code>gulpfile.babel.js</code>とかになるのでしょうか</p>
+
+<h2 id="追記-20150313">追記(20150313)</h2>
+
+<p>上記だと現状watchがうまく動かないらしいです。
+詳細はこちらに書いてあります。
+<a href="http://pirosikick.hateblo.jp/entry/2015/03/11/005925">http://pirosikick.hateblo.jp/entry/2015/03/11/005925</a></p>
+
+<h2 id="追記2-20150715">追記2(20150715)</h2>
+
+<p>gulp自体が3.9.0からちゃんと対応してくれるようになりました。
+<a href="https://github.com/gulpjs/gulp/issues/830">https://github.com/gulpjs/gulp/issues/830</a></p>
+
+<p>こちらにあるように<code>gulpfile.babel.js</code>とfile名を変更すれば勝手にbabelで解決してくれるようです。</p>
+
+<p>こちらにやり方を書いてくださってる方がいたので参考にしてみてください。</p>
+
+<p><a href="http://stephensauceda.com/es6-in-your-gulp-tasks/">http://stephensauceda.com/es6-in-your-gulp-tasks/</a></p>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="yudppp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+          <div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">
+            show comment <span class="disqus-comment-count" data-disqus-url="https://blog.yudppp.com/posts/gulpfile-on-es6/"></span>
+        </a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+     
+     
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>
+        </div>
+      </div>
+    </main>
+    
+<div class="container">
+	<div class="prevnext">
+		
+		<a class="pull-left" href="https://blog.yudppp.com/posts/kitematic/">
+			<div>&lt;&lt; DockerをGUIで使えるKitematic</div>
+		</a>
+		
+		
+		<a class="pull-right" href="https://blog.yudppp.com/posts/koa-boilerplate/">
+			<div>koaのboilerplate的なのを作る &gt;&gt;</div>
+		</a>
+		
+	</div>
+</div>
+
+    <div class="container">
+  <a href="https://blog.yudppp.com/posts/whoami/">
+    <div class="media profile">
+      <div class="media-left">
+        <img class="avatarholder" src="https://blog.yudppp.com/img/profile.svg" />
+      </div>
+      <div class="media-body">
+        <div class="media-heading">@yudppp</div>
+        <div class="media-content">Web engineer.</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <script src="https://blog.yudppp.com/js/lib.min.js"></script>
+<script src="https://blog.yudppp.com/js/app.min.js"></script>
+<script id="dsq-count-scr" src="//yudppp.disqus.com/count.js" async></script>
+  </body>
+</html>

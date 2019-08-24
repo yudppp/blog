@@ -1,0 +1,285 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+
+<title>isucon6で人権を失いました。 - ◯ △ □</title>
+
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/lib.min.css">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/app.min.css">
+<link rel="alternate" href="https://blog.yudppp.com/index.xml" title="" type="application/rss+xml">
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/posts/isucon2016/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="isucon6で人権を失いました。">
+
+
+  <meta name="description" content="はじめに ISUCON6の予選に初日で参加しました。結果としては35000点くらいで人権を失いました。
+ 昨年と一昨年と同じメンバーで今年も予選に参加しました。 前準備をいくつかしたのでその内容は来年のためにしたの方に残しておきます。
+当日 はてなのキーワードやはてなスターみたいな問題でした。
+お昼すぎまでGolangで動かすと0点で他チームが点数出てるので、とても焦っていました。
+Golangの正規表現が辛いことがわかったのでhtmlifyないのコードの
+re := regexp.MustCompile(&quot;(&quot;&#43;strings.Join(keywords, &quot;|&quot;)&#43;&quot;)&quot;) kw2sha := make(map[string]string) content = re.ReplaceAllStringFunc(content, func(kw string) string { kw2sha[kw] = &quot;isuda_&quot; &#43; fmt.Sprintf(&quot;%x&quot;, sha1.Sum([]byte(kw))) return kw2sha[kw] }) content = html.EscapeString(content) for kw, hash := range kw2sha { u, err := r.URL.Parse(baseUrl.String()&#43;&quot;/keyword/&quot; &#43; pathURIEscape(kw)) panicIf(err) link := fmt.Sprintf(&quot;&lt;a href=\&quot;%s\&quot;&gt;%s&lt;/a&gt;&quot;, u, html.EscapeString(kw)) content = strings.Replace(content, hash, link, -1) }  のコードを
+kw2sha := make(map[string]string, len(keywords)) for _, kw := range keywords { if strings.">
+
+
+  </head>
+  <body class="hack">
+    <header>
+  <div class="container">
+    
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="https://blog.yudppp.com">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>isucon6で人権を失いました。</h1>
+    </div>
+    
+  </div>
+</header>
+
+    <main>
+      <div class="container">
+        <date>2016.09.18</date>
+        <div class="content">
+          
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>ISUCON6の予選に初日で参加しました。結果としては35000点くらいで人権を失いました。</p>
+
+<iframe src="//hatenablog-parts.com/embed?url=http://isucon.net/archives/48475110.html" title="ISUCON6 本選出場者決定のお知らせ : ISUCON公式Blog" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>
+
+<p><a href="/posts/isucon2015">昨年</a>と一昨年と同じメンバーで今年も予選に参加しました。
+前準備をいくつかしたのでその内容は来年のためにしたの方に残しておきます。</p>
+
+<h2 id="当日">当日</h2>
+
+<p>はてなのキーワードやはてなスターみたいな問題でした。</p>
+
+<p>お昼すぎまでGolangで動かすと0点で他チームが点数出てるので、とても焦っていました。</p>
+
+<p>Golangの正規表現が辛いことがわかったので<code>htmlify</code>ないのコードの</p>
+
+<pre><code class="language-golang">re := regexp.MustCompile(&quot;(&quot;+strings.Join(keywords, &quot;|&quot;)+&quot;)&quot;)
+kw2sha := make(map[string]string)
+content = re.ReplaceAllStringFunc(content, func(kw string) string {
+	kw2sha[kw] = &quot;isuda_&quot; + fmt.Sprintf(&quot;%x&quot;, sha1.Sum([]byte(kw)))
+	return kw2sha[kw]
+})
+content = html.EscapeString(content)
+for kw, hash := range kw2sha {
+	u, err := r.URL.Parse(baseUrl.String()+&quot;/keyword/&quot; + pathURIEscape(kw))
+	panicIf(err)
+	link := fmt.Sprintf(&quot;&lt;a href=\&quot;%s\&quot;&gt;%s&lt;/a&gt;&quot;, u, html.EscapeString(kw))
+	content = strings.Replace(content, hash, link, -1)
+}
+</code></pre>
+
+<p>のコードを</p>
+
+<pre><code class="language-golang">kw2sha := make(map[string]string, len(keywords))
+for _, kw := range keywords {
+	if strings.Contains(content, kw) {
+		kw2sha[kw] = &quot;isuda_&quot; + fmt.Sprintf(&quot;%x&quot;, sha1.Sum([]byte(kw)))
+		content = strings.Replace(content, kw, kw2sha[kw], -1)
+	}
+}
+ 
+content = html.EscapeString(content)
+for kw, hash := range kw2sha {
+	u, err := r.URL.Parse(baseUrl.String() + &quot;/keyword/&quot; + pathURIEscape(kw))
+	panicIf(err)
+	content = strings.Replace(content, hash, fmt.Sprintf(&quot;&lt;a href=\&quot;%s\&quot;&gt;%s&lt;/a&gt;&quot;, u, html.EscapeString(kw)), -1)
+}
+</code></pre>
+
+<p>のように一個ずつreplaceするように変更したところ1万点くらいのスコアが初めて出て一安心しました。</p>
+
+<p>ただよくメッセージを見てみると１つずつやっているのでhash変換時の値に<code>12</code>などが含まれていた場合に再度変換されてしまうバグがありました。
+またsha1等でわざわざ暗号化する必要もなかったので</p>
+
+<pre><code class="language-golang">kw2sha := make(map[string]string, len(keywords))
+for _, kw := range keywords {
+	if strings.Contains(content, kw) {
+		kw2sha[kw] = &quot;isuda_&quot; + random()
+		content = strings.Replace(content, kw, kw2sha[kw], -1)
+	}
+}
+content = html.EscapeString(content)
+for kw, hash := range kw2sha {
+	u, err := r.URL.Parse(baseUrl.String() + &quot;/keyword/&quot; + pathURIEscape(kw))
+	panicIf(err)
+	content = strings.Replace(content, hash, fmt.Sprintf(&quot;&lt;a href=\&quot;%s\&quot;&gt;%s&lt;/a&gt;&quot;, u, html.EscapeString(kw)), -1)
+}
+</code></pre>
+
+<pre><code class="language-golang">var letterRunes = []rune(&quot;@#_=$%`~?!&quot;)
+
+func random() string {
+	b := make([]rune, 12)
+	for i := range b {
+		b[i] = letterRunes[rand.Intn(len(letterRunes))]
+	}
+	return string(b)
+}
+</code></pre>
+
+<p>のようにkeywordに出てこなさそうな記号を元に乱数を作るようにしました。
+上記の対応で3万点を超え出しました。</p>
+
+<p>またその他に行ったこととして、</p>
+
+<ul>
+<li>isutarをisudaに統合(DBも合わせる)</li>
+<li>starテーブルのkeywordのindexを貼る</li>
+<li>Cookieに<code>user_name</code>も詰める</li>
+<li>SQLのpool数増やしたりしました。</li>
+<li>静的fileをnginxでキャッシュ</li>
+</ul>
+
+<h2 id="やろうと思ってできなかったこと">やろうと思ってできなかったこと</h2>
+
+<ul>
+<li>fasthttpの利用。</li>
+<li>isupamのキャッシュ</li>
+<li>pprof</li>
+</ul>
+
+<h2 id="感想">感想</h2>
+
+<p>今年はピザを冷まさず食べれた。</p>
+
+<p>結果は悔しいので、来年こそ頑張る</p>
+
+<hr />
+
+<h2 id="前準備-チーム">前準備(チーム)</h2>
+
+<ul>
+<li>Golangでいくことの決定</li>
+<li>Azureの管理画面を少し触ってみる</li>
+<li>迷った時はやる</li>
+<li>17時半からは最終調整</li>
+<li>bitbucketの準備</li>
+</ul>
+
+<h2 id="前準備-個人">前準備(個人)</h2>
+
+<h3 id="snipet作り">snipet作り</h3>
+
+<p>並列実行(待つ)</p>
+
+<pre><code class="language-golang">var wg sync.WaitGroup
+for i:=0; i&lt;10; i++ {
+    wg.Add(1)
+    go func(i int) {
+        fmt.Println(i)
+        wg.Done()
+    }(i)
+}
+wg.Wait()
+</code></pre>
+
+<p>並列実行(待たない)</p>
+
+<pre><code class="language-golang">for i:=0; i&lt;10; i++ {
+    go func(i int) {
+        fmt.Println(i)
+    }(i)
+}
+</code></pre>
+
+<h3 id="使いそうなパッケージ">使いそうなパッケージ</h3>
+
+<ul>
+<li><a href="https://github.com/patrickmn/go-cache">patrickmn/go-cache</a></li>
+<li><a href="https://github.com/valyala/fasthttp">valyala/fasthttp</a></li>
+<li><a href="https://github.com/valyala/quicktemplate">valyala/quicktemplate</a></li>
+<li><a href="https://github.com/goware/httpcoala">goware/httpcoala</a></li>
+</ul>
+
+<h3 id="その他始まったら確認すること">その他始まったら確認すること</h3>
+
+<ul>
+<li>httpクライアントのキャッシュ</li>
+<li>正規表現重いから可能なら<code>strings.HasPrefix</code>等使う</li>
+<li>closeとか漏れてないか</li>
+<li>defer重いので極力使わない</li>
+<li>not use reflectntlnt</li>
+<li>Goのversionあげる</li>
+<li>alloc減らす</li>
+<li>map indexは100を超えてから</li>
+<li>css,jsにgzip聞いているか</li>
+</ul>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="yudppp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+          <div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">
+            show comment <span class="disqus-comment-count" data-disqus-url="https://blog.yudppp.com/posts/isucon2016/"></span>
+        </a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+     
+     
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>
+        </div>
+      </div>
+    </main>
+    
+<div class="container">
+	<div class="prevnext">
+		
+		<a class="pull-left" href="https://blog.yudppp.com/posts/csv_fast_upload/">
+			<div>&lt;&lt; Golangで大きなcsvのインポートを速くする</div>
+		</a>
+		
+		
+		<a class="pull-right" href="https://blog.yudppp.com/posts/add_slide/">
+			<div>こんにちはslide &gt;&gt;</div>
+		</a>
+		
+	</div>
+</div>
+
+    <div class="container">
+  <a href="https://blog.yudppp.com/posts/whoami/">
+    <div class="media profile">
+      <div class="media-left">
+        <img class="avatarholder" src="https://blog.yudppp.com/img/profile.svg" />
+      </div>
+      <div class="media-body">
+        <div class="media-heading">@yudppp</div>
+        <div class="media-content">Web engineer.</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <script src="https://blog.yudppp.com/js/lib.min.js"></script>
+<script src="https://blog.yudppp.com/js/app.min.js"></script>
+<script id="dsq-count-scr" src="//yudppp.disqus.com/count.js" async></script>
+  </body>
+</html>

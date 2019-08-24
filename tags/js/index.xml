@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Js on ◯ △ □</title>
+    <link>https://blog.yudppp.com/tags/js/</link>
+    <description>Recent content in Js on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 16 Jul 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/tags/js/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>gulp 4.0について</title>
+      <link>https://blog.yudppp.com/posts/gulp4/</link>
+      <pubDate>Thu, 16 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/gulp4/</guid>
+      <description>はじめに gulpv4.0がそろそろリリースされそうなので、どんなことができるようになるのか調べてみようと思いました。
+https://github.com/gulpjs/gulp/milestones/gulp%204 マイルストーンを見てみると78%くらい終わっていてあと少しという感じでしょうか
+gulp 4.0を先にinstallしてみる 直接gitから落としてくれば4.0を使うことができます。
+$ npm install git://github.com/gulpjs/gulp.git#4.0 --save-dev $ npm install git://github.com/gulpjs/gulp-cli.git#4.0 –g  4.0の変更内容 機能の変更内容についてはCHANGELOGに記載されています。
+大きいところでいうとmethodがいくつか追加されていてgulp.series,gulp.parallel,gulp.tree,gulp.registryなどがあります。
+series/parallelについて 今までだとrunSequenceを使って行っていた並列/直列の処理が簡単に書けるようになります。
+use runSequence var gulp = require(&#39;gulp&#39;); var runSequence = require(&#39;run-sequence&#39;); gulp.task(&#39;build&#39;, function(callback) { runSequence(&#39;build-clean&#39;, [&#39;build-scripts&#39;, &#39;build-styles&#39;], &#39;build-html&#39;, callback); });  runSequenceを使っていた場合だいたいこのように使われていたと思います。
+use gulp#v4.0 var gulp = require(&#39;gulp&#39;); // gulp 4 gulp.task( &#39;build&#39;, gulp.series( &#39;build-clean&#39;, gulp.parallel(&#39;build-scripts&#39;, &#39;build-styles&#39;), &#39;build-html&#39; ) );  こんな感じに書き換えることができました。 パフォーマンスはどちらがよいのでしょうか。暇なときに調べて見ようと思います。
+gulp.treeについて API#gulptreeoptionsこちらに詳細が書いてありますがgulp.treeを使うと登録してあるtaskの一覧を取得することができます。
+また下記のようにオプションでdeepをtrueにしておくと
+gulp.tree({ deep: true }) /*output: [ { &amp;quot;label&amp;quot;:&amp;quot;one&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;two&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;three&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;four&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;series&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;one&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;two&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] } ] } ] }, { &amp;quot;label&amp;quot;:&amp;quot;five&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;series&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;four&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;series&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;one&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;two&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] } ] } ] }, { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;parallel&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;three&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;anonymous&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[] } ] } ] } ] } ] */  タスクとそのタスクに依存するタスクがわかるようになります。</description>
+    </item>
+    
+    <item>
+      <title>Facebookのflowtypeについて</title>
+      <link>https://blog.yudppp.com/posts/about_flowtype/</link>
+      <pubDate>Sun, 24 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/about_flowtype/</guid>
+      <description>はじめに 最近babelやらES6やらがかなり盛り上がってる中facebookのflow(flowtype)をちゃんと触ってみようと思います。 TypeScriptと比べると型推論が賢かったり、コンパイルが速いらしいです。
+インストール Macだとbrewでさっとinstallできるようです。
+$ brew update $ brew install flow  windows等ではzip等で落としてくるそうです。
+こちらをみれば簡単にinstallできました。
+flowを触ってみる HelloWorld fileのはじめに/* @flow */でflowを使うことを宣言します。
+/* @flow */ function foo(x) { return x * 10; } foo(&#39;Hello, world!&#39;);  このように数値をいれて使いたい関数に間違って文字列をいててしまった場合に$ flow checkでチェックしてみます。すると
+$ flow check /Users/.../examples/01_HelloWorld/hello.js:7:5,19: string This type is incompatible with /Users/.../examples/01_HelloWorld/hello.js:4:10,13: number  7行目(foo(&amp;lsquo;Hello, world!&amp;rsquo;);)で文字列代入してるけど4行目(return x * 10;)で計算してるから数字でないとだめだよと、ちゃんと怒られました。
+またES6にも一部対応していて
+/* @flow */ var foo = (x) =&amp;gt; x*10 foo(&#39;Hello, world!&#39;);  このようなファイルもちゃんとみてくれました。</description>
+    </item>
+    
+    <item>
+      <title>npmで公開する</title>
+      <link>https://blog.yudppp.com/posts/npm-publish/</link>
+      <pubDate>Sun, 12 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/npm-publish/</guid>
+      <description> はじめに 今までnpmで公開したことがなかったのですが、はじめて公開してみることにしました。
+作ったものはgulp-xto6というものでES5のコードをES6にコンパイルできるbabelの逆のようなxto6を扱いgulpで扱いやすいようにしたものになります。
+xto6についてはまた別の記事で紹介させていただきます。
+npmアカウントを作成する npmのサイトでアカウントを作成します。
+こちらを入力して登録しました。
+localでユーザー設定 $ npm adduser  username,password,email addressを登録すると~/下に.npmrcというfileができていました。
+//registry.npmjs.org/:_password=hogeABCEFGHIhuga //registry.npmjs.org/:username=username //registry.npmjs.org/:email=mail@address.co.jp //registry.npmjs.org/:always-auth=false  こんな感じになっていました。
+これで公開する準備は終わりました。
+公開する 公開したいディレクトリまで移動して
+$ npm publish  で完了です。
+非公開にする 基本的に確認してあげているので大丈夫だとは思いますが、間違えたものをあげてしまったりしたときのために確認しておきました。
+$ npm unpublish  で非公開にできるそうです。(試していない)
+基本的にどこかで使われているかも知れないのでunpublishは使わないでdeprecateとかにしましょうとのこと。
+またそもそもあがって困るようなものはpackage.jsonにprivate: trueと書いておきましょう。
+まとめ npmの公開をいままでしたことがなかったが、簡単に公開することができた。
+また大したものは作っていないのですが、ダウンロードされていて、何人かの方に使われているのかと思うとうれしいです。
+まだテスト書き中だったりちゃんとメンテしていきます。
+https://www.npmjs.com/package/gulp-xto6
+参考にしたもの  https://docs.npmjs.com/getting-started/publishing-npm-packages https://docs.npmjs.com/cli/unpublish  </description>
+    </item>
+    
+    <item>
+      <title>gulpfileそのものをES6で書く</title>
+      <link>https://blog.yudppp.com/posts/gulpfile-on-es6/</link>
+      <pubDate>Sat, 21 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/gulpfile-on-es6/</guid>
+      <description>最近になってfrontのコードやサーバーのコードは生のjs(ES5)で書かかずbabeljs(旧6to5)とかで書くことが体感ですが増えてきました。
+しかしgulpfileは生のjsで書いたり、coffeescriptで書くことが多いように感じます。
+そこで試しにES6で書いたらどんな感じになるか見てみたかったので適当なgulpfileをES6に書き換えてみようと思いました。
+まず適当なgulpfileが欲しかったのでYeomanでとってきました。
+$ npm install -g yo $ npm install -g generator-react-gulp-browserify $ yo react-gulp-browserify  https://github.com/randylien/generator-react-gulp-browserify/
+適当なそれなりに書かれているgulpfileが手に入りました。
+&#39;use strict&#39;; var gulp = require(&#39;gulp&#39;); // Load plugins var $ = require(&#39;gulp-load-plugins&#39;)(); var browserify = require(&#39;browserify&#39;); var watchify = require(&#39;watchify&#39;); var source = require(&#39;vinyl-source-stream&#39;), sourceFile = &#39;./app/scripts/app.coffee&#39;; // Scripts gulp.task(&#39;scripts&#39;, function () { var bundler = watchify(browserify({ entries: [sourceFile], insertGlobals: true, cache: {}, packageCache: {}, fullPaths: true })); bundler.</description>
+    </item>
+    
+    <item>
+      <title>koaのboilerplate的なのを作る</title>
+      <link>https://blog.yudppp.com/posts/koa-boilerplate/</link>
+      <pubDate>Wed, 11 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/koa-boilerplate/</guid>
+      <description>はじめに koajsはkoa自体は薄くmiddlewareを好きに組み込めるような設計になっているので最初の書き始める時、いろいろめんどくさくなるので自分用にboilerplate的ななにかを作成しました。
+https://github.com/yudppp/koa-boilerplate
+使用したmiddleware  config ect koa-bodyparser koa-json koa-logger koa-qs koa-response-time koa-router  だいたいこのくらいは毎回いれて書きそうだったので入れました。
+やっぱりrouterはkoa-routerがrestなAPI書くには楽な気がします。
+最近はectが早いと聞くのでviewのtemplateはect入れています。
+なんとなく大枠を作れたのでなにかあったときにぱっとkoa導入できるはず。。</description>
+    </item>
+    
+    <item>
+      <title>RIOT 2.0</title>
+      <link>https://blog.yudppp.com/posts/riot/</link>
+      <pubDate>Sun, 25 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/riot/</guid>
+      <description>はじめに RIOT 2.0がリリースされました。
+PolymerのようなカスタムタグとReactぽい仮想DOMで軽量なフレームワークのようです。
+https://muut.com/technology/riot-2.0/index.html
+最近2.0に上がってから、すごい勢いでstarがついていて、すごく軽くて色々とできるそうなので見ていきます。
+RIOT2.0とは Reactはtemplateとテクノロジーを分離していてすばらしい考え方だったが、minifyされた状態でも124KBと大きく、コードも複雑になっているのだろう。jsxでテンプレートを簡略化してくれていたがもっと楽な方法を探した。
+Riot2.0のideaは Riot1.0のミニマリズムとReactの仮想DOMやコンポーネントの考え方とHTML5のカスタムタグの考えかたからできている。
+riotを除いたHTMLやjsのみを書いた小さなAPIを欲していた。
+Riot 2.0 は予想していたもの以上に、とても小さく簡単になっていた。完全なアプリケーションスタックで9つしかpublicなメソッドがなく、React.jsの10分の1どころか24分の1以下のfilesizeになった。
+RIOTのすごいところ  IE8以降のすべてのブラウザでカスタムタグを扱える。 カスタムタグがコンパイル後も人に読みやすい形になっている。 virtual domのおかげでDOMの更新に無駄が少なくパフォーマンスがよい。  Close to standards  独自のイベントシステム IE8のためのイベント標準化 renderされたDOMを他から勝手にアクセスされること jQueryを上手く使うこと  Growing ecosystem  Gulp and Grunt plugins Hosted on cdnjs and jsdelivr  Minimal シンプルな構文 できる限り小さなボイラープレートによって強力なタグシンタックスを導入することをひとつの目標にしていた。
+ Power shortcuts: class={ enabled: is_enabled, hidden: hasErrors() }. No extra brain load such as getInitialState or shouldComponentUpdate Interpolation: Add #{ items.length + 1 } No render method, no state object.</description>
+    </item>
+    
+    <item>
+      <title>FluxなフレームワークDeLoreanjsを触る</title>
+      <link>https://blog.yudppp.com/posts/deloreanjs/</link>
+      <pubDate>Thu, 15 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/deloreanjs/</guid>
+      <description>はじめに Fluxなフレームワークを触ってみたかったのでDeLoreanjsをさわってみることにしました。
+Fluxとは MVCに変わる新しいデータフローです。 大規模なアプリケーションになるとMVCではMとVの関係が特に複雑化してしまう。 Fluxは下記のような一方向のデータフローとなるため複雑になりにくいそうです。 大まかな構成としては既存のMVCをイベント稼働型にしたイメージです。 DeLoreanとは  DeLorean is a tiny Flux pattern implementation.
+ DeLoreanはFluxのパターンを小さな構成で実装したものになります。他にもfluxなフレームワークは多々ありますが,その中でもsimpleで軽量なフレームワークにあたります。
+ Unidirectional data flow, it makes your app logic simpler than MVC,
+ 一方向のデータフローによりMVCよりもアプリのロジックをきれいにする。
+ Automatically listens to data changes and keeps your data updated,
+ データの変更されると、自動的にデータを更新された状態に保つ
+ Makes data more consistent across your whole application,
+ アプリケーション全体でデータの一貫性が保たれる。
+ It&amp;rsquo;s framework agnostic, completely. There&amp;rsquo;s no view framework dependency.
+ このフレームワークは完全に独断的でない。viewフレームワークに依存していない。
+ Very small, just 5K gzipped.</description>
+    </item>
+    
+    <item>
+      <title>io.jsをnvmで管理する</title>
+      <link>https://blog.yudppp.com/posts/iojs-nvm/</link>
+      <pubDate>Thu, 15 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/iojs-nvm/</guid>
+      <description>やってみた nvm側でio.jsに対応されるかも知れないですが、早めに触ってみた買ったのとnvmで管理させないとめんどくさいことになりそうだったのでやってみました。
+creationix/nvm/issues/590
+$ git clone git@github.com:iojs/io.js.git $ cd io.js/ $ git tag -l	#最新versionを確認 $ git checkout refs/tags/v1.0.1-release $ ./configure --prefix=/path/to/.nvm/v1.0.1-iojs	# 既存の.nvm下に配置させる。 $ make -j10	#　並列で行う $ make install $ nvm ls $ nvm use v1.0.1-iojs $ iojs -v  諸々無駄な作業とかしましたがなんとかiojsが動きました。
+https://iojs.org/dist/v1.0.1/ここから落としてきてもよかったですね。はい
+もっとこうした方がいいとかありましたらご指導お願いします。
+hokaccha/nodebrewはもう対応しているらしいですね。
+追記(2015年01月20日) nvmが対応したそうなのでやってみることにしました。
+$ cd ~/.nvm $ git pull origin master $ source nvm.sh $ nvm ls-remote ... v0.11.14 iojs-v1.0.0 iojs-v1.0.1 iojs-v1.0.2 iojs-v1.0.3 $ nvm install iojs-v1.</description>
+    </item>
+    
+    <item>
+      <title>highlight.jsを使ってみる</title>
+      <link>https://blog.yudppp.com/posts/highlight-js/</link>
+      <pubDate>Sun, 11 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/highlight-js/</guid>
+      <description>はじめに codeにsyntax highlightが当たらないのが辛かったのでテーマを新たにつくっていい感じにsyntax highlightを効かせることにしました。 syntax highlightについて調べてみるとisagalaev/highlight.jsというライブラリがよさそうだったのでこちらを使うことにしました。
+Ghostのcode blockの仕様 TryGhost/Ghost/issues/2675で話し合われた結果
+```javascript ```  のように書くとprefixにlanguage-が補完されるようになっています。
+highligh.jsの実装をみてみるとlanguage-をのぞいて上手いこと言語の判断をしてくれるようだった。
+ErisDS/showdown/showdown.js#L1032-1036
+src/highlight.js#L42-46
+highlight.jsの特徴  112 languages and 49 styles
+ 112の言語と49のスタイルに対応している。
+ automatic language detection
+ 自動的な言語検出を行う。
+ multi-language code highlighting
+ マルチ言語のハイライト
+ available for node.js
+ node.jsで利用可能である
+ works with any markup
+ どのようなマークアップでも働く
+ compatible with any js framework
+ どんなjsフレームワークでも使える(jQuery等に依存してない)
+こんな特徴があるらしいです。
+highlight.jsを使ってみる 最初にisagalaev/highlight.jsに言われるがままに
+&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css&amp;quot;&amp;gt; &amp;lt;script src=&amp;quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt;hljs.initHighlightingOnLoad();&amp;lt;/script&amp;gt;  をすべてのpageに対応させたかったのでdefault.hbs(もちろんthemeによっては変わってきますが)に入れました。 Casperであればdefault.</description>
+    </item>
+    
+    <item>
+      <title>はじめてのReact.js</title>
+      <link>https://blog.yudppp.com/posts/react/</link>
+      <pubDate>Sun, 04 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/react/</guid>
+      <description>はじめに 最近仮想DOMが世間で流行ってる感あるのではじめることにしました。
+Matt-Esch/virtual-domとかsegmentio/dekuとかRaynos/mercuryとかから勉強してもよかったのですが、星が1番ついていたことと、以前Atomのpackageを弄った際に少し触ったこともあったfacebook/reactから勉強していくことにしました。
+仮想DOMとは 仮想DOMはHTMLのDOM構造をjsのオブジェクトで表していてDOM変更時に差分だけを変更してくれる。
+Reactとは facebook社の作っているUI層をつくるjavascriptフレームワークです。
+特徴 Just the UI  Lots of people use React as the V in MVC. Since React makes no assumptions about the rest of your technology stack, it&amp;rsquo;s easy to try it out on a small feature in an existing project.
+ MVCのVとしてReactは使われる。残りのM,Cについて働くことはなく、Reactは既存の小さな機能にも導入しやすくなっている。
+Virtual DOM  React uses a virtual DOM diff implementation for ultra-high performance. It can also render on the server using Node.</description>
+    </item>
+    
+  </channel>
+</rss>

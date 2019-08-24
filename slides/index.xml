@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Slides on ◯ △ □</title>
+    <link>https://blog.yudppp.com/slides/</link>
+    <description>Recent content in Slides on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 03 Jul 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/slides/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>外部のAPI叩くときの話</title>
+      <link>https://blog.yudppp.com/slides/json2struct/</link>
+      <pubDate>Mon, 03 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/slides/json2struct/</guid>
+      <description>golang.tokyo #7 LT 2017/07/03  ## 外部のAPI叩くときの話 yudppp  早速ですが,私は久留米の天気をどうしても知りたい。 
+旅行で今日から三日行くので,今日/明日/明後日の最低気温と最高気温が知りたい。 
+こんなことはよくあるかと思います。 
+どこかに落ちているお天気APIを叩きましょう。 
+```golang package main import ( &#34;fmt&#34; &#34;io/ioutil&#34; &#34;net/http&#34; ) const targetURL = &#34;http://weather.livedoor.com/forecast/webservice/json/v1?city=400040&#34; func main() { resp, _ := http.Get(targetURL) defer resp.Body.Close() // この後どうしますか } ```  1. interface{}で頑張る 2. structの定義を書く 3. jsonqのようなものを使う 
+1. interface{}で頑張る interfaceでやるのはGoぽくないし。可読性悪いしなんか面倒くさい。 
+2. structの定義を書く structを指定してやるのが個人的には一番だと思うが書くのがただただ面倒くさい 
+3. jsonqのようなものを使う JSONの形式決まっているのであればわざわざ使わなくても。またよく分からないパッケージをコードに入れたくない。使うなら一回コードの内部確認したいが面倒くさい。 
+どうしよう 
+全部面倒くさい 
+面倒くさいことは自動化しましょう</description>
+    </item>
+    
+    <item>
+      <title>マイクロサービスの辛さ その① 起動時編</title>
+      <link>https://blog.yudppp.com/slides/tsks/</link>
+      <pubDate>Tue, 22 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/slides/tsks/</guid>
+      <description>## マイクロサービスの辛さ ### その① 起動時編 yudppp  Microservices Meetup vol.4 
+マイクロサービスで作るようになって
+圧倒的に1日に扱うプロジェクトの数が増えた。 
+1日に起動するプロジェクトが増えた。 
+1日に3~5プロジェクトくらい。
+自分が元々作ってないプロジェクトも触る 
+使っているタスクランナーもバラバラ 
+- npm script - Grunt - gulp - Make - Rake 
+毎回lsして,
+どのタスクランナー使ってるか確認して
+catして起動タスクを確認する 
+やだ 
+したくない 
+それをしないための
+タスクランナーマネージャー作りました。 
+yudppp/tsks $ npm i tsks -g  
+$ cd hoge-project hoge-project $ tsks 🐚 tsks npm run start npm run build gulp watch gulp build</description>
+    </item>
+    
+    <item>
+      <title>Hello Talkie</title>
+      <link>https://blog.yudppp.com/slides/hello/</link>
+      <pubDate>Tue, 06 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/slides/hello/</guid>
+      <description> ## Hello Talkie yudppp  yudppp Web Engineer 
+```golang package main import ( &#34;fmt&#34; ) func main() { fmt.Println(&#34;Hello Talkie!&#34;) } ```  </description>
+    </item>
+    
+  </channel>
+</rss>

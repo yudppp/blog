@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/commoninitialisms/</loc>
+    <lastmod>2019-08-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/isucon2018/</loc>
+    <lastmod>2018-09-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/create_sendgrid_mock/</loc>
+    <lastmod>2018-07-30T19:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/update_design_2018_03/</loc>
+    <lastmod>2018-03-30T19:26:28+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/viron_and_goa/</loc>
+    <lastmod>2018-02-09T19:26:28+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/time_before_after/</loc>
+    <lastmod>2017-09-14T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/kubejobremover/</loc>
+    <lastmod>2017-08-24T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/json2struct/</loc>
+    <lastmod>2017-07-19T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/slides/json2struct/</loc>
+    <lastmod>2017-07-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/golang_time_format/</loc>
+    <lastmod>2016-12-06T00:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/slides/tsks/</loc>
+    <lastmod>2016-11-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/csv_fast_upload/</loc>
+    <lastmod>2016-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/isucon2016/</loc>
+    <lastmod>2016-09-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/add_slide/</loc>
+    <lastmod>2016-09-06T20:52:49+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/slides/hello/</loc>
+    <lastmod>2016-09-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/renewal_blog/</loc>
+    <lastmod>2016-09-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/rest_to_falcor/</loc>
+    <lastmod>2015-12-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/moved_hugo/</loc>
+    <lastmod>2015-12-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/go-http-client-no-redirect/</loc>
+    <lastmod>2015-10-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/isucon2015/</loc>
+    <lastmod>2015-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/circleci-use-cache/</loc>
+    <lastmod>2015-08-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/golang_num_separator/</loc>
+    <lastmod>2015-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/gulp4/</loc>
+    <lastmod>2015-07-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/golang-jst-parse/</loc>
+    <lastmod>2015-06-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/about_flowtype/</loc>
+    <lastmod>2015-05-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/npm-publish/</loc>
+    <lastmod>2015-04-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/kitematic/</loc>
+    <lastmod>2015-03-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/gulpfile-on-es6/</loc>
+    <lastmod>2015-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/koa-boilerplate/</loc>
+    <lastmod>2015-02-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/riot/</loc>
+    <lastmod>2015-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/deloreanjs/</loc>
+    <lastmod>2015-01-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/iojs-nvm/</loc>
+    <lastmod>2015-01-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/highlight-js/</loc>
+    <lastmod>2015-01-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/react/</loc>
+    <lastmod>2015-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/whoami/</loc>
+    <lastmod>2015-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/blog/</loc>
+    <lastmod>2015-01-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/ci/</loc>
+    <lastmod>2015-08-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/contest/</loc>
+    <lastmod>2018-09-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/design/</loc>
+    <lastmod>2018-03-30T19:26:28+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/docker/</loc>
+    <lastmod>2018-07-30T19:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/en/</loc>
+    <lastmod>2019-08-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/flow/</loc>
+    <lastmod>2015-05-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/go/</loc>
+    <lastmod>2019-08-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/goa/</loc>
+    <lastmod>2018-02-09T19:26:28+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/golang/</loc>
+    <lastmod>2018-02-09T19:26:28+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/gulp/</loc>
+    <lastmod>2015-07-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/hugo/</loc>
+    <lastmod>2015-12-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/js/</loc>
+    <lastmod>2015-07-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/koa/</loc>
+    <lastmod>2015-02-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/kubernetes/</loc>
+    <lastmod>2017-08-24T00:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/mock/</loc>
+    <lastmod>2018-07-30T19:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/npm/</loc>
+    <lastmod>2015-04-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/posts/</loc>
+    <lastmod>2019-08-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/riot/</loc>
+    <lastmod>2015-01-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/sendgrid/</loc>
+    <lastmod>2018-07-30T19:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/slide/</loc>
+    <lastmod>2017-07-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/slides/</loc>
+    <lastmod>2017-07-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/</loc>
+    <lastmod>2015-01-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/tags/viron/</loc>
+    <lastmod>2018-02-09T19:26:28+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yudppp.com/</loc>
+    <lastmod>2019-08-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

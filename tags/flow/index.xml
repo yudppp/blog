@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Flow on ◯ △ □</title>
+    <link>https://blog.yudppp.com/tags/flow/</link>
+    <description>Recent content in Flow on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 24 May 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/tags/flow/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Facebookのflowtypeについて</title>
+      <link>https://blog.yudppp.com/posts/about_flowtype/</link>
+      <pubDate>Sun, 24 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/about_flowtype/</guid>
+      <description>はじめに 最近babelやらES6やらがかなり盛り上がってる中facebookのflow(flowtype)をちゃんと触ってみようと思います。 TypeScriptと比べると型推論が賢かったり、コンパイルが速いらしいです。
+インストール Macだとbrewでさっとinstallできるようです。
+$ brew update $ brew install flow  windows等ではzip等で落としてくるそうです。
+こちらをみれば簡単にinstallできました。
+flowを触ってみる HelloWorld fileのはじめに/* @flow */でflowを使うことを宣言します。
+/* @flow */ function foo(x) { return x * 10; } foo(&#39;Hello, world!&#39;);  このように数値をいれて使いたい関数に間違って文字列をいててしまった場合に$ flow checkでチェックしてみます。すると
+$ flow check /Users/.../examples/01_HelloWorld/hello.js:7:5,19: string This type is incompatible with /Users/.../examples/01_HelloWorld/hello.js:4:10,13: number  7行目(foo(&amp;lsquo;Hello, world!&amp;rsquo;);)で文字列代入してるけど4行目(return x * 10;)で計算してるから数字でないとだめだよと、ちゃんと怒られました。
+またES6にも一部対応していて
+/* @flow */ var foo = (x) =&amp;gt; x*10 foo(&#39;Hello, world!&#39;);  このようなファイルもちゃんとみてくれました。</description>
+    </item>
+    
+  </channel>
+</rss>

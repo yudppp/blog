@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on ◯ △ □</title>
+    <link>https://blog.yudppp.com/tags/blog/</link>
+    <description>Recent content in Blog on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 01 Jan 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Who am I?</title>
+      <link>https://blog.yudppp.com/posts/whoami/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/whoami/</guid>
+      <description>@yudpppの名前でGithubやTwitterで活動しています。
+Golangを書くことが多いです。時々JavaScriptも書きます。
+AWS触ったりしてましたが、最近はGCP(特にGKE)触ることが多めです。
+若手エンジニアと言えない年になってきました。
+いろんなところで発表したスライド一覧</description>
+    </item>
+    
+  </channel>
+</rss>

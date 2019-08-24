@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+
+<title>RIOT 2.0 - ◯ △ □</title>
+
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/lib.min.css">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/app.min.css">
+<link rel="alternate" href="https://blog.yudppp.com/index.xml" title="" type="application/rss+xml">
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/posts/riot/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="RIOT 2.0">
+
+
+  <meta name="description" content="はじめに RIOT 2.0がリリースされました。
+PolymerのようなカスタムタグとReactぽい仮想DOMで軽量なフレームワークのようです。
+https://muut.com/technology/riot-2.0/index.html
+最近2.0に上がってから、すごい勢いでstarがついていて、すごく軽くて色々とできるそうなので見ていきます。
+RIOT2.0とは Reactはtemplateとテクノロジーを分離していてすばらしい考え方だったが、minifyされた状態でも124KBと大きく、コードも複雑になっているのだろう。jsxでテンプレートを簡略化してくれていたがもっと楽な方法を探した。
+Riot2.0のideaは Riot1.0のミニマリズムとReactの仮想DOMやコンポーネントの考え方とHTML5のカスタムタグの考えかたからできている。
+riotを除いたHTMLやjsのみを書いた小さなAPIを欲していた。
+Riot 2.0 は予想していたもの以上に、とても小さく簡単になっていた。完全なアプリケーションスタックで9つしかpublicなメソッドがなく、React.jsの10分の1どころか24分の1以下のfilesizeになった。
+RIOTのすごいところ  IE8以降のすべてのブラウザでカスタムタグを扱える。 カスタムタグがコンパイル後も人に読みやすい形になっている。 virtual domのおかげでDOMの更新に無駄が少なくパフォーマンスがよい。  Close to standards  独自のイベントシステム IE8のためのイベント標準化 renderされたDOMを他から勝手にアクセスされること jQueryを上手く使うこと  Growing ecosystem  Gulp and Grunt plugins Hosted on cdnjs and jsdelivr  Minimal シンプルな構文 できる限り小さなボイラープレートによって強力なタグシンタックスを導入することをひとつの目標にしていた。
+ Power shortcuts: class={ enabled: is_enabled, hidden: hasErrors() }. No extra brain load such as getInitialState or shouldComponentUpdate Interpolation: Add #{ items.length &#43; 1 } No render method, no state object.">
+
+
+  </head>
+  <body class="hack">
+    <header>
+  <div class="container">
+    
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="https://blog.yudppp.com">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>RIOT 2.0</h1>
+    </div>
+    
+  </div>
+</header>
+
+    <main>
+      <div class="container">
+        <date>2015.01.25</date>
+        <div class="content">
+          
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>RIOT 2.0がリリースされました。</p>
+
+<p>PolymerのようなカスタムタグとReactぽい仮想DOMで軽量なフレームワークのようです。</p>
+
+<p><a href="https://muut.com/technology/riot-2.0/index.html">https://muut.com/technology/riot-2.0/index.html</a></p>
+
+<p>最近2.0に上がってから、すごい勢いでstarがついていて、すごく軽くて色々とできるそうなので見ていきます。</p>
+
+<h2 id="riot2-0とは">RIOT2.0とは</h2>
+
+<p>Reactはtemplateとテクノロジーを分離していてすばらしい考え方だったが、minifyされた状態でも124KBと大きく、コードも複雑になっているのだろう。jsxでテンプレートを簡略化してくれていたがもっと楽な方法を探した。</p>
+
+<p>Riot2.0のideaは Riot1.0のミニマリズムとReactの仮想DOMやコンポーネントの考え方とHTML5のカスタムタグの考えかたからできている。</p>
+
+<p>riotを除いたHTMLやjsのみを書いた小さなAPIを欲していた。</p>
+
+<p>Riot 2.0 は予想していたもの以上に、とても小さく簡単になっていた。完全なアプリケーションスタックで9つしかpublicなメソッドがなく、React.jsの10分の1どころか24分の1以下のfilesizeになった。</p>
+
+<h2 id="riotのすごいところ">RIOTのすごいところ</h2>
+
+<ul>
+<li>IE8以降のすべてのブラウザでカスタムタグを扱える。</li>
+<li>カスタムタグがコンパイル後も人に読みやすい形になっている。</li>
+<li>virtual domのおかげでDOMの更新に無駄が少なくパフォーマンスがよい。</li>
+</ul>
+
+<h3 id="close-to-standards">Close to standards</h3>
+
+<ul>
+<li>独自のイベントシステム</li>
+<li>IE8のためのイベント標準化</li>
+<li>renderされたDOMを他から勝手にアクセスされること</li>
+<li>jQueryを上手く使うこと</li>
+</ul>
+
+<h3 id="growing-ecosystem">Growing ecosystem</h3>
+
+<ul>
+<li><a href="https://github.com/e-jigsaw/gulp-riot">Gulp</a> and <a href="https://github.com/ariesjia/grunt-riot">Grunt</a> plugins</li>
+<li>Hosted on <a href="https://cdnjs.com/libraries/riot">cdnjs</a> and <a href="http://www.jsdelivr.com/#!riot">jsdelivr</a></li>
+</ul>
+
+<h3 id="minimal">Minimal</h3>
+
+<h6 id="シンプルな構文">シンプルな構文</h6>
+
+<p>できる限り小さなボイラープレートによって強力なタグシンタックスを導入することをひとつの目標にしていた。</p>
+
+<ul>
+<li>Power shortcuts: <code>class={ enabled: is_enabled, hidden: hasErrors() }</code>.</li>
+<li>No extra brain load such as <code>getInitialState</code> or <code>shouldComponentUpdate</code></li>
+<li>Interpolation: <code>Add #{ items.length + 1 }</code></li>
+<li>No render method, no state object.</li>
+<li>Compact ES6 method syntax.</li>
+</ul>
+
+<h6 id="シンプルなapi">シンプルなAPI</h6>
+
+<p>Riotは他の10分の1から100分の1ほどAPIが少ない</p>
+
+<ul>
+<li>そのため学習コストが低い</li>
+<li>やれることが少ないのでコードが統一されやすい</li>
+</ul>
+
+<h6 id="小さいファイルサイズ">小さいファイルサイズ</h6>
+
+<p><img src="/img/posts/riot-size.png" alt="" /></p>
+
+<p>ファイルサイズが小さいことはバグが起きにくくダウンロードもすぐされるしメンテナンスも楽。</p>
+
+<h6 id="小さいけれど完成している">小さいけれど完成している</h6>
+
+<p>Riotは現代のクライアントサイドのアプリケーションのために必須な要素を構成している。</p>
+
+<ul>
+<li>ユーザーインターフェースを作るためのReactiveなView</li>
+<li>APIをつくるためのライブラリは独立しったモジュールになっている。</li>
+<li>urlのパスを変更してくれるルーター</li>
+</ul>
+
+<h2 id="まとめ">まとめ</h2>
+
+<p>RiotはReact,Polymer,models,routingを大きくさせずにまとめたものである。IE8にさえすぐに動かすことができる。使うことは簡単ですごく軽い。再発明せずいいパーツを組み合わせたものだ。</p>
+
+<h2 id="感想">感想</h2>
+
+<p>だいたいこんな感じのものなんですかねー
+実際にちょっと触ってみましたが簡単に使えそうでした。</p>
+
+<p>なによりファイルサイズが軽いことが魅力です。ただ心配なのが仮想DOMとしてのパフォーマンスとかが悪いのではないのかが軽いだけに心配です。
+次回にでももっとちゃんと使ってみたいと思います。</p>
+
+<h2 id="参考にしたもの">参考にしたもの</h2>
+
+<p><a href="https://muut.com/riotjs/">https://muut.com/riotjs/</a></p>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="yudppp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+          <div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">
+            show comment <span class="disqus-comment-count" data-disqus-url="https://blog.yudppp.com/posts/riot/"></span>
+        </a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+     
+     
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>
+        </div>
+      </div>
+    </main>
+    
+<div class="container">
+	<div class="prevnext">
+		
+		<a class="pull-left" href="https://blog.yudppp.com/posts/koa-boilerplate/">
+			<div>&lt;&lt; koaのboilerplate的なのを作る</div>
+		</a>
+		
+		
+		<a class="pull-right" href="https://blog.yudppp.com/posts/deloreanjs/">
+			<div>FluxなフレームワークDeLoreanjsを触る &gt;&gt;</div>
+		</a>
+		
+	</div>
+</div>
+
+    <div class="container">
+  <a href="https://blog.yudppp.com/posts/whoami/">
+    <div class="media profile">
+      <div class="media-left">
+        <img class="avatarholder" src="https://blog.yudppp.com/img/profile.svg" />
+      </div>
+      <div class="media-body">
+        <div class="media-heading">@yudppp</div>
+        <div class="media-content">Web engineer.</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <script src="https://blog.yudppp.com/js/lib.min.js"></script>
+<script src="https://blog.yudppp.com/js/app.min.js"></script>
+<script id="dsq-count-scr" src="//yudppp.disqus.com/count.js" async></script>
+  </body>
+</html>

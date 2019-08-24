@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Goa on ◯ △ □</title>
+    <link>https://blog.yudppp.com/tags/goa/</link>
+    <description>Recent content in Goa on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 09 Feb 2018 19:26:28 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/tags/goa/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vironとgoaでフロントのコード0でリソースの管理画面を作る</title>
+      <link>https://blog.yudppp.com/posts/viron_and_goa/</link>
+      <pubDate>Fri, 09 Feb 2018 19:26:28 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/viron_and_goa/</guid>
+      <description>社内向けの管理画面を新しく作る機会があり、先日話題になっていたVironを使ってみることにしました。 Vironはフロントのコードを書かずにOpenAPIに則ったAPIがあれば管理画面を作ることが出来ます。 またgoaを使ってswagger.jsonを自動で生成させ、それを喰わせることによって管理画面を簡単に作って行きます。 本家はバックエンドはNodeJSでやっているようですが、どうしても色々考えるとGoで書きたい人なので頑張っていきました。
+サンプルとして書いたコードをGithubにあげました。
+https://github.com/yudppp/viron-goa
+色々考えたのですがViron本体のコードは雑なセルフホスティングしています。
+READMEにしたがって起動しログインします。(アイパスは空文字以外であればログインできます)
+フロントのコードは書かずにリソースのリストが出てきました。 またRowについての更新処理や削除の処理がAPIを実装していれば行えます。
+そもそもgoaも以前趣味で簡単なアプリケーション作ったくらいで詳しくなかったのでjwtのミドルウェア周りとsigininのAPIの実装あたりにやたらハマりフロントもフルスクラッチで自分で実装した方が速いんではないかと言う時期もありました。(1日くらい)
+一度認証周りの実装を済ませてしまうと基本的なCRUD処理を行うリソースの追加が簡単に行えるようになりました。
+大体検討開始から1週間で主なbaseの実装といくつかのリソースの管理のAPIの実装とDockerizeするとこまで出来ました。 今後実装すべきことしては権限管理とオートコンプリートのフォームの実装をしたいのですが、フロント側は既に実装されているそうなので追ってサーバーを実装して行くことによって簡単に使えるようになりそうです。</description>
+    </item>
+    
+  </channel>
+</rss>

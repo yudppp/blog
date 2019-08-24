@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ci on ◯ △ □</title>
+    <link>https://blog.yudppp.com/tags/ci/</link>
+    <description>Recent content in Ci on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 22 Aug 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/tags/ci/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CircleCIでcacheを利用する</title>
+      <link>https://blog.yudppp.com/posts/circleci-use-cache/</link>
+      <pubDate>Sat, 22 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/circleci-use-cache/</guid>
+      <description>はじめに 仕事でcircleciを使ってテストが時間が掛かるようになってしまったので修正したい。 テスト自体を並列で動かして短縮することも可能であろうが、並列ではしることをあまり考慮されていないテストに現状なってしまっているため初期コストが高そうなので後回しにする またdockerの導入も大変そうなので後回しにしてできるところから手をつける。
+毎回ダウンロードしてきているものをcacheにいれることにする。
+How cache works circleciのcacheの概要はこちらに書いてある。 https://circleci.com/docs/how-cache-works
+cacheについて cacheの方法は二つあります
+1, cache_directories circle.ymlにdependencies: cache_directoriesのセクションを追加してディレクトリを指定すれば、そこのディレクトリはcacheとして次回のインスタンスにも同じものが残る。
+2, cache_directories  Bower Bundler CocoaPods Go Gradle Maven NPM  これらのようなもmanagerを使っていた場合自動的にcacheされる。
+Per-branch cache cacheされる粒度はbranchごとにされる。ブランチを切って最初のpushの場合Githubのデフォルトブランチが使えわれる。デフォルトブランチにcacheがなかった場合他のブランチからのcacheが使われる。
+Clearing the cache cacheを消すためにはcircle.ymlに下記のようにかけばcacheを消してくれる。
+dependencies: post: - rm -r ~/.gradle  普通に消すだけですね。はい。 勝手にcacheされてるものを消すためにはこのようにかけばよいのでしょうか。
+検証してみてわかったこと/思ったこと  without cacheで行った場合cacheを使わないだけでcacheを消してくれることはしない。 without cacheかつwith sshはできない。(探したが見つからなかった。) 運用していてcache自体を一度消したくなったときはwith sshで入って手で消すしかなさそう 何度もcircleCIの挙動を確認したい場合は確認するための最小限のcircle.yamlで確認した方がよい。  まとめ circleCIのチューニングは確認に時間が掛かったり挙動がよくわからなかったりして大変だが、将来を考えると時間が減っていいことしかないのでもっと早めにやるべきだった。</description>
+    </item>
+    
+  </channel>
+</rss>

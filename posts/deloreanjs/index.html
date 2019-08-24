@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+
+<title>FluxなフレームワークDeLoreanjsを触る - ◯ △ □</title>
+
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/lib.min.css">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/app.min.css">
+<link rel="alternate" href="https://blog.yudppp.com/index.xml" title="" type="application/rss+xml">
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/posts/deloreanjs/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="FluxなフレームワークDeLoreanjsを触る">
+
+
+  <meta name="description" content="はじめに Fluxなフレームワークを触ってみたかったのでDeLoreanjsをさわってみることにしました。
+Fluxとは MVCに変わる新しいデータフローです。 大規模なアプリケーションになるとMVCではMとVの関係が特に複雑化してしまう。 Fluxは下記のような一方向のデータフローとなるため複雑になりにくいそうです。 大まかな構成としては既存のMVCをイベント稼働型にしたイメージです。 DeLoreanとは  DeLorean is a tiny Flux pattern implementation.
+ DeLoreanはFluxのパターンを小さな構成で実装したものになります。他にもfluxなフレームワークは多々ありますが,その中でもsimpleで軽量なフレームワークにあたります。
+ Unidirectional data flow, it makes your app logic simpler than MVC,
+ 一方向のデータフローによりMVCよりもアプリのロジックをきれいにする。
+ Automatically listens to data changes and keeps your data updated,
+ データの変更されると、自動的にデータを更新された状態に保つ
+ Makes data more consistent across your whole application,
+ アプリケーション全体でデータの一貫性が保たれる。
+ It&rsquo;s framework agnostic, completely. There&rsquo;s no view framework dependency.
+ このフレームワークは完全に独断的でない。viewフレームワークに依存していない。
+ Very small, just 5K gzipped.">
+
+
+  </head>
+  <body class="hack">
+    <header>
+  <div class="container">
+    
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="https://blog.yudppp.com">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>FluxなフレームワークDeLoreanjsを触る</h1>
+    </div>
+    
+  </div>
+</header>
+
+    <main>
+      <div class="container">
+        <date>2015.01.15</date>
+        <div class="content">
+          
+
+<h2 id="はじめに">はじめに</h2>
+
+<p><a href="http://facebook.github.io/flux/">Flux</a>なフレームワークを触ってみたかったので<a href="http://deloreanjs.com/">DeLoreanjs</a>をさわってみることにしました。</p>
+
+<h2 id="fluxとは">Fluxとは</h2>
+
+<p>MVCに変わる新しいデータフローです。
+大規模なアプリケーションになるとMVCではMとVの関係が特に複雑化してしまう。
+Fluxは下記のような一方向のデータフローとなるため複雑になりにくいそうです。
+大まかな構成としては既存のMVCをイベント稼働型にしたイメージです。
+<img src="/img/posts/flux.png" alt="" /></p>
+
+<h2 id="deloreanとは">DeLoreanとは</h2>
+
+<blockquote>
+<p>DeLorean is a tiny Flux pattern implementation.</p>
+</blockquote>
+
+<p>DeLoreanはFluxのパターンを小さな構成で実装したものになります。他にもfluxなフレームワークは多々ありますが,その中でもsimpleで軽量なフレームワークにあたります。</p>
+
+<blockquote>
+<p><strong>Unidirectional data flow</strong>, it makes your app logic <strong>simpler than MVC</strong>,</p>
+</blockquote>
+
+<p>一方向のデータフローによりMVCよりもアプリのロジックをきれいにする。</p>
+
+<blockquote>
+<p>Automatically listens to data changes and keeps your data updated,</p>
+</blockquote>
+
+<p>データの変更されると、自動的にデータを更新された状態に保つ</p>
+
+<blockquote>
+<p>Makes data more <strong>consistent</strong> across your whole application,</p>
+</blockquote>
+
+<p>アプリケーション全体でデータの一貫性が保たれる。</p>
+
+<blockquote>
+<p>It&rsquo;s framework agnostic, completely. There&rsquo;s <strong>no view framework dependency</strong>.</p>
+</blockquote>
+
+<p>このフレームワークは完全に独断的でない。viewフレームワークに依存していない。</p>
+
+<blockquote>
+<p>Very small, just <strong>5K</strong> gzipped.</p>
+</blockquote>
+
+<p>とても小さくgzipすると５kになる。</p>
+
+<blockquote>
+<p>Built-in <strong>React.js</strong> integration, easy to use with <strong>Flight.js</strong> and <strong>Ractive.js</strong> and probably all others.</p>
+</blockquote>
+
+<p>内蔵されているReact.jsだけでなくFlight.jsやRactive.jsなどでも使いやすい。他のすべてでも多分使いやすいはずだ。</p>
+
+<blockquote>
+<p>Improve your UI/data consistency using <strong>rollbacks</strong>.</p>
+</blockquote>
+
+<p>ロールバックを使うことによりUIやデータの一貫性が改良される。</p>
+
+<p>Fluxの綺麗な一方向のデータ方向でviewがreactに依存していなく軽量であることがポイントかと思います。</p>
+
+<h2 id="主な機能">主な機能</h2>
+
+<p>viewの機能は外部に委託していてdefaultではreactjsを使っている。</p>
+
+<p>FluxのDispatchersとStoresの二つのコンセプトを実装している。
+ Action Creatorsは単にhelperとして実装していてフレームワークの抽象化したレベルの必要がない。</p>
+
+<h3 id="dispatchers">Dispatchers</h3>
+
+<blockquote>
+<p>The dispatcher is the central hub that manages all data flow in a Flux application. It is essentially a registry of callbacks into the stores. Each store registers itself and provides a callback. When the dispatcher responds to an action, all stores in the application are sent the data payload provided by the action via the callbacks in the registry.</p>
+</blockquote>
+
+<p>dispertcherはfluxのアプリケーションのデータフローを管理するハブとなっている。本質的にはstoresへのコールバックの登録です。それぞれのstoreは自身を登録しコールバックを提供する。dispatcherがactionに反応するときは、アプリケーションのすべてのstoreで登録のコールバックに送られるアクションによってデータベースに送られる。</p>
+
+<p>簡単なDispatcherはこのよに書ける。</p>
+
+<pre><code>var Dispatcher = Flux.createDispatcher({
+  setData: function (data) {
+    this.dispatch('incoming-data', data);
+  },
+  getStores: function () {
+    return {increment: store};
+  }
+});
+</code></pre>
+
+<h3 id="stores">Stores</h3>
+
+<blockquote>
+<p>Stores contain the application state and logic. Their role is somewhat similar to a model in a traditional MVC, but they manage the state of many objects. Unlike MVC models, they are not instances of one object, nor are they the same as Backbone&rsquo;s collections. More than simply managing a collection of ORM-style objects, stores manage the application state for a particular domain within the application.</p>
+</blockquote>
+
+<p>Storeはアプリケーションのstateとロジックを扱う。これらの役割はMVCのModelに似ているが、Storeは多くのobjectの状態管理している。多くのobjectを管理しているのはバックボーンのcollectionとは違う。objectを単に管理するよりもアプリケーション内の特定の範囲のための状態を管理する。</p>
+
+<p>storeの使われ方</p>
+
+<pre><code>var Store = Flux.createStore({
+  data: null,
+  setData: function (data) {
+    this.data = data;
+    this.emit('change');
+  },
+  actions: {
+    'incoming-data': 'setData'
+  }
+});
+var store = new Store();
+</code></pre>
+
+<p>Actionとして下記のように設定する</p>
+
+<pre><code>var Actions = {
+  setData: function (data) {
+    Dispatcher.setData(data);
+  }
+};
+</code></pre>
+
+<p>Actionで定義したイベントを適当にviewにつけていけば簡単なデータをfluxで登録できるようになりました。</p>
+
+<h2 id="感想">感想</h2>
+
+<p>簡単に使えそうですが、ロジックの含む処理をstoreにたくさんかけてしまいそうでした。</p>
+
+<h2 id="参考にしたもの">参考にしたもの</h2>
+
+<ul>
+<li><a href="https://github.com/facebook/flux">https://github.com/facebook/flux</a></li>
+<li><a href="https://github.com/deloreanjs/delorean">https://github.com/deloreanjs/delorean</a></li>
+<li><a href="https://www.youtube.com/watch?v=nYkdrAPrdcw">https://www.youtube.com/watch?v=nYkdrAPrdcw</a></li>
+<li><a href="https://www.bountysource.com/issues/5059362-which-flux-implementation-to-use-flux-reflux-fluxxor-mcfly-delorean">https://www.bountysource.com/issues</a></li>
+<li><a href="http://saneyukis.hatenablog.com/entry/2014/09/26/174750">http://saneyukis.hatenablog.com/entry</a></li>
+</ul>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="yudppp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+          <div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">
+            show comment <span class="disqus-comment-count" data-disqus-url="https://blog.yudppp.com/posts/deloreanjs/"></span>
+        </a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+     
+     
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>
+        </div>
+      </div>
+    </main>
+    
+<div class="container">
+	<div class="prevnext">
+		
+		<a class="pull-left" href="https://blog.yudppp.com/posts/riot/">
+			<div>&lt;&lt; RIOT 2.0</div>
+		</a>
+		
+		
+		<a class="pull-right" href="https://blog.yudppp.com/posts/iojs-nvm/">
+			<div>io.jsをnvmで管理する &gt;&gt;</div>
+		</a>
+		
+	</div>
+</div>
+
+    <div class="container">
+  <a href="https://blog.yudppp.com/posts/whoami/">
+    <div class="media profile">
+      <div class="media-left">
+        <img class="avatarholder" src="https://blog.yudppp.com/img/profile.svg" />
+      </div>
+      <div class="media-body">
+        <div class="media-heading">@yudppp</div>
+        <div class="media-content">Web engineer.</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <script src="https://blog.yudppp.com/js/lib.min.js"></script>
+<script src="https://blog.yudppp.com/js/app.min.js"></script>
+<script id="dsq-count-scr" src="//yudppp.disqus.com/count.js" async></script>
+  </body>
+</html>

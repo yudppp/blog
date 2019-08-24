@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Riot on ◯ △ □</title>
+    <link>https://blog.yudppp.com/tags/riot/</link>
+    <description>Recent content in Riot on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 25 Jan 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/tags/riot/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RIOT 2.0</title>
+      <link>https://blog.yudppp.com/posts/riot/</link>
+      <pubDate>Sun, 25 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/riot/</guid>
+      <description>はじめに RIOT 2.0がリリースされました。
+PolymerのようなカスタムタグとReactぽい仮想DOMで軽量なフレームワークのようです。
+https://muut.com/technology/riot-2.0/index.html
+最近2.0に上がってから、すごい勢いでstarがついていて、すごく軽くて色々とできるそうなので見ていきます。
+RIOT2.0とは Reactはtemplateとテクノロジーを分離していてすばらしい考え方だったが、minifyされた状態でも124KBと大きく、コードも複雑になっているのだろう。jsxでテンプレートを簡略化してくれていたがもっと楽な方法を探した。
+Riot2.0のideaは Riot1.0のミニマリズムとReactの仮想DOMやコンポーネントの考え方とHTML5のカスタムタグの考えかたからできている。
+riotを除いたHTMLやjsのみを書いた小さなAPIを欲していた。
+Riot 2.0 は予想していたもの以上に、とても小さく簡単になっていた。完全なアプリケーションスタックで9つしかpublicなメソッドがなく、React.jsの10分の1どころか24分の1以下のfilesizeになった。
+RIOTのすごいところ  IE8以降のすべてのブラウザでカスタムタグを扱える。 カスタムタグがコンパイル後も人に読みやすい形になっている。 virtual domのおかげでDOMの更新に無駄が少なくパフォーマンスがよい。  Close to standards  独自のイベントシステム IE8のためのイベント標準化 renderされたDOMを他から勝手にアクセスされること jQueryを上手く使うこと  Growing ecosystem  Gulp and Grunt plugins Hosted on cdnjs and jsdelivr  Minimal シンプルな構文 できる限り小さなボイラープレートによって強力なタグシンタックスを導入することをひとつの目標にしていた。
+ Power shortcuts: class={ enabled: is_enabled, hidden: hasErrors() }. No extra brain load such as getInitialState or shouldComponentUpdate Interpolation: Add #{ items.length + 1 } No render method, no state object.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,370 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+
+<title>gulp 4.0について - ◯ △ □</title>
+
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/lib.min.css">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/app.min.css">
+<link rel="alternate" href="https://blog.yudppp.com/index.xml" title="" type="application/rss+xml">
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/posts/gulp4/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="gulp 4.0について">
+
+
+  <meta name="description" content="はじめに gulpv4.0がそろそろリリースされそうなので、どんなことができるようになるのか調べてみようと思いました。
+https://github.com/gulpjs/gulp/milestones/gulp%204 マイルストーンを見てみると78%くらい終わっていてあと少しという感じでしょうか
+gulp 4.0を先にinstallしてみる 直接gitから落としてくれば4.0を使うことができます。
+$ npm install git://github.com/gulpjs/gulp.git#4.0 --save-dev $ npm install git://github.com/gulpjs/gulp-cli.git#4.0 –g  4.0の変更内容 機能の変更内容についてはCHANGELOGに記載されています。
+大きいところでいうとmethodがいくつか追加されていてgulp.series,gulp.parallel,gulp.tree,gulp.registryなどがあります。
+series/parallelについて 今までだとrunSequenceを使って行っていた並列/直列の処理が簡単に書けるようになります。
+use runSequence var gulp = require(&#39;gulp&#39;); var runSequence = require(&#39;run-sequence&#39;); gulp.task(&#39;build&#39;, function(callback) { runSequence(&#39;build-clean&#39;, [&#39;build-scripts&#39;, &#39;build-styles&#39;], &#39;build-html&#39;, callback); });  runSequenceを使っていた場合だいたいこのように使われていたと思います。
+use gulp#v4.0 var gulp = require(&#39;gulp&#39;); // gulp 4 gulp.task( &#39;build&#39;, gulp.series( &#39;build-clean&#39;, gulp.parallel(&#39;build-scripts&#39;, &#39;build-styles&#39;), &#39;build-html&#39; ) );  こんな感じに書き換えることができました。 パフォーマンスはどちらがよいのでしょうか。暇なときに調べて見ようと思います。
+gulp.treeについて API#gulptreeoptionsこちらに詳細が書いてありますがgulp.treeを使うと登録してあるtaskの一覧を取得することができます。
+また下記のようにオプションでdeepをtrueにしておくと
+gulp.tree({ deep: true }) /*output: [ { &quot;label&quot;:&quot;one&quot;, &quot;type&quot;:&quot;task&quot;, &quot;nodes&quot;:[] }, { &quot;label&quot;:&quot;two&quot;, &quot;type&quot;:&quot;task&quot;, &quot;nodes&quot;:[] }, { &quot;label&quot;:&quot;three&quot;, &quot;type&quot;:&quot;task&quot;, &quot;nodes&quot;:[] }, { &quot;label&quot;:&quot;four&quot;, &quot;type&quot;:&quot;task&quot;, &quot;nodes&quot;:[ { &quot;label&quot;:&quot;&lt;series&gt;&quot;, &quot;type&quot;:&quot;function&quot;, &quot;nodes&quot;:[ { &quot;label&quot;:&quot;one&quot;, &quot;type&quot;:&quot;task&quot;, &quot;nodes&quot;:[] }, { &quot;label&quot;:&quot;two&quot;, &quot;type&quot;:&quot;task&quot;, &quot;nodes&quot;:[] } ] } ] }, { &quot;label&quot;:&quot;five&quot;, &quot;type&quot;:&quot;task&quot;, &quot;nodes&quot;:[ { &quot;label&quot;:&quot;&lt;series&gt;&quot;, &quot;type&quot;:&quot;function&quot;, &quot;nodes&quot;:[ { &quot;label&quot;:&quot;four&quot;, &quot;type&quot;:&quot;task&quot;, &quot;nodes&quot;:[ { &quot;label&quot;:&quot;&lt;series&gt;&quot;, &quot;type&quot;:&quot;function&quot;, &quot;nodes&quot;:[ { &quot;label&quot;:&quot;one&quot;, &quot;type&quot;:&quot;task&quot;, &quot;nodes&quot;:[] }, { &quot;label&quot;:&quot;two&quot;, &quot;type&quot;:&quot;task&quot;, &quot;nodes&quot;:[] } ] } ] }, { &quot;label&quot;:&quot;&lt;parallel&gt;&quot;, &quot;type&quot;:&quot;function&quot;, &quot;nodes&quot;:[ { &quot;label&quot;:&quot;three&quot;, &quot;type&quot;:&quot;task&quot;, &quot;nodes&quot;:[] }, { &quot;label&quot;:&quot;&lt;anonymous&gt;&quot;, &quot;type&quot;:&quot;function&quot;, &quot;nodes&quot;:[] } ] } ] } ] } ] */  タスクとそのタスクに依存するタスクがわかるようになります。">
+
+
+  </head>
+  <body class="hack">
+    <header>
+  <div class="container">
+    
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="https://blog.yudppp.com">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>gulp 4.0について</h1>
+    </div>
+    
+  </div>
+</header>
+
+    <main>
+      <div class="container">
+        <date>2015.07.16</date>
+        <div class="content">
+          
+
+<h2 id="はじめに">はじめに</h2>
+
+<p><a href="https://github.com/gulpjs/gulp">gulp</a>v4.0がそろそろリリースされそうなので、どんなことができるようになるのか調べてみようと思いました。</p>
+
+<p><a href="https://github.com/gulpjs/gulp/milestones/gulp%204">https://github.com/gulpjs/gulp/milestones/gulp%204</a>
+マイルストーンを見てみると78%くらい終わっていてあと少しという感じでしょうか</p>
+
+<h2 id="gulp-4-0を先にinstallしてみる">gulp 4.0を先にinstallしてみる</h2>
+
+<p>直接gitから落としてくれば4.0を使うことができます。</p>
+
+<pre><code>$ npm install git://github.com/gulpjs/gulp.git#4.0 --save-dev
+$ npm install git://github.com/gulpjs/gulp-cli.git#4.0 –g
+</code></pre>
+
+<h2 id="4-0の変更内容">4.0の変更内容</h2>
+
+<p>機能の変更内容については<a href="https://github.com/gulpjs/gulp/blob/f076c407ae057bd72c03019aca69eaadd7e67cc5/CHANGELOG.md">CHANGELOG</a>に記載されています。</p>
+
+<p>大きいところでいうとmethodがいくつか追加されていて<code>gulp.series</code>,<code>gulp.parallel</code>,<code>gulp.tree</code>,<code>gulp.registry</code>などがあります。</p>
+
+<h4 id="series-parallelについて">series/parallelについて</h4>
+
+<p>今までだと<code>runSequence</code>を使って行っていた並列/直列の処理が簡単に書けるようになります。</p>
+
+<h5 id="use-runsequence">use runSequence</h5>
+
+<pre><code>var gulp = require('gulp');
+var runSequence = require('run-sequence');
+
+gulp.task('build', function(callback) {
+  runSequence('build-clean',
+              ['build-scripts', 'build-styles'],
+              'build-html',
+              callback);
+});
+</code></pre>
+
+<p>runSequenceを使っていた場合だいたいこのように使われていたと思います。</p>
+
+<h5 id="use-gulp-v4-0">use gulp#v4.0</h5>
+
+<pre><code>var gulp = require('gulp'); // gulp 4
+
+gulp.task(
+  'build',
+  gulp.series(
+    'build-clean',
+    gulp.parallel('build-scripts', 'build-styles'),
+    'build-html'
+  )
+);
+</code></pre>
+
+<p>こんな感じに書き換えることができました。
+パフォーマンスはどちらがよいのでしょうか。暇なときに調べて見ようと思います。</p>
+
+<h4 id="gulp-treeについて">gulp.treeについて</h4>
+
+<p><a href="https://github.com/gulpjs/gulp/blob/aaed69d1fd73750227e803035b2a75d0f49e7de0/docs/API.md">API#gulptreeoptions</a>こちらに詳細が書いてありますがgulp.treeを使うと登録してあるtaskの一覧を取得することができます。</p>
+
+<p>また下記のようにオプションでdeepをtrueにしておくと</p>
+
+<pre><code>gulp.tree({ deep: true })
+/*output: [
+   {
+      &quot;label&quot;:&quot;one&quot;,
+      &quot;type&quot;:&quot;task&quot;,
+      &quot;nodes&quot;:[]
+   },
+   {
+      &quot;label&quot;:&quot;two&quot;,
+      &quot;type&quot;:&quot;task&quot;,
+      &quot;nodes&quot;:[]
+   },
+   {
+      &quot;label&quot;:&quot;three&quot;,
+      &quot;type&quot;:&quot;task&quot;,
+      &quot;nodes&quot;:[]
+   },
+   {
+      &quot;label&quot;:&quot;four&quot;,
+      &quot;type&quot;:&quot;task&quot;,
+      &quot;nodes&quot;:[
+          {
+            &quot;label&quot;:&quot;&lt;series&gt;&quot;,
+            &quot;type&quot;:&quot;function&quot;,
+            &quot;nodes&quot;:[
+               {
+                  &quot;label&quot;:&quot;one&quot;,
+                  &quot;type&quot;:&quot;task&quot;,
+                  &quot;nodes&quot;:[]
+               },
+               {
+                  &quot;label&quot;:&quot;two&quot;,
+                  &quot;type&quot;:&quot;task&quot;,
+                  &quot;nodes&quot;:[]
+               }
+            ]
+         }
+      ]
+   },
+   {
+      &quot;label&quot;:&quot;five&quot;,
+      &quot;type&quot;:&quot;task&quot;,
+      &quot;nodes&quot;:[
+         {
+            &quot;label&quot;:&quot;&lt;series&gt;&quot;,
+            &quot;type&quot;:&quot;function&quot;,
+            &quot;nodes&quot;:[
+               {
+                  &quot;label&quot;:&quot;four&quot;,
+                  &quot;type&quot;:&quot;task&quot;,
+                  &quot;nodes&quot;:[
+                     {
+                        &quot;label&quot;:&quot;&lt;series&gt;&quot;,
+                        &quot;type&quot;:&quot;function&quot;,
+                        &quot;nodes&quot;:[
+                           {
+                              &quot;label&quot;:&quot;one&quot;,
+                              &quot;type&quot;:&quot;task&quot;,
+                              &quot;nodes&quot;:[]
+                           },
+                           {
+                              &quot;label&quot;:&quot;two&quot;,
+                              &quot;type&quot;:&quot;task&quot;,
+                              &quot;nodes&quot;:[]
+                           }
+                        ]
+                     }
+                  ]
+               },
+               {
+                  &quot;label&quot;:&quot;&lt;parallel&gt;&quot;,
+                  &quot;type&quot;:&quot;function&quot;,
+                  &quot;nodes&quot;:[
+                     {
+                        &quot;label&quot;:&quot;three&quot;,
+                        &quot;type&quot;:&quot;task&quot;,
+                        &quot;nodes&quot;:[]
+                     },
+                     {
+                        &quot;label&quot;:&quot;&lt;anonymous&gt;&quot;,
+                        &quot;type&quot;:&quot;function&quot;,
+                        &quot;nodes&quot;:[]
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   }
+]
+*/
+</code></pre>
+
+<p>タスクとそのタスクに依存するタスクがわかるようになります。</p>
+
+<p>またCLI用にも用意されていて
+<a href="https://github.com/gulpjs/gulp/blob/d2217b82f3690101d3bd5691326186a77f70efc3/docs/CLI.md#-t-or---tasks">CLI.md</a></p>
+
+<pre><code>$ gulp -T // or gulp --tasks
+[20:58:55] Tasks for ~\exampleProject\gulpfile.js
+[20:58:55] ├── one
+[20:58:55] ├── two
+[20:58:55] ├── three                    
+[20:58:55] ├─┬ four
+[20:58:55] │ └─┬ &lt;series&gt;
+[20:58:55] │   ├── one
+[20:58:55] │   └── two
+[20:58:55] ├─┬ five
+[20:58:55] │ └─┬ &lt;series&gt;
+[20:58:55] │   ├─┬ four
+[20:58:55] │   │ └─┬ &lt;series&gt;
+[20:58:55] │   │   ├── one
+[20:58:55] │   │   └── two
+[20:58:55] │   └─┬ &lt;parallel&gt;
+[20:58:55] │     ├── three
+[20:58:55] │     └── &lt;anonymous&gt;
+</code></pre>
+
+<p>でこのように先ほど同様の依存関係がでます。</p>
+
+<p>また<code>--tasks-simple</code>で簡単なタスク一覧がみれます。</p>
+
+<pre><code>$ gulp --tasks-simple
+one
+two
+three
+four
+five
+</code></pre>
+
+<p>CLIでみれるのは、あのタスクだけ回したいと思ったときに、しょっちゅうタスク名忘れてgulpfile読んでたひとからするとありがたいです。</p>
+
+<h4 id="gulp-registryについて">gulp.registryについて</h4>
+
+<p>今までだとひとつのgulpfileが大きくなってしまって分割したくなったときに
+<a href="https://github.com/gulpjs/gulp/blob/master/docs/recipes/split-tasks-across-multiple-files.md">requireDir</a>したり<a href="https://github.com/jackfranklin/gulp-load-plugins">gulp-load-plugins</a>していたかと思います。</p>
+
+<p>registryを使うと</p>
+
+<pre><code>//gulpfile.js
+var gulp = require('gulp');
+
+var companyTasks = require('./myCompanyTasksRegistry.js');
+
+gulp.registry(companyTasks);
+
+gulp.task('one', gulp.parallel('someCompanyTask', function(done) {
+  console.log('in task one');
+  done();
+}));
+</code></pre>
+
+<pre><code>//myCompanyTasksRegistry.js
+var util = require('util');
+
+var DefaultRegistry = require('undertaker-registry');
+
+function MyCompanyTasksRegistry() {
+  DefaultRegistry.call(this);
+
+  this.set('clean', function(done) {
+    done();
+  });
+  this.set('someCompanyTask', function(done) {
+    console.log('performing some company task.');
+    done();
+  });
+}
+util.inherits(MyCompanyTasksRegistry, DefaultRegistry);
+
+module.exports = new MyCompanyTasksRegistry();
+</code></pre>
+
+<p>registryを使って登録することによって自然?に追加できるようになりました。</p>
+
+<h2 id="まとめ">まとめ</h2>
+
+<p>結局いつリリースになるのかわからなかったのですが4.0への更新は今まで外部のプラグイン等で補っていた機能がgulpそのもので使える感じになったくらいなのでしょうか。</p>
+
+<h2 id="参考にした記事">参考にした記事</h2>
+
+<ul>
+<li><a href="https://github.com/gulpjs/gulp">https://github.com/gulpjs/gulp</a></li>
+<li><a href="https://blog.wearewizards.io/migrating-to-gulp-4-by-example">https://blog.wearewizards.io/migrating-to-gulp-4-by-example</a></li>
+<li><a href="http://macr.ae/article/splitting-gulpfile-multiple-files.html">http://macr.ae/article/splitting-gulpfile-multiple-files.html</a></li>
+</ul>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="yudppp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+          <div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">
+            show comment <span class="disqus-comment-count" data-disqus-url="https://blog.yudppp.com/posts/gulp4/"></span>
+        </a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+     
+     
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>
+        </div>
+      </div>
+    </main>
+    
+<div class="container">
+	<div class="prevnext">
+		
+		<a class="pull-left" href="https://blog.yudppp.com/posts/golang_num_separator/">
+			<div>&lt;&lt; golangで数字を三桁ごとでカンマ区切りにする</div>
+		</a>
+		
+		
+		<a class="pull-right" href="https://blog.yudppp.com/posts/golang-jst-parse/">
+			<div>【golang】JSTの時間をうまくParseする &gt;&gt;</div>
+		</a>
+		
+	</div>
+</div>
+
+    <div class="container">
+  <a href="https://blog.yudppp.com/posts/whoami/">
+    <div class="media profile">
+      <div class="media-left">
+        <img class="avatarholder" src="https://blog.yudppp.com/img/profile.svg" />
+      </div>
+      <div class="media-body">
+        <div class="media-heading">@yudppp</div>
+        <div class="media-content">Web engineer.</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <script src="https://blog.yudppp.com/js/lib.min.js"></script>
+<script src="https://blog.yudppp.com/js/app.min.js"></script>
+<script id="dsq-count-scr" src="//yudppp.disqus.com/count.js" async></script>
+  </body>
+</html>

@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+
+<title>I made get commonInitialisms library(Using go/ast) - ◯ △ □</title>
+
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/lib.min.css">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/app.min.css">
+<link rel="alternate" href="https://blog.yudppp.com/index.xml" title="" type="application/rss+xml">
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/posts/commoninitialisms/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="I made get commonInitialisms library(Using go/ast)">
+
+
+  <meta name="description" content="Hello. I made get commonInitialisms library for Go.
+commonInitialism is words that should be written in uppercase on Go. (e.g. ID, JSON, URL, SQL)
+Why need it commonInitialism is defined &quot;golang.org/x/lint&quot; package.
+// commonInitialisms is a set of common initialisms. // Only add entries that are highly unlikely to be non-initialisms. // For instance, &quot;ID&quot; is fine (Freudian code is rare), but &quot;AND&quot; is not. var commonInitialisms = map[string]bool{ &quot;ACL&quot;: true, &quot;API&quot;: true, &quot;ASCII&quot;: true, .">
+
+
+  </head>
+  <body class="hack">
+    <header>
+  <div class="container">
+    
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="https://blog.yudppp.com">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>I made get commonInitialisms library(Using go/ast)</h1>
+    </div>
+    
+  </div>
+</header>
+
+    <main>
+      <div class="container">
+        <date>2019.08.24</date>
+        <div class="content">
+          
+
+<p>Hello. I made <a href="https://github.com/yudppp/commoninitialisms">get commonInitialisms</a> library for Go.</p>
+
+<p><code>commonInitialism</code> is words that should be written in uppercase on Go. (e.g. ID, JSON, URL, SQL)</p>
+
+<h2 id="why-need-it">Why need it</h2>
+
+<p><code>commonInitialism</code> is defined <code>&quot;golang.org/x/lint&quot;</code> package.</p>
+
+<pre><code class="language-go">// commonInitialisms is a set of common initialisms.
+// Only add entries that are highly unlikely to be non-initialisms.
+// For instance, &quot;ID&quot; is fine (Freudian code is rare), but &quot;AND&quot; is not.
+var commonInitialisms = map[string]bool{
+	&quot;ACL&quot;:   true,
+	&quot;API&quot;:   true,
+	&quot;ASCII&quot;: true,
+	...
+	&quot;XSS&quot;:   true,
+}
+</code></pre>
+
+<p><a href="https://github.com/golang/lint/blob/8f45f776aaf18cebc8d65861cc70c33c60471952/lint.go#L768-L810">golang/lint/lint.go</a>
+<br />
+<br /></p>
+
+<p>I often think want to use it, when develop using ast.
+<br />But this variable is unexported value. Also It will not change in the future.</p>
+
+<p>Often copied and used it. <a href="https://github.com/search?l=Go&amp;q=commonInitialisms+API+ID&amp;type=Code">github.com/search?q=commonInitialisms</a>.</p>
+
+<p>Everyone will be doing it unavoidably. If new word is added to commonInitialisms on lint pacakge, can&rsquo;t notice.</p>
+
+<p>It is automatically updated in my library.(unless not change file name or variable name)</p>
+
+<h2 id="how-it-was-made">How it was made</h2>
+
+<p>I used <code>golang.org/x/lint</code>, <code>go/ast</code>, <code>go/parser</code>, <code>go/token</code>, and <code>golang.org/x/tools/go/packages</code> libraries.</p>
+
+<ol>
+<li>Blank import <code>golang.org/x/lint</code></li>
+<li>Search out <code>golang.org/x/lint/lint.go</code>, And get as Go file.(using packages)</li>
+<li>Parsed it.(using go/token and go/parser)</li>
+<li>Search commonInitialism variable.(using go/ast)</li>
+</ol>
+
+<h2 id="finally">Finally</h2>
+
+<p>Please create <a href="https://github.com/yudppp/commoninitialisms/issues/new">Issue</a> and Pull Request.</p>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="yudppp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+          <div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">
+            show comment <span class="disqus-comment-count" data-disqus-url="https://blog.yudppp.com/posts/commoninitialisms/"></span>
+        </a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+     
+     
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>
+        </div>
+      </div>
+    </main>
+    
+<div class="container">
+	<div class="prevnext">
+		
+		
+		<a class="pull-right" href="https://blog.yudppp.com/posts/isucon2018/">
+			<div>ISUCON8の予選で敗戦した話と感想戦で1位の点数を超えるまで頑張った話 &gt;&gt;</div>
+		</a>
+		
+	</div>
+</div>
+
+    <div class="container">
+  <a href="https://blog.yudppp.com/posts/whoami/">
+    <div class="media profile">
+      <div class="media-left">
+        <img class="avatarholder" src="https://blog.yudppp.com/img/profile.svg" />
+      </div>
+      <div class="media-body">
+        <div class="media-heading">@yudppp</div>
+        <div class="media-content">Web engineer.</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <script src="https://blog.yudppp.com/js/lib.min.js"></script>
+<script src="https://blog.yudppp.com/js/app.min.js"></script>
+<script id="dsq-count-scr" src="//yudppp.disqus.com/count.js" async></script>
+  </body>
+</html>

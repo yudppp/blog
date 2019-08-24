@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+
+<title>CircleCIでcacheを利用する - ◯ △ □</title>
+
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/lib.min.css">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/app.min.css">
+<link rel="alternate" href="https://blog.yudppp.com/index.xml" title="" type="application/rss+xml">
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/posts/circleci-use-cache/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="CircleCIでcacheを利用する">
+
+
+  <meta name="description" content="はじめに 仕事でcircleciを使ってテストが時間が掛かるようになってしまったので修正したい。 テスト自体を並列で動かして短縮することも可能であろうが、並列ではしることをあまり考慮されていないテストに現状なってしまっているため初期コストが高そうなので後回しにする またdockerの導入も大変そうなので後回しにしてできるところから手をつける。
+毎回ダウンロードしてきているものをcacheにいれることにする。
+How cache works circleciのcacheの概要はこちらに書いてある。 https://circleci.com/docs/how-cache-works
+cacheについて cacheの方法は二つあります
+1, cache_directories circle.ymlにdependencies: cache_directoriesのセクションを追加してディレクトリを指定すれば、そこのディレクトリはcacheとして次回のインスタンスにも同じものが残る。
+2, cache_directories  Bower Bundler CocoaPods Go Gradle Maven NPM  これらのようなもmanagerを使っていた場合自動的にcacheされる。
+Per-branch cache cacheされる粒度はbranchごとにされる。ブランチを切って最初のpushの場合Githubのデフォルトブランチが使えわれる。デフォルトブランチにcacheがなかった場合他のブランチからのcacheが使われる。
+Clearing the cache cacheを消すためにはcircle.ymlに下記のようにかけばcacheを消してくれる。
+dependencies: post: - rm -r ~/.gradle  普通に消すだけですね。はい。 勝手にcacheされてるものを消すためにはこのようにかけばよいのでしょうか。
+検証してみてわかったこと/思ったこと  without cacheで行った場合cacheを使わないだけでcacheを消してくれることはしない。 without cacheかつwith sshはできない。(探したが見つからなかった。) 運用していてcache自体を一度消したくなったときはwith sshで入って手で消すしかなさそう 何度もcircleCIの挙動を確認したい場合は確認するための最小限のcircle.yamlで確認した方がよい。  まとめ circleCIのチューニングは確認に時間が掛かったり挙動がよくわからなかったりして大変だが、将来を考えると時間が減っていいことしかないのでもっと早めにやるべきだった。">
+
+
+  </head>
+  <body class="hack">
+    <header>
+  <div class="container">
+    
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="https://blog.yudppp.com">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>CircleCIでcacheを利用する</h1>
+    </div>
+    
+  </div>
+</header>
+
+    <main>
+      <div class="container">
+        <date>2015.08.22</date>
+        <div class="content">
+          
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>仕事でcircleciを使ってテストが時間が掛かるようになってしまったので修正したい。
+テスト自体を並列で動かして短縮することも可能であろうが、並列ではしることをあまり考慮されていないテストに現状なってしまっているため初期コストが高そうなので後回しにする
+またdockerの導入も大変そうなので後回しにしてできるところから手をつける。</p>
+
+<p>毎回ダウンロードしてきているものをcacheにいれることにする。</p>
+
+<h2 id="how-cache-works">How cache works</h2>
+
+<p>circleciのcacheの概要はこちらに書いてある。
+<a href="https://circleci.com/docs/how-cache-works">https://circleci.com/docs/how-cache-works</a></p>
+
+<h4 id="cacheについて">cacheについて</h4>
+
+<p>cacheの方法は二つあります</p>
+
+<h6 id="1-cache-directories">1, cache_directories</h6>
+
+<p><code>circle.yml</code>に<code>dependencies: cache_directories</code>のセクションを追加してディレクトリを指定すれば、そこのディレクトリはcacheとして次回のインスタンスにも同じものが残る。</p>
+
+<h6 id="2-cache-directories">2, cache_directories</h6>
+
+<ul>
+<li>Bower</li>
+<li>Bundler</li>
+<li>CocoaPods</li>
+<li>Go</li>
+<li>Gradle</li>
+<li>Maven</li>
+<li>NPM</li>
+</ul>
+
+<p>これらのようなもmanagerを使っていた場合自動的にcacheされる。</p>
+
+<h4 id="per-branch-cache">Per-branch cache</h4>
+
+<p>cacheされる粒度はbranchごとにされる。ブランチを切って最初のpushの場合Githubのデフォルトブランチが使えわれる。デフォルトブランチにcacheがなかった場合他のブランチからのcacheが使われる。</p>
+
+<h4 id="clearing-the-cache">Clearing the cache</h4>
+
+<p>cacheを消すためには<code>circle.yml</code>に下記のようにかけばcacheを消してくれる。</p>
+
+<pre><code>dependencies:
+  post:
+    - rm -r ~/.gradle
+</code></pre>
+
+<p>普通に消すだけですね。はい。
+勝手にcacheされてるものを消すためにはこのようにかけばよいのでしょうか。</p>
+
+<h2 id="検証してみてわかったこと-思ったこと">検証してみてわかったこと/思ったこと</h2>
+
+<ul>
+<li><code>without cache</code>で行った場合cacheを使わないだけでcacheを消してくれることはしない。</li>
+<li><code>without cache</code>かつ<code>with ssh</code>はできない。(探したが見つからなかった。)</li>
+<li>運用していてcache自体を一度消したくなったときは<code>with ssh</code>で入って手で消すしかなさそう</li>
+<li>何度もcircleCIの挙動を確認したい場合は確認するための最小限の<code>circle.yaml</code>で確認した方がよい。</li>
+</ul>
+
+<h2 id="まとめ">まとめ</h2>
+
+<p>circleCIのチューニングは確認に時間が掛かったり挙動がよくわからなかったりして大変だが、将来を考えると時間が減っていいことしかないのでもっと早めにやるべきだった。</p>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="yudppp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+          <div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">
+            show comment <span class="disqus-comment-count" data-disqus-url="https://blog.yudppp.com/posts/circleci-use-cache/"></span>
+        </a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+     
+     
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>
+        </div>
+      </div>
+    </main>
+    
+<div class="container">
+	<div class="prevnext">
+		
+		<a class="pull-left" href="https://blog.yudppp.com/posts/isucon2015/">
+			<div>&lt;&lt; ISUCON5の予選に参加した話</div>
+		</a>
+		
+		
+		<a class="pull-right" href="https://blog.yudppp.com/posts/golang_num_separator/">
+			<div>golangで数字を三桁ごとでカンマ区切りにする &gt;&gt;</div>
+		</a>
+		
+	</div>
+</div>
+
+    <div class="container">
+  <a href="https://blog.yudppp.com/posts/whoami/">
+    <div class="media profile">
+      <div class="media-left">
+        <img class="avatarholder" src="https://blog.yudppp.com/img/profile.svg" />
+      </div>
+      <div class="media-body">
+        <div class="media-heading">@yudppp</div>
+        <div class="media-content">Web engineer.</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <script src="https://blog.yudppp.com/js/lib.min.js"></script>
+<script src="https://blog.yudppp.com/js/app.min.js"></script>
+<script id="dsq-count-scr" src="//yudppp.disqus.com/count.js" async></script>
+  </body>
+</html>

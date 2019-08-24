@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+
+<title>SendGridを開発環境やテスト環境で上手に使う - ◯ △ □</title>
+
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/lib.min.css">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/app.min.css">
+<link rel="alternate" href="https://blog.yudppp.com/index.xml" title="" type="application/rss+xml">
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/posts/create_sendgrid_mock/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="SendGridを開発環境やテスト環境で上手に使う">
+
+
+  <meta name="description" content="ここ数年メールを行う実装を行う際にSendGridを使っています。 SendGridはメール配信のSaaSで、細かい事を気にせずHTTPリクエストでメールが送信できるようになり、本当にお世話になっています。
+今回はSendGridを利用するアプリケーションでローカルの開発環境やCIなどのテスト環境でどのようにSendGridのキーを使うか考えました。
+ 開発環境向けのAPI KEYを発行する。(実際にメールが飛ぶ) 開発者ごと/役割ごとに開発環境向けのAPI KEYを発行する。(実際にメールが飛ぶ) アプリの実装でメールサービスをモックに切り替える。(メールが飛ばない) SendGridのモックサーバーをコンテナで立てる。(メールが飛ばない)  このような方法がパッと浮かび、それぞれについて深く考えていきました。
+ 開発環境向けのAPI KEYを発行する
+ 基本的に楽で良いのですが、鍵の管理方法(gitに含めるかなど)考える必要があります。また誰か退職者がでた際に鍵を更新する必要があります。ただしこの運用がしっかりできる自信がないため極力避けたいと思いました。
+ 開発者ごと/役割ごとに開発環境向けのAPI KEYを発行する
+ こちらは退職者が出た際はその個人の鍵に対して無効化すれば済みますが、担当者ごとに鍵を発行する必要があります。その管理は行う必要があります。
+また実際にメールが飛ぶことは確認としては良いことが多いのですが、運用していく上で誤まってたくさんのメール送ってしまったり、サンプルデータとして作った存在しないメールにたくさん送ってしまったなどミスが時々起こってしまいます。
+そのため実際にメールが飛ばない方法の方がミスが少ないと考え、そちらの方法を模索することにしました。
+ アプリの実装でメールサービスをモックに切り替える。
+ 現状アプリ側ではDIを使って実装しているため切り替えることは容易です。ただし、切り替えられても送信されるはずのメール自体の確認を行うことができません。例えばパスワードリセットしたメールなど実際に送られないため確認ができずパスワードをリセットすることができません。またアプリのログに内容を出すようにしても良いのですが、サーバーサイドのエンジニアはそれでも良いですが、フロントエンジニアにもそれをお願いするのはあんまりな感じがしました。また実装を切り替えやすくしているのもDIの良さだと思うのですが、極力本番に近い依存関係でローカルも動かせるようにしておいた方が確認の上でも間違いないが少なくなると思っていました。
+ SendGridのモックサーバーをコンテナで立てる。
+ 残ったこちらを実装していくことにしました。
+実装方針としてはSendGridのメール送信のAPIを作成する。その送信内容を貯めておく。 その内容をGUIで確認できるメーラー風の画面を作成します。
+アプリ本体は環境変数でSendGridのHostを変えているだけで他はそのままで利用することができます。
+また思わぬメリットとしてCIで新規登録のE2Eテストを行う際にメールを受け取ったかどうかの確認ができなかったり、その送られたトークンのチェックなどができず、今まで手動で行なっていたのですが、そこに関しての確認が簡単にできるようになりました。
+github, docker hubに公開しています。
+現状自分たちが使っているAPIの使い方でだけ上手くいくような実装になってしまっているので、こういう使い方した時に動かないなどあればIssueやPRいただければと思います。">
+
+
+  </head>
+  <body class="hack">
+    <header>
+  <div class="container">
+    
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="https://blog.yudppp.com">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>SendGridを開発環境やテスト環境で上手に使う</h1>
+    </div>
+    
+  </div>
+</header>
+
+    <main>
+      <div class="container">
+        <date>2018.07.30</date>
+        <div class="content">
+          <p>ここ数年メールを行う実装を行う際に<a href="https://sendgrid.kke.co.jp/">SendGrid</a>を使っています。
+SendGridはメール配信のSaaSで、細かい事を気にせずHTTPリクエストでメールが送信できるようになり、本当にお世話になっています。</p>
+
+<p>今回はSendGridを利用するアプリケーションでローカルの開発環境やCIなどのテスト環境でどのようにSendGridのキーを使うか考えました。</p>
+
+<ol>
+<li>開発環境向けのAPI KEYを発行する。(実際にメールが飛ぶ)</li>
+<li>開発者ごと/役割ごとに開発環境向けのAPI KEYを発行する。(実際にメールが飛ぶ)</li>
+<li>アプリの実装でメールサービスをモックに切り替える。(メールが飛ばない)</li>
+<li>SendGridのモックサーバーをコンテナで立てる。(メールが飛ばない)</li>
+</ol>
+
+<p>このような方法がパッと浮かび、それぞれについて深く考えていきました。</p>
+
+<blockquote>
+<p>開発環境向けのAPI KEYを発行する</p>
+</blockquote>
+
+<p>基本的に楽で良いのですが、鍵の管理方法(gitに含めるかなど)考える必要があります。また誰か退職者がでた際に鍵を更新する必要があります。ただしこの運用がしっかりできる自信がないため極力避けたいと思いました。</p>
+
+<blockquote>
+<p>開発者ごと/役割ごとに開発環境向けのAPI KEYを発行する</p>
+</blockquote>
+
+<p>こちらは退職者が出た際はその個人の鍵に対して無効化すれば済みますが、担当者ごとに鍵を発行する必要があります。その管理は行う必要があります。</p>
+
+<p>また実際にメールが飛ぶことは確認としては良いことが多いのですが、運用していく上で誤まってたくさんのメール送ってしまったり、サンプルデータとして作った存在しないメールにたくさん送ってしまったなどミスが時々起こってしまいます。</p>
+
+<p>そのため実際にメールが飛ばない方法の方がミスが少ないと考え、そちらの方法を模索することにしました。</p>
+
+<blockquote>
+<p>アプリの実装でメールサービスをモックに切り替える。</p>
+</blockquote>
+
+<p>現状アプリ側ではDIを使って実装しているため切り替えることは容易です。ただし、切り替えられても送信されるはずのメール自体の確認を行うことができません。例えばパスワードリセットしたメールなど実際に送られないため確認ができずパスワードをリセットすることができません。またアプリのログに内容を出すようにしても良いのですが、サーバーサイドのエンジニアはそれでも良いですが、フロントエンジニアにもそれをお願いするのはあんまりな感じがしました。また実装を切り替えやすくしているのもDIの良さだと思うのですが、極力本番に近い依存関係でローカルも動かせるようにしておいた方が確認の上でも間違いないが少なくなると思っていました。</p>
+
+<blockquote>
+<p>SendGridのモックサーバーをコンテナで立てる。</p>
+</blockquote>
+
+<p>残ったこちらを実装していくことにしました。</p>
+
+<p>実装方針としてはSendGridのメール送信のAPIを作成する。その送信内容を貯めておく。
+その内容をGUIで確認できるメーラー風の画面を作成します。</p>
+
+<p><img src="/img/posts/ssms_preview.png" alt="preview画像" /></p>
+
+<p>アプリ本体は環境変数でSendGridのHostを変えているだけで他はそのままで利用することができます。</p>
+
+<p>また思わぬメリットとしてCIで新規登録のE2Eテストを行う際にメールを受け取ったかどうかの確認ができなかったり、その送られたトークンのチェックなどができず、今まで手動で行なっていたのですが、そこに関しての確認が簡単にできるようになりました。</p>
+
+<p><a href="https://github.com/yudppp/simple-sendgrid-mock-server">github</a>, <a href="https://hub.docker.com/r/yudppp/simple-sendgrid-mock-server/">docker hub</a>に公開しています。</p>
+
+<p>現状自分たちが使っているAPIの使い方でだけ上手くいくような実装になってしまっているので、こういう使い方した時に動かないなどあればIssueやPRいただければと思います。</p>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="yudppp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+          <div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">
+            show comment <span class="disqus-comment-count" data-disqus-url="https://blog.yudppp.com/posts/create_sendgrid_mock/"></span>
+        </a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+     
+     
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>
+        </div>
+      </div>
+    </main>
+    
+<div class="container">
+	<div class="prevnext">
+		
+		<a class="pull-left" href="https://blog.yudppp.com/posts/isucon2018/">
+			<div>&lt;&lt; ISUCON8の予選で敗戦した話と感想戦で1位の点数を超えるまで頑張った話</div>
+		</a>
+		
+		
+		<a class="pull-right" href="https://blog.yudppp.com/posts/update_design_2018_03/">
+			<div>サイトデザインとサイト名を更新しました。 &gt;&gt;</div>
+		</a>
+		
+	</div>
+</div>
+
+    <div class="container">
+  <a href="https://blog.yudppp.com/posts/whoami/">
+    <div class="media profile">
+      <div class="media-left">
+        <img class="avatarholder" src="https://blog.yudppp.com/img/profile.svg" />
+      </div>
+      <div class="media-body">
+        <div class="media-heading">@yudppp</div>
+        <div class="media-content">Web engineer.</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <script src="https://blog.yudppp.com/js/lib.min.js"></script>
+<script src="https://blog.yudppp.com/js/app.min.js"></script>
+<script id="dsq-count-scr" src="//yudppp.disqus.com/count.js" async></script>
+  </body>
+</html>

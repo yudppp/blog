@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+
+<title>ISUCON5の予選に参加した話 - ◯ △ □</title>
+
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/lib.min.css">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/app.min.css">
+<link rel="alternate" href="https://blog.yudppp.com/index.xml" title="" type="application/rss+xml">
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/posts/isucon2015/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="ISUCON5の予選に参加した話">
+
+
+  <meta name="description" content="はじめに 昨年のISUCON4では初めてGolangを触り、ワーカー数を増やせることに気づかず負荷余裕なのになーっていていたのの雪辱をはらすべき、去年もおんぶに抱っこさせてもらった先輩がたと一緒に参加しました。
+メンバー  NW周りとか色々やっているインフラの先輩 Javaをメインで書いてるアプリケーションエンジニアの先輩 go書いたりjs書いたりしている自分  前準備したこと 重い処理があったときにCacheしようとしていたのでmemcachedやRedisをすぐに導入できるようにgoのfileを準備
+gist.github.com
+当日 11:00  GCEのイメージ持ってきて、なんとかサーバーに入る(だれもGCP未経験)  11:30  現状動いているアプリケーションとversionの洗い出し githubのprivate repositoryにアプリケーションをいれて開発しやすいように  12:00  一旦Javaで動かしてみる Score: 8xxで一瞬トップに  12:30  slow queryを一秒超えたものをでるようにしてもらう。 my.confがどうのこうのやっていた。 アプリケーションの概要を把握していく  13:00 SELECT user_id, owner_id, DATE(created_at) AS date, MAX(created_at) AS updated FROM footprints WHERE user_id = 4881 GROUP BY user_id, owner_id, DATE(created_at) ORDER BY updated DESC LIMIT 50;  と足跡のところでIndexがなくslowqueryがでていたのでindex追加
+なぜかJavaとGoを両方試していく
+13:30 SELECT * FROM relations WHERE one = 3992 OR another = 3992 ORDER BY created_at DESC;  relationsがORを使っていてslowqueryでていたので">
+
+
+  </head>
+  <body class="hack">
+    <header>
+  <div class="container">
+    
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="https://blog.yudppp.com">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>ISUCON5の予選に参加した話</h1>
+    </div>
+    
+  </div>
+</header>
+
+    <main>
+      <div class="container">
+        <date>2015.10.05</date>
+        <div class="content">
+          
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>昨年のISUCON4では初めてGolangを触り、ワーカー数を増やせることに気づかず負荷余裕なのになーっていていたのの雪辱をはらすべき、去年もおんぶに抱っこさせてもらった先輩がたと一緒に参加しました。</p>
+
+<h2 id="メンバー">メンバー</h2>
+
+<ul>
+<li>NW周りとか色々やっているインフラの先輩</li>
+<li>Javaをメインで書いてるアプリケーションエンジニアの先輩</li>
+<li>go書いたりjs書いたりしている自分</li>
+</ul>
+
+<h2 id="前準備したこと">前準備したこと</h2>
+
+<p>重い処理があったときにCacheしようとしていたのでmemcachedやRedisをすぐに導入できるようにgoのfileを準備</p>
+
+<p><a href="https://gist.github.com/yudppp/e3e3cbbe0bdd2143ec50">gist.github.com</a></p>
+
+<h2 id="当日">当日</h2>
+
+<h4 id="11-00">11:00</h4>
+
+<ul>
+<li>GCEのイメージ持ってきて、なんとかサーバーに入る(だれもGCP未経験)</li>
+</ul>
+
+<h4 id="11-30">11:30</h4>
+
+<ul>
+<li>現状動いているアプリケーションとversionの洗い出し</li>
+<li>githubのprivate repositoryにアプリケーションをいれて開発しやすいように</li>
+</ul>
+
+<h4 id="12-00">12:00</h4>
+
+<ul>
+<li>一旦Javaで動かしてみる</li>
+<li>Score: 8xxで一瞬トップに</li>
+</ul>
+
+<h4 id="12-30">12:30</h4>
+
+<ul>
+<li>slow queryを一秒超えたものをでるようにしてもらう。</li>
+<li>my.confがどうのこうのやっていた。</li>
+<li>アプリケーションの概要を把握していく</li>
+</ul>
+
+<h4 id="13-00">13:00</h4>
+
+<pre><code>SELECT user_id, owner_id, DATE(created_at) AS date, MAX(created_at) AS updated FROM footprints WHERE user_id = 4881 GROUP BY user_id, owner_id, DATE(created_at) ORDER BY updated DESC LIMIT 50;
+</code></pre>
+
+<p>と足跡のところでIndexがなくslowqueryがでていたのでindex追加</p>
+
+<p>なぜかJavaとGoを両方試していく</p>
+
+<h4 id="13-30">13:30</h4>
+
+<pre><code>SELECT * FROM relations WHERE one = 3992 OR another = 3992 ORDER BY created_at DESC;
+</code></pre>
+
+<p>relationsがORを使っていてslowqueryでていたので</p>
+
+<pre><code>SELECT * FROM relations WHERE one = 3992;
+</code></pre>
+
+<p>と</p>
+
+<pre><code>SELECT * FROM relations WHERE another = 3992;
+</code></pre>
+
+<p>を叩きアプリ側でcreated_atでソートするように変更</p>
+
+<p>anotherにもindex貼るように変更</p>
+
+<p>bootstrapをcacheさせる</p>
+
+<h4 id="14-00">14:00</h4>
+
+<p>entryの取得がなんか思いと言い出す</p>
+
+<pre><code>SELECT * FROM entries WHERE user_id = 2705 AND private=0 ORDER BY created_at DESC LIMIT 20;
+</code></pre>
+
+<p>がindex使ってるし重い理由がよくわからなかったので一旦放置</p>
+
+<p>relationsをredisとかにのせたいと言い出すが初期化とか時間考えると手を出せずにいる</p>
+
+<h4 id="14-30">14:30</h4>
+
+<p>なんどもqueryを叩いていた<code>isFriend</code>を先に取得させた友達一覧から調べるように変更</p>
+
+<h4 id="15-00">15:00</h4>
+
+<p>人生で初めてピザ頼む(ドミノピザ)</p>
+
+<h4 id="15-30">15:30</h4>
+
+<p>user数が5000件しかいなかったので
+userとprofileをアプリのメモリにのせる</p>
+
+<h4 id="16-30">16:30</h4>
+
+<p><code>/</code>でN+1queryになっていたところを直していく</p>
+
+<h4 id="17-00">17:00</h4>
+
+<p>ピザが冷める</p>
+
+<h4 id="17-30">17:30</h4>
+
+<p>nginxがそもそも不要なんではないかという話になり外してみたがあまりスコアは変わらず</p>
+
+<h4 id="18-00">18:00</h4>
+
+<p>ルールの再確認</p>
+
+<h4 id="18-30">18:30</h4>
+
+<p>更新系が一秒以内に変わっていればよいみたいな話だったので更新は非同期にする。</p>
+
+<h4 id="19-00">19:00</h4>
+
+<p>終了</p>
+
+<h2 id="結果">結果</h2>
+
+<p>決勝進出した方の半分以下の点数しか出せず敗退</p>
+
+<h2 id="やるべきだったこと">やるべきだったこと</h2>
+
+<ul>
+<li>アプリケーションの更新をする際にローカルで作成したfileを直接コピペしていたので、リリースしやすくしておくべきだった。</li>
+<li>goとjavaを同時に動かしていた関係上どちらかしか動かせず無駄があった。
+localで動くようにするか開発用のインスタンスを作っておくべきだった。</li>
+<li>slowqueryを中心に見ていたが、どのページにアクセスしたときにどんなqueryが走るかを見ておくべきだった。</li>
+<li>dump取った上でもうすこし思い切りをもって大きな変更をしていくべきたった。</li>
+</ul>
+
+<h2 id="まとめ">まとめ</h2>
+
+<p>来年こそ予選突破し優勝できるようにこの一年がんばっていこうと思います。</p>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="yudppp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+          <div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">
+            show comment <span class="disqus-comment-count" data-disqus-url="https://blog.yudppp.com/posts/isucon2015/"></span>
+        </a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+     
+     
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>
+        </div>
+      </div>
+    </main>
+    
+<div class="container">
+	<div class="prevnext">
+		
+		<a class="pull-left" href="https://blog.yudppp.com/posts/go-http-client-no-redirect/">
+			<div>&lt;&lt; net/httpでRedirectさせない</div>
+		</a>
+		
+		
+		<a class="pull-right" href="https://blog.yudppp.com/posts/circleci-use-cache/">
+			<div>CircleCIでcacheを利用する &gt;&gt;</div>
+		</a>
+		
+	</div>
+</div>
+
+    <div class="container">
+  <a href="https://blog.yudppp.com/posts/whoami/">
+    <div class="media profile">
+      <div class="media-left">
+        <img class="avatarholder" src="https://blog.yudppp.com/img/profile.svg" />
+      </div>
+      <div class="media-body">
+        <div class="media-heading">@yudppp</div>
+        <div class="media-content">Web engineer.</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <script src="https://blog.yudppp.com/js/lib.min.js"></script>
+<script src="https://blog.yudppp.com/js/app.min.js"></script>
+<script id="dsq-count-scr" src="//yudppp.disqus.com/count.js" async></script>
+  </body>
+</html>

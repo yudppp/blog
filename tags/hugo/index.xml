@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on ◯ △ □</title>
+    <link>https://blog.yudppp.com/tags/hugo/</link>
+    <description>Recent content in Hugo on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 07 Dec 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugoに移行しました。</title>
+      <link>https://blog.yudppp.com/posts/moved_hugo/</link>
+      <pubDate>Mon, 07 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/moved_hugo/</guid>
+      <description>誕生日だったのでブログを新しくしてみました。 以前Ghostを使っていたとき既存のテーマを少し自分でカスタマイズして使っていたのですが,今回は自分で書いていきました。
+boilerplateとして,いつもお世話になってる1000chさんのhugo-boilerplateを使わせていただきました。
+おかげさまでwreckerの設定もすぐでき簡単にgh-pages運用ができました。
+今月はたくさん記事を書いていこうかと思います。</description>
+    </item>
+    
+  </channel>
+</rss>

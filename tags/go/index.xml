@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on ◯ △ □</title>
+    <link>https://blog.yudppp.com/tags/go/</link>
+    <description>Recent content in Go on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 24 Aug 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>I made get commonInitialisms library(Using go/ast)</title>
+      <link>https://blog.yudppp.com/posts/commoninitialisms/</link>
+      <pubDate>Sat, 24 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/commoninitialisms/</guid>
+      <description>Hello. I made get commonInitialisms library for Go.
+commonInitialism is words that should be written in uppercase on Go. (e.g. ID, JSON, URL, SQL)
+Why need it commonInitialism is defined &amp;quot;golang.org/x/lint&amp;quot; package.
+// commonInitialisms is a set of common initialisms. // Only add entries that are highly unlikely to be non-initialisms. // For instance, &amp;quot;ID&amp;quot; is fine (Freudian code is rare), but &amp;quot;AND&amp;quot; is not. var commonInitialisms = map[string]bool{ &amp;quot;ACL&amp;quot;: true, &amp;quot;API&amp;quot;: true, &amp;quot;ASCII&amp;quot;: true, .</description>
+    </item>
+    
+  </channel>
+</rss>

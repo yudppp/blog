@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Koa on ◯ △ □</title>
+    <link>https://blog.yudppp.com/tags/koa/</link>
+    <description>Recent content in Koa on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 11 Feb 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/tags/koa/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>koaのboilerplate的なのを作る</title>
+      <link>https://blog.yudppp.com/posts/koa-boilerplate/</link>
+      <pubDate>Wed, 11 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/koa-boilerplate/</guid>
+      <description>はじめに koajsはkoa自体は薄くmiddlewareを好きに組み込めるような設計になっているので最初の書き始める時、いろいろめんどくさくなるので自分用にboilerplate的ななにかを作成しました。
+https://github.com/yudppp/koa-boilerplate
+使用したmiddleware  config ect koa-bodyparser koa-json koa-logger koa-qs koa-response-time koa-router  だいたいこのくらいは毎回いれて書きそうだったので入れました。
+やっぱりrouterはkoa-routerがrestなAPI書くには楽な気がします。
+最近はectが早いと聞くのでviewのtemplateはect入れています。
+なんとなく大枠を作れたのでなにかあったときにぱっとkoa導入できるはず。。</description>
+    </item>
+    
+  </channel>
+</rss>

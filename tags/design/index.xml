@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Design on ◯ △ □</title>
+    <link>https://blog.yudppp.com/tags/design/</link>
+    <description>Recent content in Design on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 30 Mar 2018 19:26:28 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/tags/design/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>サイトデザインとサイト名を更新しました。</title>
+      <link>https://blog.yudppp.com/posts/update_design_2018_03/</link>
+      <pubDate>Fri, 30 Mar 2018 19:26:28 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/update_design_2018_03/</guid>
+      <description>サイトのデザインとサイト名を変更しました。サイト名は「◯ △ □」という名前にしました。
+深い意味は全くなくroughというライブラリーが可愛すぎたので使いたく変更することにしました。
+ こんな感じになっています。Canvasで描画していて手書き感のあるロゴを自動で生成できています。
+また適当な乱数を発生させてラフさ度合いを変更させているので、時々やたら下手なロゴを描くときがあってそれも可愛くて仕方ありません。 一期一会感がたまらないです。
+ただ意味のない名前にしてしまったためしばらくしたら変えそうです。
+またついでにmedium-zoomというライブラリーも導入しました。 lightboxとかそういう系のものでmedium風なしゅるりんとなる奴がscript読み込ませて1行追加するだけでできました。
+以下サンプル
+綺麗にかけた時の画像
+.
+.
+.
+ちょっと下手な時の画像
+.
+.
+.
+すごく下手な時の画像
+.
+.
+.
+.
+.
+.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>◯ △ □</title>
+    <link>https://blog.yudppp.com/</link>
+    <description>Recent content on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 24 Aug 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>I made get commonInitialisms library(Using go/ast)</title>
+      <link>https://blog.yudppp.com/posts/commoninitialisms/</link>
+      <pubDate>Sat, 24 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/commoninitialisms/</guid>
+      <description>Hello. I made get commonInitialisms library for Go.
+commonInitialism is words that should be written in uppercase on Go. (e.g. ID, JSON, URL, SQL)
+Why need it commonInitialism is defined &amp;quot;golang.org/x/lint&amp;quot; package.
+// commonInitialisms is a set of common initialisms. // Only add entries that are highly unlikely to be non-initialisms. // For instance, &amp;quot;ID&amp;quot; is fine (Freudian code is rare), but &amp;quot;AND&amp;quot; is not. var commonInitialisms = map[string]bool{ &amp;quot;ACL&amp;quot;: true, &amp;quot;API&amp;quot;: true, &amp;quot;ASCII&amp;quot;: true, .</description>
+    </item>
+    
+    <item>
+      <title>ISUCON8の予選で敗戦した話と感想戦で1位の点数を超えるまで頑張った話</title>
+      <link>https://blog.yudppp.com/posts/isucon2018/</link>
+      <pubDate>Mon, 24 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/isucon2018/</guid>
+      <description>当日 ISUCON8の予選に参加しました。ISUCON4から参加しているので5回目ですが、一度も決勝行けてないので辛いです。
+今年もいつものメンバーで参加の予定だったのですが体調不良によって2人での参加になりました。
+自分は当日メインでアプリを触りやったことのは
+ User周りの不要なQuery削除 Sheetをオンメモリーにもつ 1000N + 1 だった getEvents を一旦 N + 1 に修正 reservationsにuser_id_idxを追加 getEventSimpleというsheet情報だけをとるように一部切り替え  この辺りを行い最高で19,787となりのあと1時間だったので夢を見たのですが、その後Failが続き色々検証しているうちに終了となりました。
+reservationにRedisを使おうという考えもあったのですが時間考えると乗り出せませんでした。
+今年のISUCON最高得点出した時のスクショ。予選突破の閾値が36,471だからもう一つ二つできてたら、、 pic.twitter.com/K9pVmjahZj
+&amp;mdash; yudppp (@yudppp) 2018年9月16日 
+ちなみに構成は 1号機: DB 2号機: H2O 3号機: app(Go) でした。
+感想戦 あまりに悔しかったので予選の最高得点を超えれるよう1人で頑張ってみました。 個人的なルールとして今回はカンニング(他の参加者のブログを見ない)でやるようにしました。 ただしTwitterやDiscord等で受動的に入ってきてしまったものは見ています。
+結果として 109,872 をだすことができ、一位通過の点数を越すことができたのでひと満足しています。(※実際の予選と同じスペックですが密集度が異なるためスコアが同一の水準に満たない場合があります)
+主にアプリで追加でやったことは
+ シートの予約時のロックをアプリで取るように変更 → これでFailが減った FOR UPDATEの除去 getEventsのreservationをまとめて取るように renderReportCSVのsortを削除  この辺りを触っていたところ4万点台は出るようになってきましたが、アプリが一台で辛くなってきました。またh2oのサーバーに余裕があったので /admin のアクセスだけh2oと同じサーバーで動かすようにしたところ7万点台になりました。
+ベンチの結果を見ると
+ レスポンスが遅いため負荷レベルを上げられませんでした。/admin/api/reports/sales
+ だけとなっていて、このAPI自体はRDBを使っている以上どうしようもないところまできたので、マニュアルを見返して見た所、
+ 負荷走行中は、毎秒負荷レベルが増えていきます。 ただし、過去5秒以内に何らかのエラーが発生していた場合は負荷レベルが上昇しません。 終了時の負荷レベルや、負荷レベルが上がらない原因になったエラーについてはポータルサイトから確認することができます。
+負荷走行後の確認へのレスポンスがそれぞれ下記の規定秒数以内に戻らない場合 POST /admin/api/actions/login: 20秒以内 GET /admin/api/reports/sales: 60秒以内</description>
+    </item>
+    
+    <item>
+      <title>SendGridを開発環境やテスト環境で上手に使う</title>
+      <link>https://blog.yudppp.com/posts/create_sendgrid_mock/</link>
+      <pubDate>Mon, 30 Jul 2018 19:00:00 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/create_sendgrid_mock/</guid>
+      <description>ここ数年メールを行う実装を行う際にSendGridを使っています。 SendGridはメール配信のSaaSで、細かい事を気にせずHTTPリクエストでメールが送信できるようになり、本当にお世話になっています。
+今回はSendGridを利用するアプリケーションでローカルの開発環境やCIなどのテスト環境でどのようにSendGridのキーを使うか考えました。
+ 開発環境向けのAPI KEYを発行する。(実際にメールが飛ぶ) 開発者ごと/役割ごとに開発環境向けのAPI KEYを発行する。(実際にメールが飛ぶ) アプリの実装でメールサービスをモックに切り替える。(メールが飛ばない) SendGridのモックサーバーをコンテナで立てる。(メールが飛ばない)  このような方法がパッと浮かび、それぞれについて深く考えていきました。
+ 開発環境向けのAPI KEYを発行する
+ 基本的に楽で良いのですが、鍵の管理方法(gitに含めるかなど)考える必要があります。また誰か退職者がでた際に鍵を更新する必要があります。ただしこの運用がしっかりできる自信がないため極力避けたいと思いました。
+ 開発者ごと/役割ごとに開発環境向けのAPI KEYを発行する
+ こちらは退職者が出た際はその個人の鍵に対して無効化すれば済みますが、担当者ごとに鍵を発行する必要があります。その管理は行う必要があります。
+また実際にメールが飛ぶことは確認としては良いことが多いのですが、運用していく上で誤まってたくさんのメール送ってしまったり、サンプルデータとして作った存在しないメールにたくさん送ってしまったなどミスが時々起こってしまいます。
+そのため実際にメールが飛ばない方法の方がミスが少ないと考え、そちらの方法を模索することにしました。
+ アプリの実装でメールサービスをモックに切り替える。
+ 現状アプリ側ではDIを使って実装しているため切り替えることは容易です。ただし、切り替えられても送信されるはずのメール自体の確認を行うことができません。例えばパスワードリセットしたメールなど実際に送られないため確認ができずパスワードをリセットすることができません。またアプリのログに内容を出すようにしても良いのですが、サーバーサイドのエンジニアはそれでも良いですが、フロントエンジニアにもそれをお願いするのはあんまりな感じがしました。また実装を切り替えやすくしているのもDIの良さだと思うのですが、極力本番に近い依存関係でローカルも動かせるようにしておいた方が確認の上でも間違いないが少なくなると思っていました。
+ SendGridのモックサーバーをコンテナで立てる。
+ 残ったこちらを実装していくことにしました。
+実装方針としてはSendGridのメール送信のAPIを作成する。その送信内容を貯めておく。 その内容をGUIで確認できるメーラー風の画面を作成します。
+アプリ本体は環境変数でSendGridのHostを変えているだけで他はそのままで利用することができます。
+また思わぬメリットとしてCIで新規登録のE2Eテストを行う際にメールを受け取ったかどうかの確認ができなかったり、その送られたトークンのチェックなどができず、今まで手動で行なっていたのですが、そこに関しての確認が簡単にできるようになりました。
+github, docker hubに公開しています。
+現状自分たちが使っているAPIの使い方でだけ上手くいくような実装になってしまっているので、こういう使い方した時に動かないなどあればIssueやPRいただければと思います。</description>
+    </item>
+    
+    <item>
+      <title>サイトデザインとサイト名を更新しました。</title>
+      <link>https://blog.yudppp.com/posts/update_design_2018_03/</link>
+      <pubDate>Fri, 30 Mar 2018 19:26:28 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/update_design_2018_03/</guid>
+      <description>サイトのデザインとサイト名を変更しました。サイト名は「◯ △ □」という名前にしました。
+深い意味は全くなくroughというライブラリーが可愛すぎたので使いたく変更することにしました。
+ こんな感じになっています。Canvasで描画していて手書き感のあるロゴを自動で生成できています。
+また適当な乱数を発生させてラフさ度合いを変更させているので、時々やたら下手なロゴを描くときがあってそれも可愛くて仕方ありません。 一期一会感がたまらないです。
+ただ意味のない名前にしてしまったためしばらくしたら変えそうです。
+またついでにmedium-zoomというライブラリーも導入しました。 lightboxとかそういう系のものでmedium風なしゅるりんとなる奴がscript読み込ませて1行追加するだけでできました。
+以下サンプル
+綺麗にかけた時の画像
+.
+.
+.
+ちょっと下手な時の画像
+.
+.
+.
+すごく下手な時の画像
+.
+.
+.
+.
+.
+.</description>
+    </item>
+    
+    <item>
+      <title>Vironとgoaでフロントのコード0でリソースの管理画面を作る</title>
+      <link>https://blog.yudppp.com/posts/viron_and_goa/</link>
+      <pubDate>Fri, 09 Feb 2018 19:26:28 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/viron_and_goa/</guid>
+      <description>社内向けの管理画面を新しく作る機会があり、先日話題になっていたVironを使ってみることにしました。 Vironはフロントのコードを書かずにOpenAPIに則ったAPIがあれば管理画面を作ることが出来ます。 またgoaを使ってswagger.jsonを自動で生成させ、それを喰わせることによって管理画面を簡単に作って行きます。 本家はバックエンドはNodeJSでやっているようですが、どうしても色々考えるとGoで書きたい人なので頑張っていきました。
+サンプルとして書いたコードをGithubにあげました。
+https://github.com/yudppp/viron-goa
+色々考えたのですがViron本体のコードは雑なセルフホスティングしています。
+READMEにしたがって起動しログインします。(アイパスは空文字以外であればログインできます)
+フロントのコードは書かずにリソースのリストが出てきました。 またRowについての更新処理や削除の処理がAPIを実装していれば行えます。
+そもそもgoaも以前趣味で簡単なアプリケーション作ったくらいで詳しくなかったのでjwtのミドルウェア周りとsigininのAPIの実装あたりにやたらハマりフロントもフルスクラッチで自分で実装した方が速いんではないかと言う時期もありました。(1日くらい)
+一度認証周りの実装を済ませてしまうと基本的なCRUD処理を行うリソースの追加が簡単に行えるようになりました。
+大体検討開始から1週間で主なbaseの実装といくつかのリソースの管理のAPIの実装とDockerizeするとこまで出来ました。 今後実装すべきことしては権限管理とオートコンプリートのフォームの実装をしたいのですが、フロント側は既に実装されているそうなので追ってサーバーを実装して行くことによって簡単に使えるようになりそうです。</description>
+    </item>
+    
+    <item>
+      <title>Golangの時間のbefore/afterの話</title>
+      <link>https://blog.yudppp.com/posts/time_before_after/</link>
+      <pubDate>Thu, 14 Sep 2017 00:00:00 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/time_before_after/</guid>
+      <description>英語の学が足らないので時間の比較を2回に1回間違えてしまうので、最近行っているバッドノウハウの共有します。
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; ) func main() { now := time.Now() yesterday := now.Add(-24 * time.Hour) fmt.Println(&amp;quot;now.After(yesterday) =&amp;gt;&amp;quot;, now.After(yesterday)) // -&amp;gt; true fmt.Println(&amp;quot;now.Before(yesterday) =&amp;gt;&amp;quot;, now.Before(yesterday)) // -&amp;gt; false fmt.Println(&amp;quot;yesterday.After(now) =&amp;gt;&amp;quot;, yesterday.After(now)) // -&amp;gt; false fmt.Println(&amp;quot;yesterday.Before(now) =&amp;gt;&amp;quot;, yesterday.Before(now)) // -&amp;gt; true }  https://play.golang.org/p/WkBHM4AO_X
+毎回 after school は放課後だからと考えてよくわからなくなります。また含むのか含まないのかも毎回わからなくなります。
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; ) func main() { now := time.Now() yesterday := now.Add(-24 * time.Hour) fmt.Println(now.UnixNano() &amp;gt; yesterday.</description>
+    </item>
+    
+    <item>
+      <title>Kubernetesの成功したJobを消す</title>
+      <link>https://blog.yudppp.com/posts/kubejobremover/</link>
+      <pubDate>Thu, 24 Aug 2017 00:00:00 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/kubejobremover/</guid>
+      <description>Kubernetesで1日数百Jobを利用しているが、仕様上成功済みのJobが消えない。
+そのため大量の不要になったJobを消したい。
+CLI 2時間以上たった成功済みのJobを消したい時
+ kubectl get job | awk &#39;{ if(match($4, /^([2-9]h|[1-2][0-9]h|[0-9]+d)$/) &amp;amp;&amp;amp; ($3==1)) print $1}&#39; | xargs -P 8 -n 1 --no-run-if-empty kubectl delete job  Pod(Docker) 10分に1回2時間以上たった成功済みのJobを消すPodのDockerfile
+FROM alpine ENV KUBECTL_VERSION v1.5.3 ADD https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl /bin/kubectl RUN chmod +x /bin/kubectl # Delete successed job after 2 hours ago CMD while true; do kubectl get job | awk &#39;{ if(match($4, /^([2-9]h|[1-2][0-9]h|[0-9]+d)$/) &amp;amp;&amp;amp; ($3==1)) print $1}&#39; | xargs -n 1 --no-run-if-empty kubectl delete job; sleep 600s; done  https://gist.</description>
+    </item>
+    
+    <item>
+      <title>JSONをGolangのstructに変換する</title>
+      <link>https://blog.yudppp.com/posts/json2struct/</link>
+      <pubDate>Wed, 19 Jul 2017 00:00:00 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/json2struct/</guid>
+      <description>先日のgolang.tokyo #7で自社パッケージの紹介LT大会にてLTでjson2structと言うパッケージの紹介をさせていただきました。
+ スライドURL
+細かい使い方や既存の同様のツールとの差異について書いていきたいと思います。
+ツールの概要 GolangではJSONからデータを取得する際にあらかじめstructの定義をしておくことがありますが、その際に下記のようにタグ等など設定しなくてはならず、手間がかかってしまうのが面倒くさい。 また外部のAPI等でJSONの形式が複雑な場合その定義はより手間がかかってしまう。
+{&amp;quot;url&amp;quot;: &amp;quot;http://blog.yudppp.com&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello:)&amp;quot;, &amp;quot;status&amp;quot;: 1}  type Blog struct { Status int `json:&amp;quot;status&amp;quot;` Text string `json:&amp;quot;text&amp;quot;` URL string `json:&amp;quot;url&amp;quot;` }  それらを解決するために、JSONからGolangのstructの形式に変換するツールは幾つか既に存在しています・。
+ json-to-go gojson  私はこれらのツールを使っていたのですが、実際に使う際に使いにくいポイントがあったので自分で作成しました。
+json-to-go json-to-goはサイト上でJSONをstructに変換してくれるツールです。
+https://mholt.github.io/json-to-go/
+こちらの実行結果を見ていくと普段自分が書かないstructのnestや[]structといったものができてしまい、個人的には実用的でないと判断し使うことをやめました。
+またJavaScript製でgofmtがされていないものが出力されます。
+input
+{&amp;quot;url&amp;quot;: &amp;quot;http://blog.yudppp.com&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Hello:)&amp;quot;, &amp;quot;status&amp;quot;: 1, &amp;quot;categories&amp;quot;: [{&amp;quot;name&amp;quot;: &amp;quot;golang&amp;quot;}]}  output
+type AutoGenerated struct { URL string `json:&amp;quot;url&amp;quot;` Text string `json:&amp;quot;text&amp;quot;` Status int `json:&amp;quot;status&amp;quot;` Categories []struct { Name string `json:&amp;quot;name&amp;quot;` } `json:&amp;quot;categories&amp;quot;` }  gojson https://github.</description>
+    </item>
+    
+    <item>
+      <title>外部のAPI叩くときの話</title>
+      <link>https://blog.yudppp.com/slides/json2struct/</link>
+      <pubDate>Mon, 03 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/slides/json2struct/</guid>
+      <description>golang.tokyo #7 LT 2017/07/03  ## 外部のAPI叩くときの話 yudppp  早速ですが,私は久留米の天気をどうしても知りたい。 
+旅行で今日から三日行くので,今日/明日/明後日の最低気温と最高気温が知りたい。 
+こんなことはよくあるかと思います。 
+どこかに落ちているお天気APIを叩きましょう。 
+```golang package main import ( &#34;fmt&#34; &#34;io/ioutil&#34; &#34;net/http&#34; ) const targetURL = &#34;http://weather.livedoor.com/forecast/webservice/json/v1?city=400040&#34; func main() { resp, _ := http.Get(targetURL) defer resp.Body.Close() // この後どうしますか } ```  1. interface{}で頑張る 2. structの定義を書く 3. jsonqのようなものを使う 
+1. interface{}で頑張る interfaceでやるのはGoぽくないし。可読性悪いしなんか面倒くさい。 
+2. structの定義を書く structを指定してやるのが個人的には一番だと思うが書くのがただただ面倒くさい 
+3. jsonqのようなものを使う JSONの形式決まっているのであればわざわざ使わなくても。またよく分からないパッケージをコードに入れたくない。使うなら一回コードの内部確認したいが面倒くさい。 
+どうしよう 
+全部面倒くさい 
+面倒くさいことは自動化しましょう</description>
+    </item>
+    
+    <item>
+      <title>Go言語の忘れがちなtime fomatの話</title>
+      <link>https://blog.yudppp.com/posts/golang_time_format/</link>
+      <pubDate>Tue, 06 Dec 2016 00:00:00 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/golang_time_format/</guid>
+      <description>この記事はGo Advent Calendar 2016 - Qiitaの7日目の記事です。 apexの話でもしようと思ったのですが時間がなく別の記事を書くことにしました。
+Golangを仕事で書き始めて、もう丸2年になりますが、未だに必要になると毎回ググって調べてから利用するものがあります。 その一つがtimeパッケージのフォーマットです。 GolangではいわゆるYYYYMMDDのような形式ではなく20060102といった特定の日時をベースにした文字列で表す必要があります。
+123の順で振られていること、2006年なこと等なんとなくは覚えてきているのですが、確認をしないと不安で仕方なくなります。
+この2年間で最低でも10回以上はgolang time formatでググり、その度にmattnさんの記事に辿り着いていました。 同じ記事を何度も見るのは自分に負けた気になるので悲しいです。
+Golangの本家の実装を見るとわかるのですがtime/format.goの130行目あたりのnextStdChunkという関数でパースをしています。
+これを基に判別表を作成しました。
+   format about     January Month(long)   Jan Month(short)   1 Month Number   01 Month Number(zero埋め)   Monday WeekDay(long)   Mon WeekDay(short)   2 Day   _2 Day(space埋め)   02 Day(zero埋め)   15 Hour(24h)   3 Hour(12h)   03 Hour(12h,zero埋め)   4 Minute   04 Minute(zero埋め)   5 Second   05 Second(zero埋め)   2006 Year(long)   06 Year(short)   PM AM or PM   pm am or pm   MST TimeZone   Z0700 ISO8601TZ   Z070000 ISO8601TZ(seconds)   Z07 ISO8601TZ(short)   Z07:00 ISO8601TZ(colon)   Z07:00:00 ISO8601TZ(seconds/colon)   -0700 NumTimeZone   -070000 NumTimeZone(seconds)   -07 NumTimeZone(short)   -07:00 NumTimeZone(colon)   -07:00:00 NumTimeZone(seconds/colon)   .</description>
+    </item>
+    
+    <item>
+      <title>マイクロサービスの辛さ その① 起動時編</title>
+      <link>https://blog.yudppp.com/slides/tsks/</link>
+      <pubDate>Tue, 22 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/slides/tsks/</guid>
+      <description>## マイクロサービスの辛さ ### その① 起動時編 yudppp  Microservices Meetup vol.4 
+マイクロサービスで作るようになって
+圧倒的に1日に扱うプロジェクトの数が増えた。 
+1日に起動するプロジェクトが増えた。 
+1日に3~5プロジェクトくらい。
+自分が元々作ってないプロジェクトも触る 
+使っているタスクランナーもバラバラ 
+- npm script - Grunt - gulp - Make - Rake 
+毎回lsして,
+どのタスクランナー使ってるか確認して
+catして起動タスクを確認する 
+やだ 
+したくない 
+それをしないための
+タスクランナーマネージャー作りました。 
+yudppp/tsks $ npm i tsks -g  
+$ cd hoge-project hoge-project $ tsks 🐚 tsks npm run start npm run build gulp watch gulp build</description>
+    </item>
+    
+    <item>
+      <title>Golangで大きなcsvのインポートを速くする</title>
+      <link>https://blog.yudppp.com/posts/csv_fast_upload/</link>
+      <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/csv_fast_upload/</guid>
+      <description>はじめに Golangで大きなcsvファイルをパースして諸々の処理をしてインポートをする処理を書いていたのですが、明らかに遅く5分以上かかる処理になっていました。 そこでgoルーチンを導入して並列で実行することによって効率化を図りました。
+対応前 func main() { // 1度に取得する量 bulkCount := 100 file, _ := os.Open(&amp;quot;./data.csv&amp;quot;) defer file.Close() reader := csv.NewReader(file) // ヘッダー行の取得 header, _ := reader.Read() for { lines := make([][]string, 0, bulkCount) isLast := false for i := 0; i &amp;lt; bulkCount; i++ { line, err := reader.Read() if err == io.EOF { isLast = true break } else if err != nil { panic(err) } lines = append(lines, line) } exec(lines) if isLast { break } } }  *一部のエラーは可読性のため捨てています</description>
+    </item>
+    
+    <item>
+      <title>isucon6で人権を失いました。</title>
+      <link>https://blog.yudppp.com/posts/isucon2016/</link>
+      <pubDate>Sun, 18 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/isucon2016/</guid>
+      <description>はじめに ISUCON6の予選に初日で参加しました。結果としては35000点くらいで人権を失いました。
+ 昨年と一昨年と同じメンバーで今年も予選に参加しました。 前準備をいくつかしたのでその内容は来年のためにしたの方に残しておきます。
+当日 はてなのキーワードやはてなスターみたいな問題でした。
+お昼すぎまでGolangで動かすと0点で他チームが点数出てるので、とても焦っていました。
+Golangの正規表現が辛いことがわかったのでhtmlifyないのコードの
+re := regexp.MustCompile(&amp;quot;(&amp;quot;+strings.Join(keywords, &amp;quot;|&amp;quot;)+&amp;quot;)&amp;quot;) kw2sha := make(map[string]string) content = re.ReplaceAllStringFunc(content, func(kw string) string { kw2sha[kw] = &amp;quot;isuda_&amp;quot; + fmt.Sprintf(&amp;quot;%x&amp;quot;, sha1.Sum([]byte(kw))) return kw2sha[kw] }) content = html.EscapeString(content) for kw, hash := range kw2sha { u, err := r.URL.Parse(baseUrl.String()+&amp;quot;/keyword/&amp;quot; + pathURIEscape(kw)) panicIf(err) link := fmt.Sprintf(&amp;quot;&amp;lt;a href=\&amp;quot;%s\&amp;quot;&amp;gt;%s&amp;lt;/a&amp;gt;&amp;quot;, u, html.EscapeString(kw)) content = strings.Replace(content, hash, link, -1) }  のコードを
+kw2sha := make(map[string]string, len(keywords)) for _, kw := range keywords { if strings.</description>
+    </item>
+    
+    <item>
+      <title>こんにちはslide</title>
+      <link>https://blog.yudppp.com/posts/add_slide/</link>
+      <pubDate>Tue, 06 Sep 2016 20:52:49 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/add_slide/</guid>
+      <description>ahomuさんのTalkieをHUGOに組み込んで,簡単にslideを使えるようにしました。
+ Hello Talkie
+&amp;lt;iframe src=&amp;quot;{{url}}&amp;quot; title=&amp;quot;{{title}}&amp;quot; class=&amp;quot;slide&amp;quot; scrolling=&amp;quot;no&amp;quot; frameborder=&amp;quot;0&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt; [{{title}}]({{url}})  上記を埋め込めば記事にも埋め込めるようになりました。便利!
+slide一覧はこちらから
+またスライドとブログが同じURL上になるので一緒に見てもらいやすくなりそうなので良さそう。</description>
+    </item>
+    
+    <item>
+      <title>Hello Talkie</title>
+      <link>https://blog.yudppp.com/slides/hello/</link>
+      <pubDate>Tue, 06 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/slides/hello/</guid>
+      <description> ## Hello Talkie yudppp  yudppp Web Engineer 
+```golang package main import ( &#34;fmt&#34; ) func main() { fmt.Println(&#34;Hello Talkie!&#34;) } ```  </description>
+    </item>
+    
+    <item>
+      <title>ブログのリニューアルしました。</title>
+      <link>https://blog.yudppp.com/posts/renewal_blog/</link>
+      <pubDate>Sat, 03 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/renewal_blog/</guid>
+      <description>ブログのリニューアルしました。
+Hugoに移行してから、1記事しか書かずにスタイル書き直して、またの修正になります。
+今回は極力シンプルに、エンジニアが見て見やすいようにhackcssをベースに作成しました。
+HTMLをスタイルの少し効いたマークダウンぽくしてくれます。
+Hugoを使ってマークダウンで書いているので マークダウンを一度HTMLに変換して、それにマークダウンぽいスタイルを当てていることになります。
+またHugoではblackfridayを使ってマークダウンをHTMLに変換しています。 その際に外部リンクの場合aタグにtarget=&amp;quot;_blank&amp;quot;をつけたりしたいのですができないようでした。 そのためJavaScriptでクライアントでつけるようにしました。
+var hostname = window.location.hostname; var tags = document.getElementsByTagName(&#39;a&#39;); for (var i in tags) { var tag = tags[i] if (tag.href &amp;amp;&amp;amp; tag.href.indexOf(hostname) == -1) { tag.target = &#39;_blank&#39;; } }  相対パス等で書くことないので一旦無視してしまってたり、ベストではないとは思うのですが、こんな感じでできました。 また外部リンクと内部リンクでaタグの色を変えるようにしました。内部リンクは黄色。外部リンクは赤となっています。
+派手なブログもいいですが、シンプルで読みやすいブログになったかと思います。
+ただGithubの調子が悪いのか画像がちゃんと上がらないことがあるのでちゃんと調べてみようと思います。
+久しぶりのブログなので軽めで終わりにします。</description>
+    </item>
+    
+    <item>
+      <title>RESTfulなAPIがつらくなってきた話</title>
+      <link>https://blog.yudppp.com/posts/rest_to_falcor/</link>
+      <pubDate>Sun, 13 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/rest_to_falcor/</guid>
+      <description>この記事はCyberAgent エンジニア Advent Calendar 2015の13日目の記事です。 
+昨日は同期のmatsuokahさんのブログでした。明日はhuydxさんのブログです。
+はじめに 新卒3年目の鈴木(@yudppp)です。 入社してからJavaやったりNode.jsやったりフロントかじったりしていました。 ここ1年はGolangでサーバーサイドのエンジニアをしていました。最近はNetflixを見てゆったりした休日を過ごしています。 会社関連のちゃんとしたブログを書くのはじめてなので柔らかめなマサカリください。
+2年以上RESTを意識してAPIを作りつづけていました。 RESTful APIについては同期の鈴木が紹介していたのでこちらを参考にしてください。 また悩んだときはWEB+DB PRESS Vol.82の特集を読み返したりしてました。
+ただ開発を進めていくうちに、だんだんとRESTが辛くなってきました。
+single page application(SPA)の場合、完全にRESTなAPIになりすぎるとクライアント側で多くのAjaxリクエストが必要になってしまい、結局レンダリングするまでの時間が掛かってしまったり、 WebだけでなくiOSやandroidなどのクライアントがある場合、アプリではこのプロパティ使うけどWebからは使わないとか、このちょっとした情報をWebで使いたいから追加してとかで追加していくとレスポンスが肥大化していってしまったり、かっちりRESTにしたつもりがいろんなものに振り回されてしまいます。
+Webとアプリでエンドポイント分けたり、UAで返す内容変えたり、どんと構えて別のAPIを叩いてもらえば済む話なのかもしれないのですが、どうしたって無駄が生じてしまいます。
+またクライアント側からみても、同じ情報を再度取得しないようにクライアント側にstore層をもって、二回目からそこから取得するようにしたり書くのも飽きてきました。
+それらのRESTの辛さを解決するものとしてFacebookの考案したGraphQL/relayやNetflixのFalcorなどがあります。 GraphQLについては以前弊社のブログで秋葉原ラボの鈴木さんが「GraphQLについて調べてみた」で書いています。
+今回はFalcorのすばらしさとGraphQLとの違い、実際に触ってみた触感について書いていきたいと思います。
+Falcorとは  A JavaScript library for efficient data fetching
+ 効率よくデータを取得できるライブラリです。 サーバーサイドはNode.jsで実装されています。
+サーバーの実装自体は他の言語でも可能でGithubを見る限り,Dart,PHPとかありそうです。(どのくらいちゃんと動くかは未確認です)
+特徴 1. One Model Everywhere すべてのバックエンドのデータを１つの仮想JSONオブジェクトとして扱うことができます。 クライアントはJSONの一部の要素をメモリーに乗っているJSONを取得するかのように取得することができます。
+model.json?paths=[&amp;quot;user.name&amp;quot;, &amp;quot;user.surname&amp;quot;, &amp;quot;user.address&amp;quot;] // GET /model.json?paths=[&amp;quot;user.name&amp;quot;, &amp;quot;user.surname&amp;quot;, &amp;quot;user.address&amp;quot;] { user: { name: &amp;quot;Frank&amp;quot;, surname: &amp;quot;Underwood&amp;quot;, address: &amp;quot;1600 Pennsylvania Avenue, Washington, DC&amp;quot; } }  サーバーのエンドポイントがひとつだけなので、まとめて様々なリソースのリクエストを送ることが可能になり、RESTのときに問題になっていた多くのAjaxリクエストが必要になってしまっていた件が解消されます。</description>
+    </item>
+    
+    <item>
+      <title>Hugoに移行しました。</title>
+      <link>https://blog.yudppp.com/posts/moved_hugo/</link>
+      <pubDate>Mon, 07 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/moved_hugo/</guid>
+      <description>誕生日だったのでブログを新しくしてみました。 以前Ghostを使っていたとき既存のテーマを少し自分でカスタマイズして使っていたのですが,今回は自分で書いていきました。
+boilerplateとして,いつもお世話になってる1000chさんのhugo-boilerplateを使わせていただきました。
+おかげさまでwreckerの設定もすぐでき簡単にgh-pages運用ができました。
+今月はたくさん記事を書いていこうかと思います。</description>
+    </item>
+    
+    <item>
+      <title>net/httpでRedirectさせない</title>
+      <link>https://blog.yudppp.com/posts/go-http-client-no-redirect/</link>
+      <pubDate>Mon, 26 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/go-http-client-no-redirect/</guid>
+      <description> はじめに 302がちゃんとかえっているか確認したい。みたいな要件があり、なにも考えず
+resp, err := http.Get(url)  のようにするとRedirectしたあとの結果を勝手にとってきてくれていた。
+net/http/client.goをみてみるとdoFollowingRedirectsでリダイレクトを考慮して色々やっているようだった。
+対応方法 下記のようにCheckRedirectを実装し、ハンドリングしてあげればよい。
+package main import ( &amp;quot;errors&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;net/url&amp;quot; ) var RedirectAttemptedError = errors.New(&amp;quot;redirect&amp;quot;) func Check(urlApiEndPoint string) error { client := &amp;amp;http.Client{} client.CheckRedirect = func(req *http.Request, via []*http.Request) error { return RedirectAttemptedError } _, err := client.Get(urlApiEndPoint) if urlError, ok := err.(*url.Error); ok &amp;amp;&amp;amp; urlError.Err == RedirectAttemptedError { return nil } return errors.New(&amp;quot;don&#39;t redirect&amp;quot;) }  参考にしたもの  golang.org stackoverflow  </description>
+    </item>
+    
+    <item>
+      <title>ISUCON5の予選に参加した話</title>
+      <link>https://blog.yudppp.com/posts/isucon2015/</link>
+      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/isucon2015/</guid>
+      <description>はじめに 昨年のISUCON4では初めてGolangを触り、ワーカー数を増やせることに気づかず負荷余裕なのになーっていていたのの雪辱をはらすべき、去年もおんぶに抱っこさせてもらった先輩がたと一緒に参加しました。
+メンバー  NW周りとか色々やっているインフラの先輩 Javaをメインで書いてるアプリケーションエンジニアの先輩 go書いたりjs書いたりしている自分  前準備したこと 重い処理があったときにCacheしようとしていたのでmemcachedやRedisをすぐに導入できるようにgoのfileを準備
+gist.github.com
+当日 11:00  GCEのイメージ持ってきて、なんとかサーバーに入る(だれもGCP未経験)  11:30  現状動いているアプリケーションとversionの洗い出し githubのprivate repositoryにアプリケーションをいれて開発しやすいように  12:00  一旦Javaで動かしてみる Score: 8xxで一瞬トップに  12:30  slow queryを一秒超えたものをでるようにしてもらう。 my.confがどうのこうのやっていた。 アプリケーションの概要を把握していく  13:00 SELECT user_id, owner_id, DATE(created_at) AS date, MAX(created_at) AS updated FROM footprints WHERE user_id = 4881 GROUP BY user_id, owner_id, DATE(created_at) ORDER BY updated DESC LIMIT 50;  と足跡のところでIndexがなくslowqueryがでていたのでindex追加
+なぜかJavaとGoを両方試していく
+13:30 SELECT * FROM relations WHERE one = 3992 OR another = 3992 ORDER BY created_at DESC;  relationsがORを使っていてslowqueryでていたので</description>
+    </item>
+    
+    <item>
+      <title>CircleCIでcacheを利用する</title>
+      <link>https://blog.yudppp.com/posts/circleci-use-cache/</link>
+      <pubDate>Sat, 22 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/circleci-use-cache/</guid>
+      <description>はじめに 仕事でcircleciを使ってテストが時間が掛かるようになってしまったので修正したい。 テスト自体を並列で動かして短縮することも可能であろうが、並列ではしることをあまり考慮されていないテストに現状なってしまっているため初期コストが高そうなので後回しにする またdockerの導入も大変そうなので後回しにしてできるところから手をつける。
+毎回ダウンロードしてきているものをcacheにいれることにする。
+How cache works circleciのcacheの概要はこちらに書いてある。 https://circleci.com/docs/how-cache-works
+cacheについて cacheの方法は二つあります
+1, cache_directories circle.ymlにdependencies: cache_directoriesのセクションを追加してディレクトリを指定すれば、そこのディレクトリはcacheとして次回のインスタンスにも同じものが残る。
+2, cache_directories  Bower Bundler CocoaPods Go Gradle Maven NPM  これらのようなもmanagerを使っていた場合自動的にcacheされる。
+Per-branch cache cacheされる粒度はbranchごとにされる。ブランチを切って最初のpushの場合Githubのデフォルトブランチが使えわれる。デフォルトブランチにcacheがなかった場合他のブランチからのcacheが使われる。
+Clearing the cache cacheを消すためにはcircle.ymlに下記のようにかけばcacheを消してくれる。
+dependencies: post: - rm -r ~/.gradle  普通に消すだけですね。はい。 勝手にcacheされてるものを消すためにはこのようにかけばよいのでしょうか。
+検証してみてわかったこと/思ったこと  without cacheで行った場合cacheを使わないだけでcacheを消してくれることはしない。 without cacheかつwith sshはできない。(探したが見つからなかった。) 運用していてcache自体を一度消したくなったときはwith sshで入って手で消すしかなさそう 何度もcircleCIの挙動を確認したい場合は確認するための最小限のcircle.yamlで確認した方がよい。  まとめ circleCIのチューニングは確認に時間が掛かったり挙動がよくわからなかったりして大変だが、将来を考えると時間が減っていいことしかないのでもっと早めにやるべきだった。</description>
+    </item>
+    
+    <item>
+      <title>golangで数字を三桁ごとでカンマ区切りにする</title>
+      <link>https://blog.yudppp.com/posts/golang_num_separator/</link>
+      <pubDate>Tue, 18 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/golang_num_separator/</guid>
+      <description>golangで金額扱うときに三桁ごとにカンマ区切りするあれがめんどくさかったのでメモ
+golangはstringsパッケージにも文字列の反転がないので極力反転もさせず実装してみました。
+func cast(price uint32) string { groupingSize := 3 groupingSeparator := &amp;quot;,&amp;quot; priceStr := fmt.Sprint(price) size := len(priceStr) sliceSize := (len(priceStr) + groupingSize - 1) / groupingSize priceSlice := make([]string, sliceSize) for i, _ := range priceSlice { start := size - (sliceSize-i)*groupingSize end := start + groupingSize if start &amp;lt; 0 { start = 0 } priceSlice[i] = priceStr[start:end] } return strings.Join(priceSlice, groupingSeparator) }  こんな感じになりました。
+jsとかrubyとかだったら一行で書けるだろうに冗長的になってしまった。
+[追記] tjのgo-configのcodeを追っていたらdustin/go-humanizeというものがでてきて</description>
+    </item>
+    
+    <item>
+      <title>gulp 4.0について</title>
+      <link>https://blog.yudppp.com/posts/gulp4/</link>
+      <pubDate>Thu, 16 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/gulp4/</guid>
+      <description>はじめに gulpv4.0がそろそろリリースされそうなので、どんなことができるようになるのか調べてみようと思いました。
+https://github.com/gulpjs/gulp/milestones/gulp%204 マイルストーンを見てみると78%くらい終わっていてあと少しという感じでしょうか
+gulp 4.0を先にinstallしてみる 直接gitから落としてくれば4.0を使うことができます。
+$ npm install git://github.com/gulpjs/gulp.git#4.0 --save-dev $ npm install git://github.com/gulpjs/gulp-cli.git#4.0 –g  4.0の変更内容 機能の変更内容についてはCHANGELOGに記載されています。
+大きいところでいうとmethodがいくつか追加されていてgulp.series,gulp.parallel,gulp.tree,gulp.registryなどがあります。
+series/parallelについて 今までだとrunSequenceを使って行っていた並列/直列の処理が簡単に書けるようになります。
+use runSequence var gulp = require(&#39;gulp&#39;); var runSequence = require(&#39;run-sequence&#39;); gulp.task(&#39;build&#39;, function(callback) { runSequence(&#39;build-clean&#39;, [&#39;build-scripts&#39;, &#39;build-styles&#39;], &#39;build-html&#39;, callback); });  runSequenceを使っていた場合だいたいこのように使われていたと思います。
+use gulp#v4.0 var gulp = require(&#39;gulp&#39;); // gulp 4 gulp.task( &#39;build&#39;, gulp.series( &#39;build-clean&#39;, gulp.parallel(&#39;build-scripts&#39;, &#39;build-styles&#39;), &#39;build-html&#39; ) );  こんな感じに書き換えることができました。 パフォーマンスはどちらがよいのでしょうか。暇なときに調べて見ようと思います。
+gulp.treeについて API#gulptreeoptionsこちらに詳細が書いてありますがgulp.treeを使うと登録してあるtaskの一覧を取得することができます。
+また下記のようにオプションでdeepをtrueにしておくと
+gulp.tree({ deep: true }) /*output: [ { &amp;quot;label&amp;quot;:&amp;quot;one&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;two&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;three&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;four&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;series&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;one&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;two&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] } ] } ] }, { &amp;quot;label&amp;quot;:&amp;quot;five&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;series&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;four&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;series&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;one&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;two&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] } ] } ] }, { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;parallel&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[ { &amp;quot;label&amp;quot;:&amp;quot;three&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;task&amp;quot;, &amp;quot;nodes&amp;quot;:[] }, { &amp;quot;label&amp;quot;:&amp;quot;&amp;lt;anonymous&amp;gt;&amp;quot;, &amp;quot;type&amp;quot;:&amp;quot;function&amp;quot;, &amp;quot;nodes&amp;quot;:[] } ] } ] } ] } ] */  タスクとそのタスクに依存するタスクがわかるようになります。</description>
+    </item>
+    
+    <item>
+      <title>【golang】JSTの時間をうまくParseする</title>
+      <link>https://blog.yudppp.com/posts/golang-jst-parse/</link>
+      <pubDate>Mon, 08 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/golang-jst-parse/</guid>
+      <description>golangでJSTの時間の文字列を変換するときに困ったのでTipsとして残しておきます。
+2015-06-08 15:04:05 +0900のように+0900とついていた場合2006-01-02 15:04:05 -0700をformatとしてParseすればうまくいきます
+package main import &amp;quot;fmt&amp;quot; import &amp;quot;time&amp;quot; func main() { target := `2015-06-08 15:04:05 +0900` t, _ := time.Parse(`2006-01-02 15:04:05 -0700`, target) fmt.Println(t.UTC()) }  上記は普通に指定すればできました。
+問題はJSTで2015-06-08 15:04:05という値をParseしたい場合です。 色々実装をみてみたところ
+package main import &amp;quot;fmt&amp;quot; import &amp;quot;time&amp;quot; func main() { target := `2015-06-08 15:04:05` loc, _ := time.LoadLocation(&amp;quot;Asia/Tokyo&amp;quot;) t, _ := time.ParseInLocation (`2006-01-02 15:04:05`, target, loc) fmt.Println(t.UTC()) }  time#ParseInLocationでlocationを指定してParseできるようでした。
+あやうくParseしたい文字列に+0900の文字列追加したり、time.Date(t.Year(),...,loc)のようにするところでした。</description>
+    </item>
+    
+    <item>
+      <title>Facebookのflowtypeについて</title>
+      <link>https://blog.yudppp.com/posts/about_flowtype/</link>
+      <pubDate>Sun, 24 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/about_flowtype/</guid>
+      <description>はじめに 最近babelやらES6やらがかなり盛り上がってる中facebookのflow(flowtype)をちゃんと触ってみようと思います。 TypeScriptと比べると型推論が賢かったり、コンパイルが速いらしいです。
+インストール Macだとbrewでさっとinstallできるようです。
+$ brew update $ brew install flow  windows等ではzip等で落としてくるそうです。
+こちらをみれば簡単にinstallできました。
+flowを触ってみる HelloWorld fileのはじめに/* @flow */でflowを使うことを宣言します。
+/* @flow */ function foo(x) { return x * 10; } foo(&#39;Hello, world!&#39;);  このように数値をいれて使いたい関数に間違って文字列をいててしまった場合に$ flow checkでチェックしてみます。すると
+$ flow check /Users/.../examples/01_HelloWorld/hello.js:7:5,19: string This type is incompatible with /Users/.../examples/01_HelloWorld/hello.js:4:10,13: number  7行目(foo(&amp;lsquo;Hello, world!&amp;rsquo;);)で文字列代入してるけど4行目(return x * 10;)で計算してるから数字でないとだめだよと、ちゃんと怒られました。
+またES6にも一部対応していて
+/* @flow */ var foo = (x) =&amp;gt; x*10 foo(&#39;Hello, world!&#39;);  このようなファイルもちゃんとみてくれました。</description>
+    </item>
+    
+    <item>
+      <title>npmで公開する</title>
+      <link>https://blog.yudppp.com/posts/npm-publish/</link>
+      <pubDate>Sun, 12 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/npm-publish/</guid>
+      <description> はじめに 今までnpmで公開したことがなかったのですが、はじめて公開してみることにしました。
+作ったものはgulp-xto6というものでES5のコードをES6にコンパイルできるbabelの逆のようなxto6を扱いgulpで扱いやすいようにしたものになります。
+xto6についてはまた別の記事で紹介させていただきます。
+npmアカウントを作成する npmのサイトでアカウントを作成します。
+こちらを入力して登録しました。
+localでユーザー設定 $ npm adduser  username,password,email addressを登録すると~/下に.npmrcというfileができていました。
+//registry.npmjs.org/:_password=hogeABCEFGHIhuga //registry.npmjs.org/:username=username //registry.npmjs.org/:email=mail@address.co.jp //registry.npmjs.org/:always-auth=false  こんな感じになっていました。
+これで公開する準備は終わりました。
+公開する 公開したいディレクトリまで移動して
+$ npm publish  で完了です。
+非公開にする 基本的に確認してあげているので大丈夫だとは思いますが、間違えたものをあげてしまったりしたときのために確認しておきました。
+$ npm unpublish  で非公開にできるそうです。(試していない)
+基本的にどこかで使われているかも知れないのでunpublishは使わないでdeprecateとかにしましょうとのこと。
+またそもそもあがって困るようなものはpackage.jsonにprivate: trueと書いておきましょう。
+まとめ npmの公開をいままでしたことがなかったが、簡単に公開することができた。
+また大したものは作っていないのですが、ダウンロードされていて、何人かの方に使われているのかと思うとうれしいです。
+まだテスト書き中だったりちゃんとメンテしていきます。
+https://www.npmjs.com/package/gulp-xto6
+参考にしたもの  https://docs.npmjs.com/getting-started/publishing-npm-packages https://docs.npmjs.com/cli/unpublish  </description>
+    </item>
+    
+    <item>
+      <title>DockerをGUIで使えるKitematic</title>
+      <link>https://blog.yudppp.com/posts/kitematic/</link>
+      <pubDate>Sun, 15 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/kitematic/</guid>
+      <description>はじめに つい先日Dockerの管理をGUIで簡単に管理できるKitematicをDockerが買収しました。
+kitematic joins the docker family
+今後どうなっていくかは、よくわかりませんが、どんなものなのか触ってみたいと思います。 また筆者はDocker初めて触りました。
+準備 サイトからダウンロードしてきます。
+https://kitematic.com/
+zipがダウンロードされたので展開するとアプリケーションができました。
+動かす 　アプリケーションを開くとこんな感じでした。
+最初にhello-world-nginxを作りたいと思います。 Createを押して少し待つとなんかできた。
+Web Previewを押してブラウザーで開くと
+すぐにnginxを建てることができました。 ダウンロードしてきて一つボタンを押しただけです。
+ほかのものも試したくなったのでRethinkDBとかもボタン押すだけですぐにできました。
+まとめ Kitematicを使うと今まで自分の行ってきた行為はだいぶ無駄だったのだと思うほどすぐに作ることができました。 簡単に始められるため、手順書さえ書けばエンジニアでなくても、誰でも扱えるような気がします。 またちょっとdbの検証とかしたいときにすぐ建てられるので便利そうです。
+参考にしたもの https://kitematic.com/ http://jp.techcrunch.com</description>
+    </item>
+    
+    <item>
+      <title>gulpfileそのものをES6で書く</title>
+      <link>https://blog.yudppp.com/posts/gulpfile-on-es6/</link>
+      <pubDate>Sat, 21 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/gulpfile-on-es6/</guid>
+      <description>最近になってfrontのコードやサーバーのコードは生のjs(ES5)で書かかずbabeljs(旧6to5)とかで書くことが体感ですが増えてきました。
+しかしgulpfileは生のjsで書いたり、coffeescriptで書くことが多いように感じます。
+そこで試しにES6で書いたらどんな感じになるか見てみたかったので適当なgulpfileをES6に書き換えてみようと思いました。
+まず適当なgulpfileが欲しかったのでYeomanでとってきました。
+$ npm install -g yo $ npm install -g generator-react-gulp-browserify $ yo react-gulp-browserify  https://github.com/randylien/generator-react-gulp-browserify/
+適当なそれなりに書かれているgulpfileが手に入りました。
+&#39;use strict&#39;; var gulp = require(&#39;gulp&#39;); // Load plugins var $ = require(&#39;gulp-load-plugins&#39;)(); var browserify = require(&#39;browserify&#39;); var watchify = require(&#39;watchify&#39;); var source = require(&#39;vinyl-source-stream&#39;), sourceFile = &#39;./app/scripts/app.coffee&#39;; // Scripts gulp.task(&#39;scripts&#39;, function () { var bundler = watchify(browserify({ entries: [sourceFile], insertGlobals: true, cache: {}, packageCache: {}, fullPaths: true })); bundler.</description>
+    </item>
+    
+    <item>
+      <title>koaのboilerplate的なのを作る</title>
+      <link>https://blog.yudppp.com/posts/koa-boilerplate/</link>
+      <pubDate>Wed, 11 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/koa-boilerplate/</guid>
+      <description>はじめに koajsはkoa自体は薄くmiddlewareを好きに組み込めるような設計になっているので最初の書き始める時、いろいろめんどくさくなるので自分用にboilerplate的ななにかを作成しました。
+https://github.com/yudppp/koa-boilerplate
+使用したmiddleware  config ect koa-bodyparser koa-json koa-logger koa-qs koa-response-time koa-router  だいたいこのくらいは毎回いれて書きそうだったので入れました。
+やっぱりrouterはkoa-routerがrestなAPI書くには楽な気がします。
+最近はectが早いと聞くのでviewのtemplateはect入れています。
+なんとなく大枠を作れたのでなにかあったときにぱっとkoa導入できるはず。。</description>
+    </item>
+    
+    <item>
+      <title>RIOT 2.0</title>
+      <link>https://blog.yudppp.com/posts/riot/</link>
+      <pubDate>Sun, 25 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/riot/</guid>
+      <description>はじめに RIOT 2.0がリリースされました。
+PolymerのようなカスタムタグとReactぽい仮想DOMで軽量なフレームワークのようです。
+https://muut.com/technology/riot-2.0/index.html
+最近2.0に上がってから、すごい勢いでstarがついていて、すごく軽くて色々とできるそうなので見ていきます。
+RIOT2.0とは Reactはtemplateとテクノロジーを分離していてすばらしい考え方だったが、minifyされた状態でも124KBと大きく、コードも複雑になっているのだろう。jsxでテンプレートを簡略化してくれていたがもっと楽な方法を探した。
+Riot2.0のideaは Riot1.0のミニマリズムとReactの仮想DOMやコンポーネントの考え方とHTML5のカスタムタグの考えかたからできている。
+riotを除いたHTMLやjsのみを書いた小さなAPIを欲していた。
+Riot 2.0 は予想していたもの以上に、とても小さく簡単になっていた。完全なアプリケーションスタックで9つしかpublicなメソッドがなく、React.jsの10分の1どころか24分の1以下のfilesizeになった。
+RIOTのすごいところ  IE8以降のすべてのブラウザでカスタムタグを扱える。 カスタムタグがコンパイル後も人に読みやすい形になっている。 virtual domのおかげでDOMの更新に無駄が少なくパフォーマンスがよい。  Close to standards  独自のイベントシステム IE8のためのイベント標準化 renderされたDOMを他から勝手にアクセスされること jQueryを上手く使うこと  Growing ecosystem  Gulp and Grunt plugins Hosted on cdnjs and jsdelivr  Minimal シンプルな構文 できる限り小さなボイラープレートによって強力なタグシンタックスを導入することをひとつの目標にしていた。
+ Power shortcuts: class={ enabled: is_enabled, hidden: hasErrors() }. No extra brain load such as getInitialState or shouldComponentUpdate Interpolation: Add #{ items.length + 1 } No render method, no state object.</description>
+    </item>
+    
+    <item>
+      <title>FluxなフレームワークDeLoreanjsを触る</title>
+      <link>https://blog.yudppp.com/posts/deloreanjs/</link>
+      <pubDate>Thu, 15 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/deloreanjs/</guid>
+      <description>はじめに Fluxなフレームワークを触ってみたかったのでDeLoreanjsをさわってみることにしました。
+Fluxとは MVCに変わる新しいデータフローです。 大規模なアプリケーションになるとMVCではMとVの関係が特に複雑化してしまう。 Fluxは下記のような一方向のデータフローとなるため複雑になりにくいそうです。 大まかな構成としては既存のMVCをイベント稼働型にしたイメージです。 DeLoreanとは  DeLorean is a tiny Flux pattern implementation.
+ DeLoreanはFluxのパターンを小さな構成で実装したものになります。他にもfluxなフレームワークは多々ありますが,その中でもsimpleで軽量なフレームワークにあたります。
+ Unidirectional data flow, it makes your app logic simpler than MVC,
+ 一方向のデータフローによりMVCよりもアプリのロジックをきれいにする。
+ Automatically listens to data changes and keeps your data updated,
+ データの変更されると、自動的にデータを更新された状態に保つ
+ Makes data more consistent across your whole application,
+ アプリケーション全体でデータの一貫性が保たれる。
+ It&amp;rsquo;s framework agnostic, completely. There&amp;rsquo;s no view framework dependency.
+ このフレームワークは完全に独断的でない。viewフレームワークに依存していない。
+ Very small, just 5K gzipped.</description>
+    </item>
+    
+    <item>
+      <title>io.jsをnvmで管理する</title>
+      <link>https://blog.yudppp.com/posts/iojs-nvm/</link>
+      <pubDate>Thu, 15 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/iojs-nvm/</guid>
+      <description>やってみた nvm側でio.jsに対応されるかも知れないですが、早めに触ってみた買ったのとnvmで管理させないとめんどくさいことになりそうだったのでやってみました。
+creationix/nvm/issues/590
+$ git clone git@github.com:iojs/io.js.git $ cd io.js/ $ git tag -l	#最新versionを確認 $ git checkout refs/tags/v1.0.1-release $ ./configure --prefix=/path/to/.nvm/v1.0.1-iojs	# 既存の.nvm下に配置させる。 $ make -j10	#　並列で行う $ make install $ nvm ls $ nvm use v1.0.1-iojs $ iojs -v  諸々無駄な作業とかしましたがなんとかiojsが動きました。
+https://iojs.org/dist/v1.0.1/ここから落としてきてもよかったですね。はい
+もっとこうした方がいいとかありましたらご指導お願いします。
+hokaccha/nodebrewはもう対応しているらしいですね。
+追記(2015年01月20日) nvmが対応したそうなのでやってみることにしました。
+$ cd ~/.nvm $ git pull origin master $ source nvm.sh $ nvm ls-remote ... v0.11.14 iojs-v1.0.0 iojs-v1.0.1 iojs-v1.0.2 iojs-v1.0.3 $ nvm install iojs-v1.</description>
+    </item>
+    
+    <item>
+      <title>highlight.jsを使ってみる</title>
+      <link>https://blog.yudppp.com/posts/highlight-js/</link>
+      <pubDate>Sun, 11 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/highlight-js/</guid>
+      <description>はじめに codeにsyntax highlightが当たらないのが辛かったのでテーマを新たにつくっていい感じにsyntax highlightを効かせることにしました。 syntax highlightについて調べてみるとisagalaev/highlight.jsというライブラリがよさそうだったのでこちらを使うことにしました。
+Ghostのcode blockの仕様 TryGhost/Ghost/issues/2675で話し合われた結果
+```javascript ```  のように書くとprefixにlanguage-が補完されるようになっています。
+highligh.jsの実装をみてみるとlanguage-をのぞいて上手いこと言語の判断をしてくれるようだった。
+ErisDS/showdown/showdown.js#L1032-1036
+src/highlight.js#L42-46
+highlight.jsの特徴  112 languages and 49 styles
+ 112の言語と49のスタイルに対応している。
+ automatic language detection
+ 自動的な言語検出を行う。
+ multi-language code highlighting
+ マルチ言語のハイライト
+ available for node.js
+ node.jsで利用可能である
+ works with any markup
+ どのようなマークアップでも働く
+ compatible with any js framework
+ どんなjsフレームワークでも使える(jQuery等に依存してない)
+こんな特徴があるらしいです。
+highlight.jsを使ってみる 最初にisagalaev/highlight.jsに言われるがままに
+&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css&amp;quot;&amp;gt; &amp;lt;script src=&amp;quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt;hljs.initHighlightingOnLoad();&amp;lt;/script&amp;gt;  をすべてのpageに対応させたかったのでdefault.hbs(もちろんthemeによっては変わってきますが)に入れました。 Casperであればdefault.</description>
+    </item>
+    
+    <item>
+      <title>はじめてのReact.js</title>
+      <link>https://blog.yudppp.com/posts/react/</link>
+      <pubDate>Sun, 04 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/react/</guid>
+      <description>はじめに 最近仮想DOMが世間で流行ってる感あるのではじめることにしました。
+Matt-Esch/virtual-domとかsegmentio/dekuとかRaynos/mercuryとかから勉強してもよかったのですが、星が1番ついていたことと、以前Atomのpackageを弄った際に少し触ったこともあったfacebook/reactから勉強していくことにしました。
+仮想DOMとは 仮想DOMはHTMLのDOM構造をjsのオブジェクトで表していてDOM変更時に差分だけを変更してくれる。
+Reactとは facebook社の作っているUI層をつくるjavascriptフレームワークです。
+特徴 Just the UI  Lots of people use React as the V in MVC. Since React makes no assumptions about the rest of your technology stack, it&amp;rsquo;s easy to try it out on a small feature in an existing project.
+ MVCのVとしてReactは使われる。残りのM,Cについて働くことはなく、Reactは既存の小さな機能にも導入しやすくなっている。
+Virtual DOM  React uses a virtual DOM diff implementation for ultra-high performance. It can also render on the server using Node.</description>
+    </item>
+    
+    <item>
+      <title>Who am I?</title>
+      <link>https://blog.yudppp.com/posts/whoami/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/posts/whoami/</guid>
+      <description>@yudpppの名前でGithubやTwitterで活動しています。
+Golangを書くことが多いです。時々JavaScriptも書きます。
+AWS触ったりしてましたが、最近はGCP(特にGKE)触ることが多めです。
+若手エンジニアと言えない年になってきました。
+いろんなところで発表したスライド一覧</description>
+    </item>
+    
+  </channel>
+</rss>

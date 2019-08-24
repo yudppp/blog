@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on ◯ △ □</title>
+    <link>https://blog.yudppp.com/tags/</link>
+    <description>Recent content in Tags on ◯ △ □</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 01 Jan 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.yudppp.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Blog</title>
+      <link>https://blog.yudppp.com/tags/blog/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ci</title>
+      <link>https://blog.yudppp.com/tags/ci/</link>
+      <pubDate>Sat, 22 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/ci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Contest</title>
+      <link>https://blog.yudppp.com/tags/contest/</link>
+      <pubDate>Mon, 24 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/contest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Design</title>
+      <link>https://blog.yudppp.com/tags/design/</link>
+      <pubDate>Fri, 30 Mar 2018 19:26:28 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/design/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://blog.yudppp.com/tags/docker/</link>
+      <pubDate>Mon, 30 Jul 2018 19:00:00 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>En</title>
+      <link>https://blog.yudppp.com/tags/en/</link>
+      <pubDate>Sat, 24 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/en/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Flow</title>
+      <link>https://blog.yudppp.com/tags/flow/</link>
+      <pubDate>Sun, 24 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/flow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>https://blog.yudppp.com/tags/go/</link>
+      <pubDate>Sat, 24 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Goa</title>
+      <link>https://blog.yudppp.com/tags/goa/</link>
+      <pubDate>Fri, 09 Feb 2018 19:26:28 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/goa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https://blog.yudppp.com/tags/golang/</link>
+      <pubDate>Fri, 09 Feb 2018 19:26:28 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gulp</title>
+      <link>https://blog.yudppp.com/tags/gulp/</link>
+      <pubDate>Thu, 16 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/gulp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://blog.yudppp.com/tags/hugo/</link>
+      <pubDate>Mon, 07 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Js</title>
+      <link>https://blog.yudppp.com/tags/js/</link>
+      <pubDate>Thu, 16 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Koa</title>
+      <link>https://blog.yudppp.com/tags/koa/</link>
+      <pubDate>Wed, 11 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/koa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://blog.yudppp.com/tags/kubernetes/</link>
+      <pubDate>Thu, 24 Aug 2017 00:00:00 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mock</title>
+      <link>https://blog.yudppp.com/tags/mock/</link>
+      <pubDate>Mon, 30 Jul 2018 19:00:00 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/mock/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Npm</title>
+      <link>https://blog.yudppp.com/tags/npm/</link>
+      <pubDate>Sun, 12 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/npm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Riot</title>
+      <link>https://blog.yudppp.com/tags/riot/</link>
+      <pubDate>Sun, 25 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/riot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sendgrid</title>
+      <link>https://blog.yudppp.com/tags/sendgrid/</link>
+      <pubDate>Mon, 30 Jul 2018 19:00:00 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/sendgrid/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Slide</title>
+      <link>https://blog.yudppp.com/tags/slide/</link>
+      <pubDate>Mon, 03 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/slide/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Viron</title>
+      <link>https://blog.yudppp.com/tags/viron/</link>
+      <pubDate>Fri, 09 Feb 2018 19:26:28 +0900</pubDate>
+      
+      <guid>https://blog.yudppp.com/tags/viron/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

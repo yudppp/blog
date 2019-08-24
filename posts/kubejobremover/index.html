@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+
+<title>Kubernetesの成功したJobを消す - ◯ △ □</title>
+
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/lib.min.css">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/app.min.css">
+<link rel="alternate" href="https://blog.yudppp.com/index.xml" title="" type="application/rss+xml">
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/posts/kubejobremover/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="Kubernetesの成功したJobを消す">
+
+
+  <meta name="description" content="Kubernetesで1日数百Jobを利用しているが、仕様上成功済みのJobが消えない。
+そのため大量の不要になったJobを消したい。
+CLI 2時間以上たった成功済みのJobを消したい時
+ kubectl get job | awk &#39;{ if(match($4, /^([2-9]h|[1-2][0-9]h|[0-9]&#43;d)$/) &amp;&amp; ($3==1)) print $1}&#39; | xargs -P 8 -n 1 --no-run-if-empty kubectl delete job  Pod(Docker) 10分に1回2時間以上たった成功済みのJobを消すPodのDockerfile
+FROM alpine ENV KUBECTL_VERSION v1.5.3 ADD https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl /bin/kubectl RUN chmod &#43;x /bin/kubectl # Delete successed job after 2 hours ago CMD while true; do kubectl get job | awk &#39;{ if(match($4, /^([2-9]h|[1-2][0-9]h|[0-9]&#43;d)$/) &amp;&amp; ($3==1)) print $1}&#39; | xargs -n 1 --no-run-if-empty kubectl delete job; sleep 600s; done  https://gist.">
+
+
+  </head>
+  <body class="hack">
+    <header>
+  <div class="container">
+    
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="https://blog.yudppp.com">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>Kubernetesの成功したJobを消す</h1>
+    </div>
+    
+  </div>
+</header>
+
+    <main>
+      <div class="container">
+        <date>2017.08.24</date>
+        <div class="content">
+          
+
+<p>Kubernetesで1日数百Jobを利用しているが、仕様上成功済みのJobが消えない。</p>
+
+<p>そのため大量の不要になったJobを消したい。</p>
+
+<h3 id="cli">CLI</h3>
+
+<p>2時間以上たった成功済みのJobを消したい時</p>
+
+<pre><code> kubectl get job |  awk '{ if(match($4, /^([2-9]h|[1-2][0-9]h|[0-9]+d)$/) &amp;&amp; ($3==1)) print $1}' | xargs -P 8 -n 1 --no-run-if-empty kubectl delete job
+</code></pre>
+
+<h3 id="pod-docker">Pod(Docker)</h3>
+
+<p>10分に1回2時間以上たった成功済みのJobを消すPodのDockerfile</p>
+
+<pre><code>FROM alpine
+
+ENV KUBECTL_VERSION v1.5.3
+
+ADD https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl /bin/kubectl
+RUN chmod +x /bin/kubectl
+
+# Delete successed job after 2 hours ago
+CMD while true; do kubectl get job |  awk '{ if(match($4, /^([2-9]h|[1-2][0-9]h|[0-9]+d)$/) &amp;&amp; ($3==1)) print $1}' | xargs -n 1 --no-run-if-empty kubectl delete job; sleep 600s; done
+</code></pre>
+
+<p><a href="https://gist.github.com/yudppp/4e386d8c55d70d65e135321252b1a9ae">https://gist.github.com/yudppp/4e386d8c55d70d65e135321252b1a9ae</a></p>
+
+<h3 id="cronjob">CronJob</h3>
+
+<p>動作確認していないのですがこんな感じでしょうか</p>
+
+<pre><code>apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: kubejobremover
+spec:
+  schedule: &quot;*/10 * * * *&quot;
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: kubejobremover
+            image: wernight/kubectl:1.5.3
+            args:
+            - /bin/sh
+            - -c
+            - kubectl get job |  awk '{ if(match($4, /^([2-9]h|[1-2][0-9]h|[0-9]+d)$/) &amp;&amp; ($3==1)) print $1}' | xargs -n 1 --no-run-if-empty kubectl delete job
+          restartPolicy: OnFailure
+</code></pre>
+
+<p>本来CronJobでやりたかったのですが <code>--enable-kubernetes-alpha</code> していなかったので一旦諦めてdeploymentに上記のPodを作成して対応した。</p>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="yudppp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+          <div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">
+            show comment <span class="disqus-comment-count" data-disqus-url="https://blog.yudppp.com/posts/kubejobremover/"></span>
+        </a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+     
+     
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>
+        </div>
+      </div>
+    </main>
+    
+<div class="container">
+	<div class="prevnext">
+		
+		<a class="pull-left" href="https://blog.yudppp.com/posts/time_before_after/">
+			<div>&lt;&lt; Golangの時間のbefore/afterの話</div>
+		</a>
+		
+		
+		<a class="pull-right" href="https://blog.yudppp.com/posts/json2struct/">
+			<div>JSONをGolangのstructに変換する &gt;&gt;</div>
+		</a>
+		
+	</div>
+</div>
+
+    <div class="container">
+  <a href="https://blog.yudppp.com/posts/whoami/">
+    <div class="media profile">
+      <div class="media-left">
+        <img class="avatarholder" src="https://blog.yudppp.com/img/profile.svg" />
+      </div>
+      <div class="media-body">
+        <div class="media-heading">@yudppp</div>
+        <div class="media-content">Web engineer.</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <script src="https://blog.yudppp.com/js/lib.min.js"></script>
+<script src="https://blog.yudppp.com/js/app.min.js"></script>
+<script id="dsq-count-scr" src="//yudppp.disqus.com/count.js" async></script>
+  </body>
+</html>

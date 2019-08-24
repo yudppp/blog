@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="VOdSVFLZgu5oX1fWGwT5OkE9QF-b6k3XMEZIkFIuiTA" />
+
+<title>RESTfulなAPIがつらくなってきた話 - ◯ △ □</title>
+
+<link rel="icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="shortcut icon" href="https://blog.yudppp.com/img/favicon.png">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/lib.min.css">
+<link rel="stylesheet" href="https://blog.yudppp.com/css/app.min.css">
+<link rel="alternate" href="https://blog.yudppp.com/index.xml" title="" type="application/rss+xml">
+
+<meta property="og:type", content="article">
+<meta property="og:url", content="https://blog.yudppp.com/posts/rest_to_falcor/">
+<meta property="og:site_name", content="◯ △ □">
+<meta property="og:title", content="RESTfulなAPIがつらくなってきた話">
+
+
+  <meta name="description" content="この記事はCyberAgent エンジニア Advent Calendar 2015の13日目の記事です。 
+昨日は同期のmatsuokahさんのブログでした。明日はhuydxさんのブログです。
+はじめに 新卒3年目の鈴木(@yudppp)です。 入社してからJavaやったりNode.jsやったりフロントかじったりしていました。 ここ1年はGolangでサーバーサイドのエンジニアをしていました。最近はNetflixを見てゆったりした休日を過ごしています。 会社関連のちゃんとしたブログを書くのはじめてなので柔らかめなマサカリください。
+2年以上RESTを意識してAPIを作りつづけていました。 RESTful APIについては同期の鈴木が紹介していたのでこちらを参考にしてください。 また悩んだときはWEB&#43;DB PRESS Vol.82の特集を読み返したりしてました。
+ただ開発を進めていくうちに、だんだんとRESTが辛くなってきました。
+single page application(SPA)の場合、完全にRESTなAPIになりすぎるとクライアント側で多くのAjaxリクエストが必要になってしまい、結局レンダリングするまでの時間が掛かってしまったり、 WebだけでなくiOSやandroidなどのクライアントがある場合、アプリではこのプロパティ使うけどWebからは使わないとか、このちょっとした情報をWebで使いたいから追加してとかで追加していくとレスポンスが肥大化していってしまったり、かっちりRESTにしたつもりがいろんなものに振り回されてしまいます。
+Webとアプリでエンドポイント分けたり、UAで返す内容変えたり、どんと構えて別のAPIを叩いてもらえば済む話なのかもしれないのですが、どうしたって無駄が生じてしまいます。
+またクライアント側からみても、同じ情報を再度取得しないようにクライアント側にstore層をもって、二回目からそこから取得するようにしたり書くのも飽きてきました。
+それらのRESTの辛さを解決するものとしてFacebookの考案したGraphQL/relayやNetflixのFalcorなどがあります。 GraphQLについては以前弊社のブログで秋葉原ラボの鈴木さんが「GraphQLについて調べてみた」で書いています。
+今回はFalcorのすばらしさとGraphQLとの違い、実際に触ってみた触感について書いていきたいと思います。
+Falcorとは  A JavaScript library for efficient data fetching
+ 効率よくデータを取得できるライブラリです。 サーバーサイドはNode.jsで実装されています。
+サーバーの実装自体は他の言語でも可能でGithubを見る限り,Dart,PHPとかありそうです。(どのくらいちゃんと動くかは未確認です)
+特徴 1. One Model Everywhere すべてのバックエンドのデータを１つの仮想JSONオブジェクトとして扱うことができます。 クライアントはJSONの一部の要素をメモリーに乗っているJSONを取得するかのように取得することができます。
+model.json?paths=[&quot;user.name&quot;, &quot;user.surname&quot;, &quot;user.address&quot;] // GET /model.json?paths=[&quot;user.name&quot;, &quot;user.surname&quot;, &quot;user.address&quot;] { user: { name: &quot;Frank&quot;, surname: &quot;Underwood&quot;, address: &quot;1600 Pennsylvania Avenue, Washington, DC&quot; } }  サーバーのエンドポイントがひとつだけなので、まとめて様々なリソースのリクエストを送ることが可能になり、RESTのときに問題になっていた多くのAjaxリクエストが必要になってしまっていた件が解消されます。">
+
+
+  </head>
+  <body class="hack">
+    <header>
+  <div class="container">
+    
+    <div class="nav">
+      <div class="nav__left">
+        <span class="nav__item">
+          <a class="nocolor" href="https://blog.yudppp.com">
+            <canvas class="mini-logo" width="150" height="50">
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="title">
+      <h1>RESTfulなAPIがつらくなってきた話</h1>
+    </div>
+    
+  </div>
+</header>
+
+    <main>
+      <div class="container">
+        <date>2015.12.13</date>
+        <div class="content">
+          
+
+<p>この記事は<a href="http://www.adventar.org/calendars/863">CyberAgent エンジニア Advent Calendar 2015</a>の13日目の記事です。
+<iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwww.adventar.org%2Fcalendars%2F863" title="CyberAgent エンジニア Advent Calendar 2015 - Adventar" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe></p>
+
+<p>昨日は同期のmatsuokahさんの<a href="http://blog.matsuokah.jp/entry/2015/12/12/134717">ブログ</a>でした。明日はhuydxさんの<a href="http://adtech.cyberagent.io/scalablog/2015/12/13/scala-gc-offheap/">ブログ</a>です。</p>
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>新卒3年目の鈴木(<a href="https://twitter.com/yudppp">@yudppp</a>)です。
+入社してからJavaやったりNode.jsやったりフロントかじったりしていました。
+ここ1年はGolangでサーバーサイドのエンジニアをしていました。最近は<a href="http://www.netflix.com">Netflix</a>を見てゆったりした休日を過ごしています。
+会社関連のちゃんとしたブログを書くのはじめてなので柔らかめなマサカリください。</p>
+
+<p>2年以上RESTを意識してAPIを作りつづけていました。
+RESTful APIについては同期の鈴木が紹介していたので<a href="http://www.atmarkit.co.jp/ait/articles/1511/19/news022.html">こちら</a>を参考にしてください。
+また悩んだときは<a href="http://gihyo.jp/magazine/wdpress/archive/2014/vol82">WEB+DB PRESS Vol.82</a>の特集を読み返したりしてました。</p>
+
+<p>ただ開発を進めていくうちに、だんだんと<strong>RESTが辛くなってきました。</strong></p>
+
+<p>single page application(SPA)の場合、完全にRESTなAPIになりすぎるとクライアント側で多くのAjaxリクエストが必要になってしまい、結局レンダリングするまでの時間が掛かってしまったり、
+WebだけでなくiOSやandroidなどのクライアントがある場合、アプリではこのプロパティ使うけどWebからは使わないとか、このちょっとした情報をWebで使いたいから追加してとかで追加していくとレスポンスが肥大化していってしまったり、かっちりRESTにしたつもりがいろんなものに振り回されてしまいます。</p>
+
+<p>Webとアプリでエンドポイント分けたり、UAで返す内容変えたり、どんと構えて別のAPIを叩いてもらえば済む話なのかもしれないのですが、どうしたって無駄が生じてしまいます。</p>
+
+<p>またクライアント側からみても、同じ情報を再度取得しないようにクライアント側にstore層をもって、二回目からそこから取得するようにしたり書くのも飽きてきました。</p>
+
+<p>それらのRESTの辛さを解決するものとしてFacebookの考案した<a href="http://facebook.github.io/graphql/">GraphQL</a>/<a href="https://facebook.github.io/relay/">relay</a>や<a href="http://www.netflix.com/">Netflix</a>の<a href="http://netflix.github.io/falcor/">Falcor</a>などがあります。
+GraphQLについては以前弊社のブログで秋葉原ラボの鈴木さんが「<a href="http://ameblo.jp/principia-ca/entry-12060337336.html">GraphQLについて調べてみた</a>」で書いています。</p>
+
+<p>今回はFalcorのすばらしさとGraphQLとの違い、実際に触ってみた触感について書いていきたいと思います。</p>
+
+<h2 id="falcorとは">Falcorとは</h2>
+
+<blockquote>
+<p><a href="http://netflix.github.io/falcor/">A JavaScript library for efficient data fetching</a></p>
+</blockquote>
+
+<p>効率よくデータを取得できるライブラリです。
+サーバーサイドはNode.jsで実装されています。</p>
+
+<p>サーバーの実装自体は他の言語でも可能でGithubを見る限り,<a href="https://github.com/Pajn/falcor_dart">Dart</a>,<a href="https://github.com/brenelz/falcor-php-server">PHP</a>とかありそうです。(どのくらいちゃんと動くかは未確認です)</p>
+
+<h3 id="特徴">特徴</h3>
+
+<h4 id="1-one-model-everywhere">1. One Model Everywhere</h4>
+
+<p>すべてのバックエンドのデータを１つの仮想JSONオブジェクトとして扱うことができます。
+クライアントはJSONの一部の要素をメモリーに乗っているJSONを取得するかのように取得することができます。</p>
+
+<pre><code class="language-js">model.json?paths=[&quot;user.name&quot;, &quot;user.surname&quot;, &quot;user.address&quot;]
+
+// GET /model.json?paths=[&quot;user.name&quot;, &quot;user.surname&quot;, &quot;user.address&quot;]
+{
+  user: {
+    name: &quot;Frank&quot;,
+    surname: &quot;Underwood&quot;,
+    address: &quot;1600 Pennsylvania Avenue, Washington, DC&quot;
+  }
+}
+</code></pre>
+
+<p>サーバーのエンドポイントがひとつだけなので、まとめて様々なリソースのリクエストを送ることが可能になり、RESTのときに問題になっていた多くのAjaxリクエストが必要になってしまっていた件が解消されます。</p>
+
+<h4 id="2-the-data-is-the-api">2. The Data is the API</h4>
+
+<p>FalcorではクライアントでJSONデータを扱う際に直接JSONを取得することはできません。代わりに下記のように<code>getValue</code>することによって値を取得できます。</p>
+
+<pre><code class="language-js">// this data is
+// user: {
+//   name: &quot;Frank&quot;,
+//   surname: &quot;Underwood&quot;,
+//   address: &quot;1600 Pennsylvania Avenue, Washington, DC&quot;
+// }
+
+var model = new falcor.Model({
+  source: new falcor.HttpDataSource(“/model.json”)
+});
+
+// prints “Underwood” eventually
+model.
+  getValue(“user.surname”).
+  then(function(surname) {
+    console.log(surname);
+  });
+</code></pre>
+
+<p>JavaScriptでよくあるget,set,call等の操作を知っていれば簡単に扱うことができます。
+データの構造さえ知っていればAPIから取得することができます。</p>
+
+<h4 id="3-bind-to-the-cloud">3. Bind to the Cloud</h4>
+
+<p>キャッシュの機構があり、<code>get</code>したときに一度も取得していないデータであればAPIを叩き取得し、取得したことのあるデータであればAPIリクエストは走らずクライアントのCacheから勝手に取得してきてくれます。
+仮想DOMといい、仮想なんちゃらは人間様が考えるべきことを本質だけにしてくれて本当にありがたいです。</p>
+
+<p>またバッチの機能もあり下記のようにバッチのモデルを定義するとこの3つの問い合わせをまとめて受け付けることができます。</p>
+
+<pre><code class="language-js">var log = console.log.bind(console);
+var httpDataSource = new falcor.HttpDataSource(&quot;/model.json&quot;);
+var model = new falcor.Model({ source: httpDataSource });
+var batchModel = model.batch();
+
+batchModel.getValue(&quot;todos[0].name&quot;).then(log);
+batchModel.getValue(&quot;todos[1].name&quot;).then(log);
+batchModel.getValue(&quot;todos[2].name&quot;).then(log);
+
+// The previous three model requests only send a single request
+// to the httpDataSource: &quot;todos[0..2].name&quot;
+</code></pre>
+
+<p>上記のサンプルの場合キャッシュに乗っていなくてもAPIのリクエスト数は最大1回までとなります。</p>
+
+<!-- いわゆるMVCではサーバーからデータを取得する責務をコントローラーがもつことが多いです。
+Falcorでアプリケーションを作成するパターンのひとつとして、ViewとModelの通信が非同期になる**Async MVC**があります。
+この場合サーバーからのデータの取得はコントローラーではなくモデルが勝手に行ってくれる。そのためコントローラーが素結合になります。
+またViewに必要な情報をデータ取り出し必要な情報だけを描画するため、データの取得に無駄がなく完全に必要なもののみリクエストされることになります。 -->
+
+<h2 id="graphqlとの違い-個人の感想">GraphQLとの違い(個人の感想)</h2>
+
+<p>GraphQLもFalcorもRESTが辛くなってきたときの解決法です。
+GraphQL(relay)はQuery言語として色々な値を取得することができますが、複雑で学習コストが高いです。</p>
+
+<pre><code class="language-js">// relay sample
+var fragment = Relay.QL`
+  fragment on User {
+    name,
+    surname,
+    address
+  }
+`;
+</code></pre>
+
+<p>Falcorは比較すると簡単なことしかできないため、学習コストが低く見通しがよい。</p>
+
+<pre><code class="language-js">// falcor sample
+model.
+  getValue('user.[&quot;name&quot;, &quot;surname&quot;,&quot;address&quot;]').
+  then(function(val) {
+    console.log(val);
+  });
+</code></pre>
+
+<p>個人的にはよくわからないQueryを毎回書きたくなく、Falcorを使ってシンプルに書ける恩恵の方が大きいと思います。</p>
+
+<p>サーバーの実装はGraphQLの方が言語の種類も多く、採用事例も多いような気がします。</p>
+
+<h2 id="まとめ">まとめ</h2>
+
+<p>ちゃんとRESTにしようとすると色々と辛くなっていった。
+解決策としてGraphQLやFalcorを使って、そのあたりを気にしないで実装できるようになりたいです。
+プロダクト環境で使ったことがないので使うタイミングがあれば使ってみたいなーと思ってます。</p>
+
+<h2 id="参考文献">参考文献</h2>
+
+<ul>
+<li><a href="http://www.netflix.com">http://www.netflix.com</a></li>
+<li><a href="http://netflix.github.io/falcor">http://netflix.github.io/falcor</a></li>
+<li><a href="https://facebook.github.io/relay/">https://facebook.github.io/relay/</a></li>
+</ul>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="yudppp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-noballoon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+          <div class="comment">
+    <div>
+        <a id="js-open-comment" class="event">
+            show comment <span class="disqus-comment-count" data-disqus-url="https://blog.yudppp.com/posts/rest_to_falcor/"></span>
+        </a>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+<script type="text/javascript">
+     
+     
+    var openDiqus = function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//yudppp.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    document.all("js-open-comment").style.display = "none";
+    };
+    document.getElementById("js-open-comment").addEventListener('click',openDiqus,false);
+</script>
+        </div>
+      </div>
+    </main>
+    
+<div class="container">
+	<div class="prevnext">
+		
+		<a class="pull-left" href="https://blog.yudppp.com/posts/renewal_blog/">
+			<div>&lt;&lt; ブログのリニューアルしました。</div>
+		</a>
+		
+		
+		<a class="pull-right" href="https://blog.yudppp.com/posts/moved_hugo/">
+			<div>Hugoに移行しました。 &gt;&gt;</div>
+		</a>
+		
+	</div>
+</div>
+
+    <div class="container">
+  <a href="https://blog.yudppp.com/posts/whoami/">
+    <div class="media profile">
+      <div class="media-left">
+        <img class="avatarholder" src="https://blog.yudppp.com/img/profile.svg" />
+      </div>
+      <div class="media-body">
+        <div class="media-heading">@yudppp</div>
+        <div class="media-content">Web engineer.</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <script src="https://blog.yudppp.com/js/lib.min.js"></script>
+<script src="https://blog.yudppp.com/js/app.min.js"></script>
+<script id="dsq-count-scr" src="//yudppp.disqus.com/count.js" async></script>
+  </body>
+</html>
