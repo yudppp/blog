@@ -1,35 +1,30 @@
-import Layout from "../components/Layout";
 import Link from "next/link";
-import posts from "../stores/post";
+import { connect } from "react-redux";
+import { Post, AppState } from "../features/redux/reducer";
 
 type Props = {
-  posts: {
-    title: string;
-    slug: string;
-    date: string;
-  }[];
+  posts: Post[];
 };
 
-const Top = ({ posts }: Props) => {
+const TopPage = ({ posts }: Props) => {
   return (
-    <Layout>
-      <div className="posts">
-        {posts.map(post => (
-          <div key={post.slug}>
-            <Link href={`/posts/${post.slug}`}>
-              <h2>
-                {post.title} - <span>{post.date}</span>
-              </h2>
-            </Link>
-          </div>
-        ))}
-      </div>
-    </Layout>
+    <div className="posts">
+      {posts.map(post => (
+        <div key={post.slug}>
+          <Link href={`/posts/${post.slug}`}>
+            <h2>
+              {post.title} - <span>{post.date}</span>
+            </h2>
+          </Link>
+        </div>
+      ))}
+    </div>
   );
 };
 
-Top.getInitialProps = async () => {
-  return { posts };
+const mapStateToProps = ({ posts }: AppState) => {
+  return {
+    posts
+  };
 };
-
-export default Top;
+export default connect(mapStateToProps)(TopPage);

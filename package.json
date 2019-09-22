@@ -11,13 +11,18 @@
     "getcontent": "babel-node helpers/getcontent.js install"
   },
   "dependencies": {
+    "@types/react-redux": "^7.1.2",
     "@zeit/next-css": "^1.0.1",
     "contentful": "^7.10.0",
     "hack": "^0.8.1",
     "marked": "^0.7.0",
     "next": "9.0.6",
+    "next-redux-wrapper": "^3.0.0",
     "react": "16.9.0",
-    "react-dom": "16.9.0"
+    "react-dom": "16.9.0",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
+    "typescript-fsa-reducers": "^1.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",

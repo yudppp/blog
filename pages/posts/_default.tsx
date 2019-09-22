@@ -1,9 +1,13 @@
 import { useRouter } from "next/router";
-import posts from "../../stores/post";
-import Layout from "../../components/Layout";
 import Link from "next/link";
+import { Post, AppState } from "../../features/redux/reducer";
+import { connect } from "react-redux";
 
-const Post = () => {
+type Props = {
+  posts: Post[];
+};
+
+const PostPage = ({ posts }: Props) => {
   const router = useRouter();
   const slug = router.pathname.slice("/posts/".length);
   const post = posts.find(post => post.slug === slug);
@@ -12,7 +16,7 @@ const Post = () => {
   const next = postIndex !== 0 ? posts[postIndex - 1] : null;
   const prev = postIndex !== posts.length - 1 ? posts[postIndex + 1] : null;
   return (
-    <Layout>
+    <>
       <div className="title">
         <h1>{post.title}</h1>
       </div>
@@ -37,8 +41,14 @@ const Post = () => {
           </div>
         )}
       </div>
-    </Layout>
+    </>
   );
 };
 
-export default Post;
+const mapStateToProps = ({ posts }: AppState) => {
+  return {
+    posts
+  };
+};
+
+export default connect(mapStateToProps)(PostPage);
