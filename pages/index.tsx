@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Link from "next/link";
 import { connect } from "react-redux";
 import { Post, AppState } from "../features/redux/reducer";
@@ -9,6 +10,9 @@ type Props = {
 const TopPage = ({ posts }: Props) => {
   return (
     <div className="posts">
+      <Head>
+        <title>○△□ - yudppp techblog</title>
+      </Head>
       {posts.map(post => (
         <div key={post.slug}>
           <Link href={`/posts/${post.slug}`}>
