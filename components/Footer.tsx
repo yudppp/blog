@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 const Footer = () => {
   return (
-    <a href="/posts/whoami/">
+    <Link href="/posts/whoami/">
       <div className="media profile">
         <div className="media-left">
           <img className="avatarholder" src="/static/profile.svg" />
@@ -10,7 +12,7 @@ const Footer = () => {
           <div className="media-content">Web engineer.</div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 
