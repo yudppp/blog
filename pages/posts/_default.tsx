@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Head from 'next/head'
 import Link from "next/link";
 import { Post, AppState } from "../../features/redux/reducer";
 import { connect } from "react-redux";
@@ -17,6 +18,9 @@ const PostPage = ({ posts }: Props) => {
   const prev = postIndex !== posts.length - 1 ? posts[postIndex + 1] : null;
   return (
     <>
+      <Head>
+        <title>{post.title} - ○△□ - yudppp techblog</title>
+      </Head>
       <div className="title">
         <h1>{post.title}</h1>
       </div>
