@@ -1,5 +1,5 @@
 import { reducerWithInitialState } from "typescript-fsa-reducers";
-import posts from "../../stores/post";
+import posts from "../../data/posts.json";
 
 export interface AppState {
   posts: Post[];
