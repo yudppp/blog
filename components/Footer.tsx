@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <Link href="/posts/whoami/">
+    <Link href="/posts/whoami">
       <div className="media profile">
         <div className="media-left">
           <img className="avatarholder" src="/static/profile.svg" />
