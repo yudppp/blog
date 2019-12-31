@@ -130,6 +130,7 @@ a:hover {
     display: flex;
     justify-content: center;
     padding: 8px;
+    cursor: pointer;
 }
 
 .nav__left .nav__item:first-child {
@@ -148,6 +149,10 @@ a:hover {
     margin-top: 16px;
 }
 
+.posts-item {
+    cursor: pointer;
+}
+
 .prevnext {
     padding: 16px 0;
 }
@@ -156,6 +161,7 @@ a:hover {
     margin: 4px 0;
     border-bottom: 1px solid #ffd936;
     transition: all 0.5s linear;
+    cursor: pointer;
 }
 
 .hack footer {
@@ -166,6 +172,7 @@ a:hover {
 a {
     border-bottom: 1px solid #ffd936;
     transition: all 0.5s linear;
+    cursor: pointer;
 }
 
 a:hover {
