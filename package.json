@@ -15,7 +15,7 @@
     "@zeit/next-css": "^1.0.1",
     "contentful": "^7.10.0",
     "hack": "^0.8.1",
-    "marked": "^0.7.0",
+    "marked": "^4.0.10",
     "next": "9.0.6",
     "next-redux-wrapper": "^3.0.0",
     "react": "16.9.0",
