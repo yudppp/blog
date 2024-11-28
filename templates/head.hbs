@@ -10,7 +10,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rough.js/2.1.1/rough.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      var roughness = Math.random() * Math.random();
+      var roughness = Math.random() * Math.random() * Math.random() * 2.2;
       var logos = document.getElementsByClassName("blog-logo");
       if (logos.length !== 0) {
         for (var i = 0; i < logos.length; i++) {
