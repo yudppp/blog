@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: "Noto Sans JP";
     font-style: normal;
@@ -165,7 +166,7 @@ a:hover {
 }
 
 .hack footer {
-    padding: 40px 16px 16px;
+    padding: 40px 0 16px;
     text-align: center;
 }
 
@@ -194,6 +195,11 @@ a[target="_blank"]:hover {
     background: inherit !important;
 }
 
+.blog-logo {
+    zoom: 0.5;
+    margin-left: -8px;
+}
+
 .event {
     border-bottom: 1px solid #2e6eff;
 }
@@ -207,7 +213,6 @@ a[target="_blank"]:hover {
 }
 
 .profile {
-    margin: 48px 0 16px;
     border: 1px solid #f0f0f0;
     padding: 8px 8px 4px;
 }
