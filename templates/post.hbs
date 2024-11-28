@@ -1,0 +1,19 @@
+<h1>{{title}}</h1>
+<p>{{date}}</p>
+<div class="content">{{{content}}}</div>
+<div class="prevnext">
+  {{#if next}}
+  <div class="pull-left">
+    <a href="/posts/{{next.id}}.html">
+      <span>&lt;&lt; {{next.title}}</span>
+    </a>
+  </div>
+  {{/if}}
+  {{#if prev}}
+  <div class="pull-right">
+    <a href="/posts/{{prev.id}}.html">
+      <span>{{prev.title}} &gt;&gt;</span>
+    </a>
+  </div>
+  {{/if}}
+</div>

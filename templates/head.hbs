@@ -1,0 +1,46 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="shortcut icon" href="/static/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack/0.8.1/hack.css" />
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rough.js/2.1.1/rough.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var roughness = Math.random() * Math.random();
+      var logos = document.getElementsByClassName("blog-logo");
+      if (logos.length !== 0) {
+        for (var i = 0; i < logos.length; i++) {
+          var rc = rough.canvas(logos[i]);
+          rc.circle(60, 55, 79, {
+            roughness: roughness,
+            stroke: "#111",
+            fill: "#ff2e88",
+            strokeWidth: 3,
+            fillWeight: 3
+          });
+          rc.polygon([
+            [155, 20.71],
+            [115, 90],
+            [195, 90]
+          ], {
+            roughness: roughness,
+            stroke: "#111",
+            fill: "#ffd936",
+            strokeWidth: 3,
+            fillWeight: 3
+          });
+          rc.rectangle(220, 20, 70, 70, {
+            roughness: roughness,
+            stroke: "#111",
+            fill: "#2e6eff",
+            strokeWidth: 3,
+            fillWeight: 3
+          });
+        }
+      }
+    });
+  </script>
+</head>
