@@ -5,6 +5,7 @@ require('prismjs/components/prism-javascript');
 require('prismjs/components/prism-typescript');
 require('prismjs/components/prism-sql');
 const markdownIt = require('markdown-it');
+const markdownItKatex = require('markdown-it-katex');
 const fs = require('fs-extra');
 const path = require('path');
 const handlebars = require('handlebars');
@@ -27,13 +28,12 @@ const md = markdownIt({
     }
     return `<pre class="language-plaintext"><code>${md.utils.escapeHtml(str)}</code></pre>`;
   },
-});
+}).use(markdownItKatex, { throwOnError: false, errorColor: 'red' });
 
 // Register partials
 handlebars.registerPartial('header', fs.readFileSync(path.resolve(__dirname, './templates/header.hbs'), 'utf8'));
 handlebars.registerPartial('footer', fs.readFileSync(path.resolve(__dirname, './templates/footer.hbs'), 'utf8'));
 handlebars.registerPartial('head', fs.readFileSync(path.resolve(__dirname, './templates/head.hbs'), 'utf8'));
-
 const layoutTemplate = fs.readFileSync(path.resolve(__dirname, './templates/layout.hbs'), 'utf8');
 
 const buildData = async () => {
