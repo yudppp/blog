@@ -11,8 +11,8 @@ const handlebars = require('handlebars');
 
 // Contentfulの設定
 const client = contentful.createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  space: process.env.CONTENTFUL_SPACE,
+  accessToken: process.env.CONTENTFUL_TOKEN,
 });
 
 // Markdownの設定
