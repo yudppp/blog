@@ -5,24 +5,25 @@
   <link rel="shortcut icon" href="/static/favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack/0.8.1/hack.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack/0.8.1/hack.css">
   <link rel="stylesheet" href="/static/styles.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/rough.js/2.1.1/rough.min.js"></script>
-  <script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rough.js/3.1.0/rough.js"></script>
+ <script>
     document.addEventListener('DOMContentLoaded', function() {
-      var roughness = Math.random() * Math.random();
       var logos = document.getElementsByClassName("blog-logo");
       if (logos.length !== 0) {
         for (var i = 0; i < logos.length; i++) {
-          var rc = rough.canvas(logos[i]);
-          rc.circle(60, 55, 79, {
+          var roughness = Math.pow(Math.random() * Math.random() * Math.random(), 0.5) * 2.2;
+          var rc = rough.svg(logos[i]);
+          var circle = rc.circle(60, 55, 79, {
             roughness: roughness,
             stroke: "#111",
             fill: "#ff2e88",
             strokeWidth: 3,
-            fillWeight: 3
+            fillWeight: 3,
+            fillStyle: 'zigzag'
           });
-          rc.polygon([
+          var polygon = rc.polygon([
             [155, 20.71],
             [115, 90],
             [195, 90]
@@ -31,17 +32,23 @@
             stroke: "#111",
             fill: "#ffd936",
             strokeWidth: 3,
-            fillWeight: 3
+            fillWeight: 3,
+            fillStyle: 'zigzag'
           });
-          rc.rectangle(220, 20, 70, 70, {
+          var rectangle = rc.rectangle(220, 20, 70, 70, {
             roughness: roughness,
             stroke: "#111",
             fill: "#2e6eff",
             strokeWidth: 3,
-            fillWeight: 3
+            fillWeight: 3,
+            fillStyle: 'zigzag'
           });
+          console.log(circle);
+          logos[i].append(circle);
+          logos[i].append(polygon);
+          logos[i].append(rectangle);
         }
       }
     });
-  </script>
+  </script> 
 </head>

@@ -1,237 +1,247 @@
-
 @font-face {
-    font-family: "Noto Sans JP";
-    font-style: normal;
-    font-weight: 400;
-    font-display: optional;
-    src: local("Noto Sans Japanese Regular"), local("NotoSansJapanese-Regular"),
-        url(https://fonts.gstatic.com/s/notosansjp/v13/-F62fjtqLzI2JPCgQBnw7HFYyQgP-FVth9IU.woff2) format("woff2");
-    unicode-range: U+3000-30FF, U+4E00-9FFF, U+FF00-FFEF;
+	font-family: "Noto Sans JP";
+	font-style: normal;
+	font-weight: 400;
+	font-display: optional;
+	src: local("Noto Sans Japanese Regular"), local("NotoSansJapanese-Regular"),
+		url(https://fonts.gstatic.com/s/notosansjp/v13/-F62fjtqLzI2JPCgQBnw7HFYyQgP-FVth9IU.woff2)
+		format("woff2");
+	unicode-range: U+3000-30FF, U+4E00-9FFF, U+FF00-FFEF;
 }
 
 @font-face {
-    font-family: "Noto Sans JP";
-    font-style: normal;
-    font-weight: 400;
-    font-display: optional;
-    src: local("Noto Sans Japanese Regular"), local("NotoSansJapanese-Regular"),
-        url(https://fonts.gstatic.com/s/notosansjp/v13/-F62fjtqLzI2JPCgQBnw7HFYwQgP-FVthw.woff2) format("woff2");
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-        U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-        U+FEFF, U+FFFD;
+	font-family: "Noto Sans JP";
+	font-style: normal;
+	font-weight: 400;
+	font-display: optional;
+	src: local("Noto Sans Japanese Regular"), local("NotoSansJapanese-Regular"),
+		url(https://fonts.gstatic.com/s/notosansjp/v13/-F62fjtqLzI2JPCgQBnw7HFYwQgP-FVthw.woff2)
+		format("woff2");
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+		U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+		U+FEFF, U+FFFD;
 }
 
 @font-face {
-    font-family: "Noto Sans JP";
-    font-style: normal;
-    font-weight: 700;
-    font-display: optional;
-    src: local("Noto Sans Japanese Bold"), local("NotoSansJapanese-Bold"),
-        url(https://fonts.gstatic.com/s/notosansjp/v13/-F6pfjtqLzI2JPCgQBnw7HFQei0a3XdgregdFOFh.woff2) format("woff2");
-    unicode-range: U+3000-30FF, U+4E00-9FFF, U+FF00-FFEF;
+	font-family: "Noto Sans JP";
+	font-style: normal;
+	font-weight: 700;
+	font-display: optional;
+	src: local("Noto Sans Japanese Bold"), local("NotoSansJapanese-Bold"),
+		url(https://fonts.gstatic.com/s/notosansjp/v13/-F6pfjtqLzI2JPCgQBnw7HFQei0a3XdgregdFOFh.woff2)
+		format("woff2");
+	unicode-range: U+3000-30FF, U+4E00-9FFF, U+FF00-FFEF;
 }
 
 @font-face {
-    font-family: "Noto Sans JP";
-    font-style: normal;
-    font-weight: 700;
-    font-display: optional;
-    src: local("Noto Sans Japanese Bold"), local("NotoSansJapanese-Bold"),
-        url(https://fonts.gstatic.com/s/notosansjp/v13/-F6pfjtqLzI2JPCgQBnw7HFQei0a1XdgregdFA.woff2) format("woff2");
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-        U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-        U+FEFF, U+FFFD;
+	font-family: "Noto Sans JP";
+	font-style: normal;
+	font-weight: 700;
+	font-display: optional;
+	src: local("Noto Sans Japanese Bold"), local("NotoSansJapanese-Bold"),
+		url(https://fonts.gstatic.com/s/notosansjp/v13/-F6pfjtqLzI2JPCgQBnw7HFQei0a1XdgregdFA.woff2)
+		format("woff2");
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+		U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+		U+FEFF, U+FFFD;
 }
 
 @font-face {
-    font-family: "YakuhanJP";
-    font-style: normal;
-    font-weight: 400;
-    font-display: optional;
-    src: url("https://cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/fonts/YakuHanJP/YakuHanJP-Regular.eot");
-    src: url("https://cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/fonts/YakuHanJP/YakuHanJP-Regular.woff2") format("woff2"),
-        url("https://cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/fonts/YakuHanJP/YakuHanJP-Regular.woff") format("woff");
+	font-family: "YakuhanJP";
+	font-style: normal;
+	font-weight: 400;
+	font-display: optional;
+	src: url("https://cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/fonts/YakuHanJP/YakuHanJP-Regular.eot");
+	src: url("https://cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/fonts/YakuHanJP/YakuHanJP-Regular.woff2")
+		format("woff2"),
+		url("https://cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/fonts/YakuHanJP/YakuHanJP-Regular.woff")
+		format("woff");
 }
 
 @font-face {
-    font-family: "YakuHanJP";
-    font-style: normal;
-    font-weight: 700;
-    font-display: optional;
-    src: url("https://cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/fonts/YakuHanJP/YakuHanJP-Bold.eot");
-    src: url("https://cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/fonts/YakuHanJP/YakuHanJP-Bold.woff2") format("woff2"),
-        url("https://cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/fonts/YakuHanJP/YakuHanJP-Bold.woff") format("woff");
+	font-family: "YakuHanJP";
+	font-style: normal;
+	font-weight: 700;
+	font-display: optional;
+	src: url("https://cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/fonts/YakuHanJP/YakuHanJP-Bold.eot");
+	src: url("https://cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/fonts/YakuHanJP/YakuHanJP-Bold.woff2")
+		format("woff2"),
+		url("https://cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/fonts/YakuHanJP/YakuHanJP-Bold.woff")
+		format("woff");
 }
 
 .hack,
 .hack h1,
 .hack h2 {
-    font-family: "YakuHanJP", "Noto Sans JP", "メイリオ", Meiryo, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+	font-family: "YakuHanJP", "Noto Sans JP", "メイリオ", Meiryo, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 .hack {
-    padding: 8px;
-    color: #111;
-    transition: all 0.3s linear;
+	padding: 8px;
+	color: #111;
+	transition: all 0.3s linear;
+	background-color: #fcfcfc;
 }
 
 .container {
-    max-width: 640px;
+	max-width: 640px;
 }
 
 a {
-    color: #111;
+	color: #111;
 }
 
 a:hover {
-    color: #000;
+	color: #000;
 }
 
 .content img {
-    max-width: 100%;
+	max-width: 100%;
 }
 
 .content dd,
 .content dt,
 .content li {
-    margin-bottom: 0.2rem;
+	margin-bottom: 0.2rem;
 }
 
 .nav {
-    align-items: stretch;
-    display: flex;
-    position: relative;
-    text-align: center;
-    /* margin-left: -5px; */
+	align-items: stretch;
+	display: flex;
+	position: relative;
+	text-align: center;
+	height: 80px;
 }
 
 .nav__right {
-    align-items: stretch;
-    display: flex;
-    flex-basis: 0;
-    flex-grow: 1;
-    justify-content: flex-end;
+	align-items: stretch;
+	display: flex;
+	flex-basis: 0;
+	flex-grow: 1;
+	justify-content: flex-end;
 }
 
 .nav__left {
-    align-items: stretch;
-    display: flex;
-    flex-basis: 0;
-    flex-grow: 1;
-    justify-content: flex-start;
-    overflow: hidden;
-    overflow-x: auto;
-    white-space: nowrap;
+	align-items: stretch;
+	display: flex;
+	flex-basis: 0;
+	flex-grow: 1;
+	justify-content: flex-start;
+	overflow: hidden;
+	overflow-x: auto;
+	white-space: nowrap;
 }
 
 .nav__item {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    padding: 8px;
-    cursor: pointer;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	padding: 8px;
+	cursor: pointer;
 }
 
 .nav__left .nav__item:first-child {
-    padding-left: 0;
+	padding-left: 0;
 }
 
 .nav__right .nav__item:last-child {
-    padding-right: 0;
+	padding-right: 0;
 }
 
 .title {
-    padding: 8px 0 16px;
+	padding: 8px 0 16px;
 }
 
 .posts {
-    margin-top: 16px;
+	margin-top: 16px;
 }
 
 .posts-item {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .prevnext {
-    padding: 16px 0;
+	padding: 16px 0;
 }
 
 .prevnext span {
-    margin: 4px 0;
-    border-bottom: 1px solid #ffd936;
-    transition: all 0.5s linear;
-    cursor: pointer;
+	margin: 4px 0;
+	border-bottom: 1px solid #ffd936;
+	transition: all 0.5s linear;
+	cursor: pointer;
 }
 
 .hack footer {
-    padding: 40px 0 16px;
-    text-align: center;
+	padding: 40px 0 16px;
+	text-align: center;
 }
 
 a {
-    border-bottom: 1px solid #ffd936;
-    transition: all 0.5s linear;
-    cursor: pointer;
+	border-bottom: 1px solid #ffd936;
+	transition: all 0.5s linear;
+	cursor: pointer;
 }
 
 a:hover {
-    background: #ffd936;
-    transition: all 0.3s linear;
+	background: #ffd936;
+	transition: all 0.3s linear;
 }
 
 a[target="_blank"] {
-    border-bottom: 1px solid #ff2e88;
-    transition: all 0.5s linear;
+	border-bottom: 1px solid #ff2e88;
+	transition: all 0.5s linear;
 }
 
 a[target="_blank"]:hover {
-    background: #ff2e88;
+	background: #ff2e88;
 }
 
 .nocolor {
-    border-bottom: none !important;
-    background: inherit !important;
+	border-bottom: none !important;
+	background: inherit !important;
 }
 
 .blog-logo {
-    zoom: 0.5;
-    margin-left: -8px;
+	zoom: 0.5;
+	margin-left: -19px;
 }
 
 .event {
-    border-bottom: 1px solid #2e6eff;
+	border-bottom: 1px solid #2e6eff;
 }
 
 .event:hover {
-    background: #2e6eff;
+	background: #2e6eff;
 }
 
 .comment {
-    padding: 16px 0;
+	padding: 16px 0;
 }
 
 .profile {
-    border: 1px solid #f0f0f0;
-    padding: 8px 8px 4px;
+	border: 1px solid #f0f0f0;
+	padding: 8px 8px 4px;
 }
 
 .hack .content pre {
-    padding: 0;
+	padding: 0;
 }
 
 .hack .content pre code {
-    font-size: 0.8rem;
-    display: block;
-    overflow-x: auto;
-    background: white;
-    color: #333;
-    padding: 18px;
-    -webkit-text-size-adjust: none;
+	font-size: 0.8rem;
+	display: block;
+	overflow-x: auto;
+	background: white;
+	color: #333;
+	padding: 18px;
+	-webkit-text-size-adjust: none;
 }
 
 .logo {
-    margin: 40px auto 60px;
-    display: block;
+	margin: 40px auto 60px;
+	display: block;
 }
