@@ -170,14 +170,17 @@ a:hover {
 
 .prevnext span {
 	margin: 4px 0;
-	border-bottom: 1px solid #ffd936;
-	transition: all 0.5s linear;
-	cursor: pointer;
 }
 
 .hack footer {
 	padding: 40px 0 16px;
 	text-align: center;
+}
+
+.content a, .prevnext a {
+  text-decoration: none;
+  border-bottom: none;
+  display: inline-block;
 }
 
 a {
@@ -187,17 +190,8 @@ a {
 }
 
 a:hover {
-	background: #ffd936;
+	background: rgba(255, 217, 54, 0.8);
 	transition: all 0.3s linear;
-}
-
-a[target="_blank"] {
-	border-bottom: 1px solid #ff2e88;
-	transition: all 0.5s linear;
-}
-
-a[target="_blank"]:hover {
-	background: #ff2e88;
 }
 
 .nocolor {

@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack/0.8.1/hack.css">
   <link rel="stylesheet" href="/static/styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rough.js/3.1.0/rough.js"></script>
- <script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rough-notation/0.5.1/rough-notation.iife.min.js"></script>
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
       var logos = document.getElementsByClassName("blog-logo");
       if (logos.length !== 0) {
@@ -43,7 +44,6 @@
             fillWeight: 3,
             fillStyle: 'hachure'
           });
-          console.log(circle);
           logos[i].append(circle);
           logos[i].append(polygon);
           logos[i].append(rectangle);
@@ -51,4 +51,20 @@
       }
     });
   </script> 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('.content a, .prevnext a');
+      links.forEach(link => {
+        const annotation = RoughNotation.annotate(link, {
+          type: 'underline',
+          color: 'rgba(255, 217, 54, 0.6)',
+          strokeWidth: 2,
+          padding: 0,
+          iterations: 2,
+          animate: false,
+        });
+        annotation.show();
+      });
+    });
+  </script>
 </head>
