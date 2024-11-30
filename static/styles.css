@@ -177,10 +177,11 @@ a:hover {
 	text-align: center;
 }
 
-.content a, .prevnext a {
-  text-decoration: none;
-  border-bottom: none;
-  display: inline-block;
+.content a,
+.prevnext a {
+	text-decoration: none;
+	border-bottom: none;
+	display: inline-block;
 }
 
 a {
