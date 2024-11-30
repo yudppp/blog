@@ -19,7 +19,6 @@ const client = contentful.createClient({
 
 // Markdownの設定
 const md = markdownIt({
-	math: true,
 	options: {
 		typographer: true,
 	},
@@ -29,7 +28,14 @@ const md = markdownIt({
 		}
 		return `<pre class="language-plaintext"><code>${md.utils.escapeHtml(str)}</code></pre>`;
 	},
-}).use(markdownItKatex, { throwOnError: false, errorColor: "red" });
+}).use(markdownItKatex, { 
+	throwOnError: true, 
+	errorColor: "red",
+	delimiters: [
+	  {left: "$", right: "$", display: false},
+	  {left: "$$", right: "$$", display: true}
+	]
+  })
 
 // Register partials
 handlebars.registerPartial(
