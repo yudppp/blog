@@ -68,6 +68,7 @@ const buildData = async () => {
 				title: item.fields.title,
 				date: item.fields.date,
 				content: md.render(item.fields.contents),
+				noindex: item.fields.noindex
 			};
 		});
 
@@ -125,6 +126,7 @@ const buildData = async () => {
 			const postHtml = postCompiled({
 				title: post.title,
 				body: handlebars.compile(postTemplate)(post),
+				noindex: post.noindex
 			});
 			const minifiedPostHtml = minifyHtml(postHtml);
 			const postPath = path.join(__dirname, "./build/posts", `${post.id}.html`);

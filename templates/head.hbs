@@ -1,6 +1,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{#if noindex }}
+  <meta name="robots" content="noindex">
+  {{/if}}
   <title>{{title}}</title>
   <link rel="shortcut icon" href="/static/favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css">
