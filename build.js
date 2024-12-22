@@ -10,6 +10,7 @@ const fs = require("fs-extra");
 const path = require("path");
 const handlebars = require("handlebars");
 const htmlMinifier = require("html-minifier").minify;
+const generateOGPImage = require('./ogpGenerator')
 
 // Contentfulの設定
 const client = contentful.createClient({
@@ -19,7 +20,6 @@ const client = contentful.createClient({
 
 // Markdownの設定
 const md = markdownIt({
-	math: true,
 	options: {
 		typographer: true,
 	},
@@ -29,7 +29,14 @@ const md = markdownIt({
 		}
 		return `<pre class="language-plaintext"><code>${md.utils.escapeHtml(str)}</code></pre>`;
 	},
-}).use(markdownItKatex, { throwOnError: false, errorColor: "red" });
+}).use(markdownItKatex, { 
+	throwOnError: true, 
+	errorColor: "red",
+	delimiters: [
+	  {left: "$", right: "$", display: false},
+	  {left: "$$", right: "$$", display: true}
+	]
+  })
 
 // Register partials
 handlebars.registerPartial(
@@ -122,11 +129,27 @@ const buildData = async () => {
 				path.resolve(__dirname, "./templates/post.hbs"),
 				"utf8",
 			);
+			// OGP画像のパス設定
+			const ogpImagePath = path.join(__dirname, './build/ogp', `${post.id}.png`);
+			const ogpImageUrl = `/ogp/${post.id}.png`; 
+			// OGP画像の生成
+			await generateOGPImage(post.title, new Date(post.date).toLocaleDateString('ja-JP'), ogpImagePath);
+
+			// 投稿データにOGP画像URLを追加
+			post.ogpImage = ogpImageUrl;
+
+			// 記事の説明を生成（例として最初の200文字を使用）
+			const description = post.content.replace(/<[^>]+>/g, '').substring(0, 200);
+				  
 			const postCompiled = handlebars.compile(layoutTemplate);
 			const postHtml = postCompiled({
 				title: post.title,
+				description: description,
 				body: handlebars.compile(postTemplate)(post),
 				noindex: post.noindex,
+				ogpImage: post.ogpImage,
+				siteUrl: process.env.SITE_URL || 'https://blog.yudppp.com',
+				pageUrl: `/posts/${post.id}`, 
 			});
 			const minifiedPostHtml = minifyHtml(postHtml);
 			const postPath = path.join(__dirname, "./build/posts", `${post.id}.html`);
