@@ -4,6 +4,15 @@
   {{#if noindex }}
   <meta name="robots" content="noindex">
   {{/if}}
+  <meta property="og:title" content="{{title}}" />
+  <meta property="og:description" content="{{description}}" />
+  <meta property="og:image" content="{{siteUrl}}{{ogpImage}}" />
+  <meta property="og:url" content="{{siteUrl}}{{pageUrl}}" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{title}}" />
+  <meta name="twitter:description" content="{{description}}" />
+  <meta name="twitter:image" content="{{siteUrl}}{{ogpImage}}" />
   <title>{{title}}</title>
   <link rel="shortcut icon" href="/static/favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css">
