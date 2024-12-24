@@ -11,6 +11,7 @@ const path = require("path");
 const handlebars = require("handlebars");
 const htmlMinifier = require("html-minifier").minify;
 const generateOGPImage = require('./ogpGenerator')
+const { Feed } = require("feed");
 
 // Contentfulの設定
 const client = contentful.createClient({
@@ -36,7 +37,7 @@ const md = markdownIt({
 	  {left: "$", right: "$", display: false},
 	  {left: "$$", right: "$$", display: true}
 	]
-  })
+});
 
 // Register partials
 handlebars.registerPartial(
@@ -58,6 +59,8 @@ const layoutTemplate = fs.readFileSync(
 
 const buildData = async () => {
 	try {
+		const siteUrl = process.env.SITE_URL || "https://blog.yudppp.com";
+		const siteTitle = "○△□ - yudppp techblog"
 		// Contentfulからブログ記事を取得
 		const entries = await client.getEntries({
 			content_type: "posts",
@@ -116,7 +119,8 @@ const buildData = async () => {
 		);
 		const indexCompiled = handlebars.compile(layoutTemplate);
 		const indexHtml = indexCompiled({
-			title: "○△□ - yudppp techblog",
+			title: siteTitle,
+			siteTitle,
 			body: handlebars.compile(indexTemplate)({ posts }),
 		});
 		const minifiedIndexHtml = minifyHtml(indexHtml);
@@ -124,7 +128,7 @@ const buildData = async () => {
 		await fs.outputFile(indexPath, minifiedIndexHtml);
 
 		// 各記事詳細ページを生成
-		postsData.forEach(async (post) => {
+		for (const post of postsData) {
 			const postTemplate = fs.readFileSync(
 				path.resolve(__dirname, "./templates/post.hbs"),
 				"utf8",
@@ -133,28 +137,63 @@ const buildData = async () => {
 			const ogpImagePath = path.join(__dirname, './build/ogp', `${post.id}.png`);
 			const ogpImageUrl = `/ogp/${post.id}.png`; 
 			// OGP画像の生成
-			await generateOGPImage(post.title, new Date(post.date).toLocaleDateString('ja-JP'), ogpImagePath);
+			await generateOGPImage(
+				post.title,
+				new Date(post.date).toLocaleDateString('ja-JP'),
+				ogpImagePath
+			);
 
 			// 投稿データにOGP画像URLを追加
 			post.ogpImage = ogpImageUrl;
 
 			// 記事の説明を生成（例として最初の200文字を使用）
 			const description = post.content.replace(/<[^>]+>/g, '').substring(0, 200);
-				  
+			
 			const postCompiled = handlebars.compile(layoutTemplate);
 			const postHtml = postCompiled({
-				title: post.title,
+				title: `${post.title} - ${siteTitle}`,
+				siteTitle,
 				description: description,
 				body: handlebars.compile(postTemplate)(post),
 				noindex: post.noindex,
 				ogpImage: post.ogpImage,
-				siteUrl: process.env.SITE_URL || 'https://blog.yudppp.com',
+				siteUrl,
 				pageUrl: `/posts/${post.id}`, 
 			});
 			const minifiedPostHtml = minifyHtml(postHtml);
 			const postPath = path.join(__dirname, "./build/posts", `${post.id}.html`);
 			await fs.outputFile(postPath, minifiedPostHtml);
+		}
+
+		const feed = new Feed({
+			title: siteTitle,
+			description: "yudpppの技術ブログ",
+			id: siteUrl,
+			link: siteUrl,
+			language: "ja",
+			author: "yudppp",
+			updated: new Date(),
+			feedLinks: {
+				rss: `${siteUrl}/rss.xml`,
+			},
 		});
+
+		postsData.forEach((post) => {
+			const postUrl = `${siteUrl}/posts/${post.id}`;
+			const shortDescription = post.content.replace(/<[^>]+>/g, '').substring(0, 200);
+			feed.addItem({
+				title: post.title,
+				id: postUrl,
+				link: postUrl,
+				description: shortDescription,
+				content: post.content,
+				date: new Date(post.date),
+			});
+		});
+
+		const rssXml = feed.rss2();
+		const rssPath = path.join(__dirname, "./build/rss.xml");
+		await fs.outputFile(rssPath, rssXml);
 
 		console.log("Data and pages have been built and saved successfully");
 	} catch (error) {
