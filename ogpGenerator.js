@@ -1,5 +1,4 @@
-// 必要なモジュールをインポート
-const { createCanvas, registerFont } = require('canvas');
+const { createCanvas, registerFont, loadImage } = require('canvas');
 const fs = require('fs');
 const path = require('path');
 
@@ -19,9 +18,16 @@ async function generateOGPImage(title, date, outputPath) {
         const canvas = createCanvas(width, height);
         const ctx = canvas.getContext('2d');
 
-        // 背景色を設定（例: 白色）
+        // 背景色を設定
         ctx.fillStyle = '#FFFFFF';
         ctx.fillRect(0, 0, width, height);
+
+        // ロゴ画像を左上に描画
+        const logoPath = path.join(__dirname, 'static/logo.png');
+        const logoImage = await loadImage(logoPath);
+        const logoWidth = 240; // ロゴの幅
+        const logoHeight = 80; // ロゴの高さ
+        ctx.drawImage(logoImage, 30, 30, logoWidth, logoHeight);
 
         // フォントの登録
         registerFont(path.join(__dirname, 'fonts', 'NotoSansJP-Light.ttf'), { family: 'Noto Sans JP' });
@@ -41,7 +47,7 @@ async function generateOGPImage(title, date, outputPath) {
 
         // タイトルをキャンバスの中央に描画
         lines.forEach((line, index) => {
-            ctx.fillText(line, width / 2, height / 2 - textHeight / 2 + index * lineHeight);
+            ctx.fillText(line, width / 2, height / 2 - textHeight / 2 + index * lineHeight + 15);
         });
 
         // 日付のスタイルを設定
