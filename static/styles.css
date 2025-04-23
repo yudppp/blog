@@ -158,6 +158,9 @@ a:hover {
 
 .posts {
 	margin-top: 16px;
+	display: flex;
+	gap: 20px;
+	flex-direction: column;
 }
 
 .posts-item {
@@ -198,6 +201,10 @@ a:hover {
 .nocolor {
 	border-bottom: none !important;
 	background: inherit !important;
+}
+
+.nomargin {
+	margin: 0 !important;
 }
 
 .blog-logo {
