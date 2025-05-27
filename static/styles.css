@@ -144,6 +144,10 @@ a:hover {
 	cursor: pointer;
 }
 
+.nav__item__link--active {
+	background: rgba(255, 217, 54, 0.8);
+}
+
 .nav__left .nav__item:first-child {
 	padding-left: 0;
 }
@@ -240,7 +244,6 @@ a:hover {
 	background: white;
 	color: #333;
 	padding: 18px;
-	-webkit-text-size-adjust: none;
 }
 
 .logo {

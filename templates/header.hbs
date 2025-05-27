@@ -7,5 +7,14 @@
         </a>
       </span>
     </div>
-  </div>
+    {{#if isIndex}}
+      <div class="nav__right">
+        <span class="nav__item" >
+          <a href="/" class="{{#if isPosts}}nav__item__link--active{{/if}}">Posts</a>
+        </span>
+        <span class="nav__item">
+          <a href="/decks" class="{{#if isDecks}}nav__item__link--active{{/if}}">Decks</a>
+        </span>
+      </div>
+    {{/if}}
 </header>

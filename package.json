@@ -5,13 +5,16 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "npx serve ./build",
+		"start:decks": "PORT=1234 npx @marp-team/marp-cli --server decks --theme decks/theme/theme.css",
 		"build": "node build.js; cp -r static/ build/static/"
 	},
 	"dependencies": {
+		"@marp-team/marp-cli": "^4.1.2",
 		"canvas": "^2.11.2",
 		"contentful": "^11.2.5",
 		"feed": "^4.2.2",
 		"fs-extra": "^11.2.0",
+		"gray-matter": "^4.0.3",
 		"handlebars": "^4.7.8",
 		"html-minifier": "^4.0.0",
 		"markdown-it": "^14.1.0",
