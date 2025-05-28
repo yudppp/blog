@@ -4,6 +4,7 @@ title: "Marp カスタムテーマの使い方"
 description: カスタムテーマの使い方・活用例まとめ
 date: 2025-05-28
 theme: hack
+paginate: true
 ---
 
 # Marp カスタムテーマの使い方
@@ -90,11 +91,52 @@ theme: hack
 
 このテーマでは、コードブロックの上下に「```」が自動で付きます。
 
-```js
-console.log('Marpテーマ!');
+```go
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello, 世界")
+}
 ```
 
 ---
+<!-- class: split-40-60 -->
+
+<div class="left">
+
+## 3. コードブロックの装飾
+
+- `split-40-60` とセット
+
+</div>
+<div class="right">
+
+```js
+function VideoList({ videos, emptyHeading }) {
+  const count = videos.length;
+  let heading = emptyHeading;
+  if (count > 0) {
+    const noun = count > 1 ? 'Videos' : 'Video';
+    heading = count + ' ' + noun;
+  }
+  return (
+    <section>
+      <h2>{heading}</h2>
+      {videos.map(video =>
+        <Video key={video.id} video={video} />
+      )}
+    </section>
+  );
+}
+```
+
+</div>
+
+---
+
+<!-- class: normal -->
 
 ## 4. リスト・見出しのカスタマイズ
 

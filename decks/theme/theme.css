@@ -424,13 +424,19 @@ section.split {
 section.split .left {
   grid-column: 1;
   padding-right: 1rem;
+  height: calc(100vh - 4rem);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 section.split .right {
   grid-column: 2;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  height: calc(100vh - 4rem);
 }
 
 section.split img {
@@ -450,13 +456,19 @@ section.split-60-40 {
 section.split-60-40 .left {
   grid-column: 1;
   padding-right: 1rem;
+  height: calc(100vh - 4rem);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 section.split-60-40 .right {
   grid-column: 2;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  height: calc(100vh - 4rem);
 }
 
 /* 40/60 split variation - more space for image */
@@ -465,16 +477,27 @@ section.split-40-60 {
   grid-template-columns: 2fr 3fr; /* 40% / 60% split */
   grid-gap: 1rem;
   align-items: flex-start;
+  height: 100vh;
 }
 
 section.split-40-60 .left {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
   grid-column: 1;
   padding-right: 1rem;
+  height: calc(100vh - 4rem);
 }
 
 section.split-40-60 .right {
   grid-column: 2;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  height: calc(100vh - 4rem);
+}
+
+section.split pre, section.split-60-40 pre, section.split-40-60 pre {
+    width: 100%;
 }
