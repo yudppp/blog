@@ -1,147 +1,169 @@
 ---
 marp: true
-title: "Marp カスタムテーマ作ってみた"
-description: LLMブームで再注目！Markdownでスライドを作る時代へ
-date: 2025-05-27
+title: "Marp カスタムテーマの使い方"
+description: カスタムテーマの使い方・活用例まとめ
+date: 2025-05-28
 theme: hack
 ---
 
-# Marp カスタムテーマ作ってみた
+# Marp カスタムテーマの使い方
 
 ---
 
-## Marpとは？
+<!-- class: split-60-40 -->
 
-- **Markdownでスライドが作れる**オープンソースツール
-- CSSでデザインを自由にカスタマイズ可能
-- GitHub連携・CI/CDとの相性抜群
-- **CLI / VS Code / Marp Web** など複数の使い方あり
+<div class="left">
 
----
+## プロフィール
 
-## なぜ今Marpが注目されているのか？
+- 名前: yudppp
+- エンジニア
+- Go, TypeScript, フロントエンド・バックエンド開発
+- 技術発信・コミュニティ活動が好き
+- [GitHub](https://github.com/yudppp)
 
-- **LLMブームでMarkdown文化が再燃**  
-  → ChatGPTなどでMarkdown出力が一般的に  
-- 技術系プレゼンで「コード重視」の需要が増加  
-- Markdownベースなので**再利用性が高く、修正も簡単**
+</div>
 
----
+<div class="right">
 
-## きっかけ
+<img src="/static/profile.svg" alt="Profile" style="width: 140px;border-radius: 50%;" />
 
-- 以前はFigmaでスライド作成 →  
-  コードハイライトや更新が面倒だった…
-- 技術ブログや発表資料で統一感を持たせたい
-- Marpなら**Markdown＋CSSで簡単に**テーマが作れる！
+</div>
 
 ---
 
-## Marpテーマの作り方（基本）
+<!-- class: normal -->
 
-1. `theme.css` を作成（今回は [hack.css](https://github.com/egoist/hack) を参考）
-2. `@theme` ディレクティブでテーマ名を宣言
-3. Marp CLIで `--theme` オプションを使ってビルド
 
-```css
-/* decks/theme/theme.css */
-@theme hack;
-@import "default";
-
-:root {
-  --key-color: #ffd936;
-  --accent-color: #2e6eff;
-}
-
-/* ...カスタムCSS... */
-````
+## このテーマを使いこなす！
 
 ---
 
-## カスタムの工夫ポイント
+## 1. テーマの指定方法
 
-* フォントや色の統一
-* 見出し・リスト・表のスタイル変更
-* コードブロックやblockquoteのデザイン改善
-* **日本語フォント対応・レスポンシブ対応**も可能！
+スライド冒頭のYAMLフロントマターで `theme: hack` を指定します。
 
+```yaml
 ---
-
-## コードブロックの工夫（例）
-
-````css
-section pre code:before {
-  content: "```";
-  display: block;
-}
-section pre code:after {
-  content: "```";
-  display: block;
-  margin-top: 0.5rem;
-}
-````
-
+marp: true
+theme: hack
 ---
-
-## Goのコードサンプル（syntax highlight）
-
-```go
-package main
-
-import "fmt"
-
-func main() {
-  fmt.Println("Hello, Marp!")
-}
 ```
 
 ---
 
-## TypeScriptのコードサンプル
+## 2. Splitレイアウトの使い方
 
-```ts
-type User = {
-  id: number
-  name: string
-}
+左右にテキストと画像を分けたいときは、スライド先頭にクラスを指定します。
 
-const fetchUser = async (id: number): Promise<User> => {
-  const res = await fetch(`/api/users/${id}`)
-  return res.json()
-}
+```markdown
+<!-- class: split -->
+```
+
+- `split` : 50/50
+- `split-60-40` : 左6割/右4割
+- `split-40-60` : 左4割/右6割
+
+---
+
+<!-- class: split -->
+
+<div class="left">
+
+### 例: splitレイアウト
+
+- テキストを左側に
+- 画像や図を右側に
+- レスポンシブ対応
+
+</div>
+<div class="right">
+
+<img src="/static/profile.svg" alt="profile" style="max-width: 80%;" />
+
+</div>
+
+---
+<!-- class: normal -->
+
+## 3. コードブロックの装飾
+
+このテーマでは、コードブロックの上下に「```」が自動で付きます。
+
+```js
+console.log('Marpテーマ!');
 ```
 
 ---
 
-## スライドの見た目（例）
+## 4. リスト・見出しのカスタマイズ
 
-* タイトル、表、リスト、画像、数式まで美しく表示可能！
-
-![Marp Logo](https://raw.githubusercontent.com/marp-team/marp/master/marp.png)
+- リストはCSSでマーカーを制御（`-`や`1.`が一つだけ表示）
+- 見出しには自動で `##` などが付きます
 
 ---
 
-## 使ってみてよかったこと
+## 5. 日本語フォント・レスポンシブ
 
-* スライドの**更新が圧倒的に楽に！**
-* デザインの再利用性が高い
-* バージョン管理しやすい
-* **チームでの共有やコラボレーションにも最適**
+- Noto Sans JP, YakuhanJP で日本語も美しく
+- スマホでも見やすい大きめフォント
+
+---
+
+## 6. 画像の使い方
+
+- 画像は `/static/` フォルダに置く
+- 例: `<img src="/static/profile.svg" />`
+- Markdown記法もOK: `![alt](/static/profile.svg)`
+
+---
+
+<!-- class: split-40-60 -->
+
+<div class="left">
+
+### 例: プロフィール紹介
+
+- split-40-60 で画像を大きく
+- テキストは左側
+
+</div>
+<div class="right">
+
+<img src="/static/profile.svg" alt="profile" style="max-width: 100%; max-height: 60vh; border-radius: 50%; box-shadow: 0 4px 16px rgba(0,0,0,0.08);" />
+
+</div>
+
+---
+<!-- class: normal -->
+
+## 7. カスタムCSSの追加
+
+`theme.css` を編集すれば、
+- 色やフォント
+- レイアウト
+- コード装飾
+など自由に拡張できます。
+
+---
+
+## 注意事項・Tips
+
+- `<!-- class: split -->` などでレイアウトを切り替えた後、
+  - 通常のスライドに戻したい場合は `<!-- class: normal -->` を明示的に指定してください
+- split系レイアウトは全体が左右分割されるので、
+  - 1カラムに戻したい場合は必ず `<!-- class: normal -->` を使う
+- クラス指定を忘れると、前のレイアウトが引き継がれることがあります
+- 画像パスは `/static/` 配下を推奨
+- カスタムCSSを追加した場合は、Marpのキャッシュやビルドをリフレッシュしてください
 
 ---
 
 ## まとめ
 
-* FigmaからMarpに移行して大満足
-* Markdownでスライドが書けると、**作成・更新がとても楽！**
-* カスタムテーマでデザインも統一できる
-* LLMとの相性も◎
+- YAMLでテーマ指定
+- split系でレイアウト自在
+- コード・リスト・日本語も美しく
+- 画像はstatic/に置く
+- CSSでどんどんカスタマイズ！
 
----
-
-## 参考リンク集
-
-* 📘 [Marp公式](https://marp.app/)
-* 🎨 [Marpテーマ作成ガイド](https://marp.app/theme-css)
-* 🛠️ [GitHub: marp-team/marp](https://github.com/marp-team/marp)
-* 💡 [hack.css](https://github.com/egoist/hack)
