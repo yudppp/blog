@@ -267,7 +267,15 @@ section h6:before {
     content: "###### "
 }
 
+section ul,
+section ol {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
 section li {
+    list-style: none;
     position: relative;
     display: block;
     padding-left: 20px
@@ -403,4 +411,70 @@ section::after {
   position: absolute;
   bottom: 10px;
   right: 20px;
+}
+
+/* Split layout: Text on the left, image on the right */
+section.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Equal split by default */
+  grid-gap: 1rem;
+  align-items: flex-start;
+}
+
+section.split .left {
+  grid-column: 1;
+  padding-right: 1rem;
+}
+
+section.split .right {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+section.split img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+/* 60/40 split variation - more space for text */
+section.split-60-40 {
+  display: grid;
+  grid-template-columns: 3fr 2fr; /* 60% / 40% split */
+  grid-gap: 1rem;
+  align-items: flex-start;
+}
+
+section.split-60-40 .left {
+  grid-column: 1;
+  padding-right: 1rem;
+}
+
+section.split-60-40 .right {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* 40/60 split variation - more space for image */
+section.split-40-60 {
+  display: grid;
+  grid-template-columns: 2fr 3fr; /* 40% / 60% split */
+  grid-gap: 1rem;
+  align-items: flex-start;
+}
+
+section.split-40-60 .left {
+  grid-column: 1;
+  padding-right: 1rem;
+}
+
+section.split-40-60 .right {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
