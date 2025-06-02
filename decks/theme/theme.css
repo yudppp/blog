@@ -278,7 +278,7 @@ section li {
     list-style: none;
     position: relative;
     display: block;
-    padding-left: 20px
+    padding-left: 32px
 }
 
 section li:after {
