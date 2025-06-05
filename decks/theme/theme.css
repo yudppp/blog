@@ -94,6 +94,11 @@ body {
     --accent-color: #2e6eff;
 }
 
+:root.invert {
+    --key-color: #ffd936;
+    --accent-color: #ff2264;
+}
+
 section {
     color: #222224;
     padding: 2rem;
@@ -105,6 +110,10 @@ section {
     font-family: "YakuhanJP", "Noto Sans JP", "メイリオ", Meiryo, sans-serif !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+section.invert {
+    color: #fff;
 }
 
 section * {
@@ -129,7 +138,7 @@ fieldset {
 
 section pre {
     padding: 1rem 0;
-    background-color: #fff;
+    background-color: inherit;
     border: none;
     overflow: auto
 }
@@ -147,6 +156,10 @@ section a {
     border-bottom: 2px solid var(--key-color);
     transition: all 0.3s linear;
     text-decoration: none;
+}
+
+section.invert a {
+    color: #fff;
 }
 
 section a:hover {
@@ -215,6 +228,10 @@ section h1 {
     overflow: hidden
 }
 
+section.invert h1 {
+    color: #fff;
+}
+
 section h1:after {
     content: "====================================================================================================";
     position: absolute;
@@ -278,7 +295,8 @@ section li {
     list-style: none;
     position: relative;
     display: block;
-    padding-left: 32px
+    padding-left: 32px;
+    margin: 0 0 calc(var(--marpit-root-font-size, 1rem) * 0.33);
 }
 
 section li:after {
@@ -373,10 +391,6 @@ section hr:after {
     word-wrap: break-word
 }
 
-section ol>li:after {
-    content: "1."
-}
-
 section p {
     margin: 0 0 1.75rem
 }
@@ -413,6 +427,11 @@ section::after {
   right: 20px;
 }
 
+
+section.invert::after {
+    color: #ccc;
+}
+
 /* Split layout: Text on the left, image on the right */
 section.split {
   display: grid;
@@ -424,7 +443,7 @@ section.split {
 section.split .left {
   grid-column: 1;
   padding-right: 1rem;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 8rem);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -436,7 +455,7 @@ section.split .right {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 8rem);
 }
 
 section.split img {
@@ -456,7 +475,7 @@ section.split-60-40 {
 section.split-60-40 .left {
   grid-column: 1;
   padding-right: 1rem;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 8rem);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -468,7 +487,7 @@ section.split-60-40 .right {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 8rem);
 }
 
 /* 40/60 split variation - more space for image */
@@ -487,7 +506,7 @@ section.split-40-60 .left {
   flex-direction: column;
   grid-column: 1;
   padding-right: 1rem;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 8rem);
 }
 
 section.split-40-60 .right {
@@ -495,7 +514,7 @@ section.split-40-60 .right {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 8rem);
 }
 
 section.split pre, section.split-60-40 pre, section.split-40-60 pre {
