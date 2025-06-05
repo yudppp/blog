@@ -6,6 +6,7 @@
 	"scripts": {
 		"start": "npx serve ./build",
 		"start:decks": "PORT=1234 npx @marp-team/marp-cli --server decks --theme decks/theme/theme.css",
+		"start:decks-drafts": "PORT=1234 npx @marp-team/marp-cli --server decks/drafts --theme decks/theme/theme.css",
 		"build": "node build.js; cp -r static/ build/static/; cp -r decks/static/ build/static/"
 	},
 	"dependencies": {
