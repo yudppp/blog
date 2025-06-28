@@ -88,9 +88,23 @@ async function generatePages({ posts, decks }) {
 
   // Generate each post detail page
   // ナビゲーションを非表示にするためisDecks/isPostsを渡さない
-  for (const post of posts) {
+  for (let i = 0; i < posts.length; i++) {
+    const post = posts[i];
+    
+    // 前後の記事を取得
+    const prevPost = i < posts.length - 1 ? posts[i + 1] : null;
+    const nextPost = i > 0 ? posts[i - 1] : null;
+    
     // 記事の説明（最初の200文字）
     const description = post.content.replace(/<[^>]+>/g, '').substring(0, 200);
+    
+    // prev/nextデータを含む記事オブジェクトを作成
+    const postWithNavigation = {
+      ...post,
+      prev: prevPost ? { id: prevPost.id, title: prevPost.title } : null,
+      next: nextPost ? { id: nextPost.id, title: nextPost.title } : null,
+    };
+    
     const postCompiled = handlebars.compile(layoutTemplate);
     const postHtml = postCompiled({
       title: `${post.title} - ${siteTitle}`,
@@ -98,7 +112,7 @@ async function generatePages({ posts, decks }) {
       siteUrl,
       author,
       description: description,
-      body: handlebars.compile(postTemplate)(post),
+      body: handlebars.compile(postTemplate)(postWithNavigation),
       noindex: post.noindex,
       ogpImage: `/ogp/${post.id}.png`,
       pageUrl: `/posts/${post.id}`,

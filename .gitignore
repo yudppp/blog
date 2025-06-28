@@ -30,3 +30,5 @@ yarn-error.log*
 !/pages/posts/_default.tsx
 
 decks/drafts/*
+
+.claude/
