@@ -85,6 +85,7 @@
 	color: #111;
 	transition: all 0.3s linear;
 	background-color: #fcfcfc;
+	line-height: 1.875rem;
 }
 
 .container {
@@ -179,6 +180,14 @@ a:hover {
 	margin: 4px 0;
 }
 
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}
+
 .hack footer {
 	padding: 40px 0 16px;
 	text-align: center;
@@ -244,6 +253,7 @@ a:hover {
 	background: white;
 	color: #333;
 	padding: 18px;
+	line-height: 1.25rem;
 }
 
 .logo {
