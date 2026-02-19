@@ -11,7 +11,7 @@
 	},
 	"dependencies": {
 		"@marp-team/marp-cli": "^4.1.2",
-		"canvas": "^2.11.2",
+		"canvas": "^3.2.1",
 		"contentful": "^11.2.5",
 		"feed": "^4.2.2",
 		"fs-extra": "^11.2.0",
